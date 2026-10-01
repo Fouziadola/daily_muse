@@ -1,26 +1,121 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #fbf7ef;
+  --foreground: #3f2e25;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--font-body);
+  --font-serif: var(--font-display);
+  --font-hand: var(--font-hand);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@theme {
+  --color-cream: #fbf7ef;
+  --color-parchment: #f5eee1;
+  --color-linen: #efe4d0;
+  --color-sand: #e6d7bc;
+  --color-clay: #c68b59;
+  --color-clay-deep: #a96f3f;
+  --color-rose: #d9a5a0;
+  --color-rose-soft: #f2d8d3;
+  --color-rose-deep: #b87a75;
+  --color-sage: #a8b89a;
+  --color-sage-soft: #dfe7d5;
+  --color-sage-deep: #6d7f5e;
+  --color-espresso: #3f2e25;
+  --color-cocoa: #6b584f;
+  --color-latte: #9c8a7a;
+  --color-gold: #c9a86a;
+  --color-blush: #f9ece4;
+
+  --font-display: "Fraunces", Georgia, serif;
+  --font-body: "Karla", ui-sans-serif, system-ui, sans-serif;
+  --font-hand: "Caveat", cursive;
+
+  --animate-marquee: marquee 28s linear infinite;
+  --animate-float: float 7s ease-in-out infinite;
+  --animate-float-slow: float 10s ease-in-out infinite;
+  --animate-spin-slow: spin 22s linear infinite;
+
+  @keyframes marquee {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-50%);
+    }
   }
+  @keyframes float {
+    0%,
+    100% {
+      transform: translateY(0) rotate(var(--float-rotate, 0deg));
+    }
+    50% {
+      transform: translateY(-12px) rotate(var(--float-rotate, 0deg));
+    }
+  }
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+/* paper grain */
+.paper-grain {
+  background-color: #fbf7ef;
+  background-image:
+    radial-gradient(#d9cbb2 0.7px, transparent 0.7px),
+    radial-gradient(#d9cbb2 0.5px, transparent 0.5px);
+  background-size:
+    26px 26px,
+    13px 13px;
+  background-position:
+    0 0,
+    6px 8px;
+}
+
+.paper-lines {
+  background-image: repeating-linear-gradient(
+    transparent,
+    transparent 31px,
+    rgba(166, 139, 115, 0.22) 31px,
+    rgba(166, 139, 115, 0.22) 32px
+  );
+}
+
+.dotted-bg {
+  background-image: radial-gradient(rgba(63, 46, 37, 0.16) 1.2px, transparent 1.2px);
+  background-size: 18px 18px;
+}
+
+.washi {
+  background-image: repeating-linear-gradient(
+    -45deg,
+    rgba(255, 255, 255, 0.35) 0 8px,
+    transparent 8px 16px
+  );
+}
+
+.torn-edge {
+  --torn: 14px;
+  mask-image: radial-gradient(var(--torn) at 50% var(--torn), #000 98%, transparent);
+  mask-size: 32px 100%;
+  mask-repeat: repeat-x;
+}
+
+::selection {
+  background: #e8cfc5;
+  color: #3f2e25;
 }
