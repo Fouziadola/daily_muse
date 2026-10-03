@@ -3,13 +3,15 @@
 import { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 
-type Mode = "signin" | "login";
+type Mode = "signup" | "login";
 
 export default function AuthButtons() {
   const [open, setOpen] = useState(false);
   const [mode, setMode] = useState<Mode>("login");
-  const [identifier, setIdentifier] = useState("");
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState("");
   const [status, setStatus] = useState<"idle" | "loading" | "done">("idle");
@@ -20,6 +22,12 @@ export default function AuthButtons() {
     setError("");
     setStatus("idle");
     setOpen(true);
+  };
+
+  const switchMode = (next: Mode) => {
+    setMode(next);
+    setError("");
+    setStatus("idle");
   };
 
   useEffect(() => {
@@ -35,16 +43,29 @@ export default function AuthButtons() {
       document.body.style.overflow = "";
       clearTimeout(t);
     };
-  }, [open ]);
+  }, [open, mode]);
 
   const submit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!identifier.trim()) {
-      setError("Please enter your username or email.");
+    const trimmedEmail = email.trim();
+    if (!isLogin && !name.trim()) {
+      setError("Please enter your name.");
+      return;
+    }
+    if (!trimmedEmail) {
+      setError("Please enter your email.");
+      return;
+    }
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(trimmedEmail)) {
+      setError("Please enter a valid email address.");
       return;
     }
     if (password.length < 6) {
       setError("Password must be at least 6 characters.");
+      return;
+    }
+    if (!isLogin && password !== confirmPassword) {
+      setError("Passwords do not match.");
       return;
     }
     setError("");
@@ -55,15 +76,18 @@ export default function AuthButtons() {
 
   const isLogin = mode === "login";
 
+  const inputClass =
+    "w-full rounded-2xl border border-espresso/20 bg-cream px-4 py-3 text-[15px] text-espresso placeholder:text-latte/70 focus:border-clay focus:outline-none focus:ring-2 focus:ring-clay/30";
+
   return (
     <>
       <div className="flex items-center gap-2.5">
         <button
           type="button"
-          onClick={() => openModal("signin")}
+          onClick={() => openModal("signup")}
           className="rounded-full border border-espresso/20 bg-cream px-5 py-2.5 text-[15px] font-semibold text-espresso transition hover:border-espresso hover:bg-parchment"
         >
-          Sign in
+          Sign Up
         </button>
         <button
           type="button"
@@ -81,7 +105,7 @@ export default function AuthButtons() {
             className="fixed inset-0 z-[100] flex items-center justify-center p-4"
             role="dialog"
             aria-modal="true"
-            aria-label={isLogin ? "Log in to Daily Muse" : "Sign in to Daily Muse"}
+            aria-label={isLogin ? "Log in to Daily Muse" : "Sign up for Daily Muse"}
           >
           {/* backdrop */}
           <button
@@ -91,7 +115,7 @@ export default function AuthButtons() {
             className="absolute inset-0 bg-cream/60 backdrop-blur-xl"
           />
           {/* card */}
-          <div className="relative w-full max-w-[400px] -rotate-1 rounded-[22px] border border-espresso/15 bg-[#fffdf7] p-7 pt-9 shadow-[8px_8px_0_rgba(63,46,37,0.25)]">
+          <div className="relative max-h-[90vh] w-full max-w-[400px] -rotate-1 overflow-y-auto rounded-[22px] border border-espresso/15 bg-[#fffdf7] p-7 pt-9 shadow-[8px_8px_0_rgba(63,46,37,0.25)]">
             <div
               aria-hidden
               className="washi pointer-events-none absolute left-1/2 top-[-14px] h-7 w-24 -translate-x-1/2 rotate-[-3deg] bg-rose-soft opacity-90 shadow-sm"
@@ -132,7 +156,7 @@ export default function AuthButtons() {
                   ✿ {isLogin ? "welcome back" : "join the soft club"}
                 </p>
                 <h2 className="mt-1 font-serif text-3xl font-semibold tracking-tight">
-                  {isLogin ? "Log in" : "Sign in"}
+                  {isLogin ? "Log in" : "Sign Up"}
                 </h2>
                 <p className="mt-1 font-hand text-xl leading-none text-cocoa">
                   {isLogin
@@ -141,22 +165,42 @@ export default function AuthButtons() {
                 </p>
 
                 <form onSubmit={submit} className="mt-5 space-y-4">
+                  {!isLogin && (
+                    <div>
+                      <label
+                        htmlFor="auth-name"
+                        className="mb-1.5 block text-sm font-bold text-espresso"
+                      >
+                        Name
+                      </label>
+                      <input
+                        ref={inputRef}
+                        id="auth-name"
+                        type="text"
+                        autoComplete="name"
+                        placeholder="e.g. June"
+                        value={name}
+                        onChange={(e) => setName(e.target.value)}
+                        className={inputClass}
+                      />
+                    </div>
+                  )}
                   <div>
                     <label
-                      htmlFor="auth-identifier"
+                      htmlFor="auth-email"
                       className="mb-1.5 block text-sm font-bold text-espresso"
                     >
-                      Username or email
+                      Email
                     </label>
                     <input
-                      ref={inputRef}
-                      id="auth-identifier"
-                      type="text"
-                      autoComplete="username"
+                      ref={isLogin ? inputRef : undefined}
+                      id="auth-email"
+                      type="email"
+                      autoComplete="email"
                       placeholder="e.g. june@muse.com"
-                      value={identifier}
-                      onChange={(e) => setIdentifier(e.target.value)}
-                      className="w-full rounded-2xl border border-espresso/20 bg-cream px-4 py-3 text-[15px] text-espresso placeholder:text-latte/70 focus:border-clay focus:outline-none focus:ring-2 focus:ring-clay/30"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      className={inputClass}
                     />
                   </div>
                   <div>
@@ -174,7 +218,7 @@ export default function AuthButtons() {
                         placeholder="••••••••"
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
-                        className="w-full rounded-2xl border border-espresso/20 bg-cream px-4 py-3 pr-16 text-[15px] text-espresso placeholder:text-latte/70 focus:border-clay focus:outline-none focus:ring-2 focus:ring-clay/30"
+                        className={`${inputClass} pr-16`}
                       />
                       <button
                         type="button"
@@ -185,6 +229,25 @@ export default function AuthButtons() {
                       </button>
                     </div>
                   </div>
+                  {!isLogin && (
+                    <div>
+                      <label
+                        htmlFor="auth-confirm-password"
+                        className="mb-1.5 block text-sm font-bold text-espresso"
+                      >
+                        Re-enter Password
+                      </label>
+                      <input
+                        id="auth-confirm-password"
+                        type={showPassword ? "text" : "password"}
+                        autoComplete="new-password"
+                        placeholder="••••••••"
+                        value={confirmPassword}
+                        onChange={(e) => setConfirmPassword(e.target.value)}
+                        className={inputClass}
+                      />
+                    </div>
+                  )}
 
                   {error && (
                     <p className="rounded-2xl border border-rose-deep/30 bg-blush px-4 py-2.5 text-sm font-semibold text-rose-deep">
@@ -201,7 +264,7 @@ export default function AuthButtons() {
                       ? "Opening…"
                       : isLogin
                         ? "Log in ✎"
-                        : "Sign in ✎"}
+                        : "Sign Up ✎"}
                   </button>
                 </form>
 
@@ -209,14 +272,10 @@ export default function AuthButtons() {
                   {isLogin ? "New here? " : "Already have an account? "}
                   <button
                     type="button"
-                    onClick={() => {
-                      setMode(isLogin ? "signin" : "login");
-                      setError("");
-                      setStatus("idle");
-                    }}
+                    onClick={() => switchMode(isLogin ? "signup" : "login")}
                     className="font-bold text-clay-deep underline-offset-2 hover:underline"
                   >
-                    {isLogin ? "Create an account" : "Log in instead"}
+                    {isLogin ? "Sign Up" : "Log in"}
                   </button>
                 </p>
               </>
