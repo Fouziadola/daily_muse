@@ -1,8 +1,8 @@
 @import "tailwindcss";
 
 :root {
-  --background: #fbf7ef;
-  --foreground: #3f2e25;
+  --background: #faf8ff;
+  --foreground: #2e2545;
 }
 
 @theme inline {
@@ -14,23 +14,23 @@
 }
 
 @theme {
-  --color-cream: #fbf7ef;
-  --color-parchment: #f5eee1;
-  --color-linen: #efe4d0;
-  --color-sand: #e6d7bc;
-  --color-clay: #c68b59;
-  --color-clay-deep: #a96f3f;
-  --color-rose: #d9a5a0;
-  --color-rose-soft: #f2d8d3;
-  --color-rose-deep: #b87a75;
-  --color-sage: #a8b89a;
-  --color-sage-soft: #dfe7d5;
-  --color-sage-deep: #6d7f5e;
-  --color-espresso: #3f2e25;
-  --color-cocoa: #6b584f;
-  --color-latte: #9c8a7a;
-  --color-gold: #c9a86a;
-  --color-blush: #f9ece4;
+  --color-cream: #faf8ff;
+  --color-parchment: #f1ebfe;
+  --color-linen: #e6d9fb;
+  --color-sand: #d5c2f5;
+  --color-clay: #8b7bd8;
+  --color-clay-deep: #6f5cc4;
+  --color-rose: #c4a8f0;
+  --color-rose-soft: #e9ddff;
+  --color-rose-deep: #7d6bc4;
+  --color-sage: #9db4e8;
+  --color-sage-soft: #dfe6ff;
+  --color-sage-deep: #5f7ab5;
+  --color-espresso: #2e2545;
+  --color-cocoa: #5e557e;
+  --color-latte: #9a90b8;
+  --color-gold: #9d8cff;
+  --color-blush: #ece4ff;
 
   --font-display: "Fraunces", Georgia, serif;
   --font-body: "Karla", ui-sans-serif, system-ui, sans-serif;
@@ -74,10 +74,10 @@ body {
 
 /* paper grain */
 .paper-grain {
-  background-color: #fbf7ef;
+  background-color: #faf8ff;
   background-image:
-    radial-gradient(#d9cbb2 0.7px, transparent 0.7px),
-    radial-gradient(#d9cbb2 0.5px, transparent 0.5px);
+    radial-gradient(#d9cffb 0.7px, transparent 0.7px),
+    radial-gradient(#d9cffb 0.5px, transparent 0.5px);
   background-size:
     26px 26px,
     13px 13px;
@@ -90,13 +90,13 @@ body {
   background-image: repeating-linear-gradient(
     transparent,
     transparent 31px,
-    rgba(166, 139, 115, 0.22) 31px,
-    rgba(166, 139, 115, 0.22) 32px
+    rgba(139, 123, 216, 0.22) 31px,
+    rgba(139, 123, 216, 0.22) 32px
   );
 }
 
 .dotted-bg {
-  background-image: radial-gradient(rgba(63, 46, 37, 0.16) 1.2px, transparent 1.2px);
+  background-image: radial-gradient(rgba(46, 37, 69, 0.14) 1.2px, transparent 1.2px);
   background-size: 18px 18px;
 }
 
@@ -116,6 +116,6 @@ body {
 }
 
 ::selection {
-  background: #e8cfc5;
-  color: #3f2e25;
+  background: #d9cffb;
+  color: #2e2545;
 }

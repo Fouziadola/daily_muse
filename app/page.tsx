@@ -263,34 +263,171 @@ export default function Home() {
         </div>
       </section>
 
-      {/* CTA */}
+      {/* CTA — evening ritual */}
       <section id="cta" className="relative overflow-hidden px-5 py-16 sm:px-10 lg:px-16 lg:py-24">
-        <div className="relative w-full overflow-hidden rounded-[32px] border border-espresso/15 bg-blush px-6 py-14 text-center shadow-[8px_8px_0_rgba(63,46,37,0.12)] sm:px-14">
-          <div aria-hidden className="dotted-bg absolute inset-0 opacity-50" />
-          <Tape className="left-10 top-[-4px] rotate-[-10deg] bg-rose-soft" />
-          <Tape className="right-10 top-[-4px] rotate-[10deg] bg-sage-soft" />
-          <div className="relative">
-            <p className="font-hand text-2xl text-rose-deep">
-              psst — your future self says hi
-            </p>
-            <h2 className="mx-auto mt-2 max-w-xl font-serif text-4xl font-medium leading-tight tracking-tight sm:text-5xl">
-              Tonight, write one small beautiful thing.
-            </h2>
-            <p className="mx-auto mt-4 max-w-md text-[17px] text-cocoa">
-              Free forever. No streaks. Just a warm page waiting with the
-              kettle on.
-            </p>
-            <div className="mt-7 flex flex-wrap justify-center gap-3">
-              <a
-                href="#top"
-                className="rounded-full bg-espresso px-8 py-4 font-semibold text-cream shadow-[3px_3px_0_rgba(198,139,89,1)] transition hover:-translate-y-0.5"
-              >
-                Open Daily Muse ✎
-              </a>
+        <div className="relative w-full overflow-hidden rounded-[36px] bg-espresso text-cream shadow-[8px_8px_0_rgba(111,92,196,0.25)]">
+          {/* lavender glow */}
+          <div
+            aria-hidden
+            className="pointer-events-none absolute -left-24 -top-24 h-96 w-96 rounded-full bg-clay/40 blur-3xl"
+          />
+          <div
+            aria-hidden
+            className="pointer-events-none absolute -bottom-32 -right-16 h-[28rem] w-[28rem] rounded-full bg-sage/40 blur-3xl"
+          />
+          <div
+            aria-hidden
+            className="pointer-events-none absolute inset-0 opacity-40"
+            style={{
+              backgroundImage:
+                "radial-gradient(rgba(250,248,255,0.35) 1px, transparent 1px)",
+              backgroundSize: "22px 22px",
+            }}
+          />
+
+          <div className="relative grid gap-12 p-8 sm:p-12 lg:grid-cols-[1.05fr_0.95fr] lg:items-center lg:p-14">
+            {/* copy */}
+            <div>
+              <div className="flex flex-wrap items-center gap-2">
+                <span className="rounded-full border border-white/20 bg-white/10 px-4 py-1.5 text-xs font-bold uppercase tracking-[0.16em] text-rose-soft">
+                  ✦ evening ritual • 9:47 pm
+                </span>
+                <span className="rounded-full border border-white/15 px-4 py-1.5 font-hand text-lg leading-none text-linen">
+                  no streaks, just softness
+                </span>
+              </div>
+              <h2 className="mt-5 font-serif text-4xl font-medium leading-[1.05] tracking-tight sm:text-5xl">
+                End your day in
+                <br />
+                <em className="italic text-rose-soft">lavender</em> light.
+              </h2>
+              <p className="mt-4 max-w-md text-[17px] leading-relaxed text-cream/75">
+                A 5-minute wind-down: breathe, keep one small moment, and
+                drift off. Your page glows softly — like lamplight on lilac
+                paper.
+              </p>
+
+              <ul className="mt-7 space-y-3">
+                {[
+                  ["01", "Breathe", "60-second exhale with a moon timer"],
+                  ["02", "Keep", "one line + one tiny gratitude"],
+                  ["03", "Dream", "seal a capsule for future-you"],
+                ].map(([n, t, d]) => (
+                  <li
+                    key={n}
+                    className="flex items-center gap-4 rounded-2xl border border-white/12 bg-white/[0.06] px-4 py-3 backdrop-blur-sm"
+                  >
+                    <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-rose-soft font-serif text-sm font-bold text-espresso">
+                      {n}
+                    </span>
+                    <div>
+                      <p className="font-bold leading-none">{t}</p>
+                      <p className="mt-1 text-sm text-cream/65">{d}</p>
+                    </div>
+                  </li>
+                ))}
+              </ul>
+
+              <div className="mt-7 flex flex-wrap items-center gap-3">
+                <a
+                  href="#top"
+                  className="rounded-full bg-cream px-8 py-4 font-semibold text-espresso shadow-[3px_3px_0_rgba(157,140,255,1)] transition hover:-translate-y-0.5"
+                >
+                  Start tonight&apos;s entry ✎
+                </a>
+                <a
+                  href="#top"
+                  className="rounded-full border border-white/25 px-7 py-4 font-semibold text-cream/90 transition hover:bg-white/10"
+                >
+                  Peek at prompts
+                </a>
+              </div>
+              <div className="mt-6 flex flex-wrap items-center gap-x-5 gap-y-3 text-sm text-cream/70">
+                <span className="tracking-tight text-rose-soft">★★★★★ 4.9</span>
+                <span className="flex -space-x-2">
+                  {["AM", "SJ", "JK"].map((ini) => (
+                    <span
+                      key={ini}
+                      className="flex h-8 w-8 items-center justify-center rounded-full border-2 border-espresso bg-linen text-[11px] font-bold text-espresso"
+                    >
+                      {ini}
+                    </span>
+                  ))}
+                </span>
+                <span>join 12,000+ journalers winding down</span>
+              </div>
             </div>
-            <p className="mt-5 font-hand text-xl text-cocoa">
-              join 12,000+ journalers keeping soft days ✿
-            </p>
+
+            {/* night note card */}
+            <div className="relative mx-auto w-full max-w-[400px]">
+              <div className="relative rounded-[24px] border border-white/15 bg-white/[0.08] p-6 shadow-2xl backdrop-blur-md">
+                <div className="flex items-center justify-between">
+                  <p className="text-xs font-bold uppercase tracking-[0.18em] text-rose-soft">
+                    ☾ night note — Oct 01
+                  </p>
+                  <span className="flex gap-1.5" aria-hidden>
+                    {["○", "◐", "●"].map((m) => (
+                      <span key={m} className="text-sm text-linen/80">
+                        {m}
+                      </span>
+                    ))}
+                  </span>
+                </div>
+                <p className="mt-4 font-hand text-[26px] leading-tight text-cream">
+                  “What do you want to dream about tonight?”
+                </p>
+                <div className="mt-4 space-y-0 rounded-xl border border-white/10 bg-espresso/40 p-4">
+                  {[
+                    "lavender on my pillow, window cracked,",
+                    "the day folding itself away softly…",
+                    "tomorrow can wait — tonight is mine.",
+                  ].map((line) => (
+                    <p
+                      key={line}
+                      className="border-b border-white/10 py-2 font-serif text-[15px] italic leading-6 text-cream/85 last:border-0"
+                    >
+                      {line}
+                    </p>
+                  ))}
+                </div>
+                <div className="mt-4 flex items-center justify-between">
+                  <div className="flex gap-1.5">
+                    {["#e9ddff", "#c4a8f0", "#9db4e8", "#8b7bd8", "#faf8ff"].map(
+                      (c) => (
+                        <span
+                          key={c}
+                          style={{ background: c }}
+                          className="h-5 w-5 rounded-full border border-white/30"
+                        />
+                      ),
+                    )}
+                  </div>
+                  <p className="font-hand text-lg text-linen">
+                    saved • 9:48 pm ✓
+                  </p>
+                </div>
+              </div>
+
+              <div className="animate-float absolute -right-3 -top-5 rotate-3 rounded-2xl bg-cream px-4 py-3 text-espresso shadow-lg sm:-right-6">
+                <p className="text-[11px] font-bold uppercase tracking-widest text-clay-deep">
+                  ☁ drift off
+                </p>
+                <p className="font-serif text-base font-semibold">
+                  5-min moon timer
+                </p>
+              </div>
+              <div
+                className="animate-float-slow absolute -bottom-6 -left-3 -rotate-3 rounded-2xl bg-rose-soft px-4 py-3 text-espresso shadow-lg sm:-left-6"
+                style={{ ["--float-rotate" as string]: "-3deg" }}
+              >
+                <p className="font-hand text-xl leading-none text-clay-deep">
+                  sealed with stardust!
+                </p>
+                <p className="mt-1 text-[13px] text-espresso/70">
+                  ✉ opens Nov 1 for future-you
+                </p>
+              </div>
+            </div>
           </div>
         </div>
       </section>
