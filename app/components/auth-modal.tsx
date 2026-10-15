@@ -1,11 +1,13 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { useRouter } from "next/navigation";
 import { createPortal } from "react-dom";
 
 type Mode = "signup" | "login";
 
 export default function AuthButtons() {
+  const router = useRouter();
   const [open, setOpen] = useState(false);
   const [mode, setMode] = useState<Mode>("login");
   const [name, setName] = useState("");
@@ -144,7 +146,10 @@ export default function AuthButtons() {
                 </p>
                 <button
                   type="button"
-                  onClick={() => setOpen(false)}
+                  onClick={() => {
+                    setOpen(false);
+                    router.push("/home/book");
+                  }}
                   className="mt-6 w-full rounded-full bg-clay py-3 font-semibold text-espresso transition hover:-translate-y-0.5 hover:bg-rose"
                 >
                   Open my journal →
