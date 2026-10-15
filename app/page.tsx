@@ -58,7 +58,7 @@ function Sticker({
 }) {
   return (
     <span
-      className={`inline-flex items-center justify-center rounded-full border border-espresso/15 bg-cream px-3 py-1 font-hand text-lg leading-none shadow-[2px_2px_0_rgba(63,46,37,0.15)] ${className}`}
+      className={`inline-flex items-center justify-center rounded-full border border-espresso/15 bg-cream px-3 py-1 font-hand text-lg leading-none shadow-[2px_2px_0_rgba(100,80,85,0.18)] ${className}`}
     >
       {children}
     </span>
@@ -125,7 +125,7 @@ export default function Home() {
             <div className="mt-7 flex flex-wrap items-center gap-3">
               <a
                 href="#cta"
-                className="rounded-full bg-clay px-7 py-3.5 font-semibold text-cream shadow-[3px_3px_0_#3f2e25] transition hover:-translate-y-0.5 hover:bg-clay-deep"
+                className="rounded-full bg-clay px-7 py-3.5 font-semibold text-espresso shadow-[3px_3px_0_#f3c6cc] transition hover:-translate-y-0.5 hover:bg-rose"
               >
                 Open your journal →
               </a>
@@ -160,7 +160,7 @@ export default function Home() {
               aria-hidden
               className="absolute -inset-4 -rotate-2 rounded-[28px] bg-sand/60"
             />
-            <div className="relative -rotate-2 rounded-[22px] border border-espresso/15 bg-[#fffdf7] p-6 shadow-[8px_8px_0_rgba(63,46,37,0.14)]">
+            <div className="relative -rotate-2 rounded-[22px] border border-espresso/15 bg-[#fffefd] p-6 shadow-[8px_8px_0_rgba(100,80,85,0.14)]">
               <Tape className="left-1/2 top-[-14px] -translate-x-1/2 rotate-[-3deg] bg-rose-soft" />
               <div className="flex items-center justify-between">
                 <p className="text-xs font-bold uppercase tracking-[0.18em] text-latte">
@@ -179,7 +179,7 @@ export default function Home() {
               </div>
               <div className="mt-4 flex items-center justify-between">
                 <div className="flex gap-1.5">
-                  {["#d9a5a0", "#a8b89a", "#c68b59", "#c9a86a", "#efe4d0"].map(
+                  {["#e79aa6", "#f0a2af", "#f9d5d9", "#fde3e7", "#fffcf8"].map(
                     (c) => (
                       <span
                         key={c}
@@ -190,7 +190,7 @@ export default function Home() {
                   )}
                 </div>
                 <p className="font-hand text-lg text-cocoa">
-                  mood: soft & golden ✓
+                  mood: soft & rosy ✓
                 </p>
               </div>
             </div>
@@ -202,13 +202,13 @@ export default function Home() {
               <p className="font-serif text-lg font-semibold">12 cozy days</p>
             </div>
             <div
-              className="animate-float-slow absolute -left-3 bottom-10 -rotate-6 rounded-2xl border border-espresso/15 bg-espresso px-4 py-3 text-cream shadow-lg sm:-left-8"
+              className="animate-float-slow absolute -left-3 bottom-10 -rotate-6 rounded-2xl border border-espresso/15 bg-rose-soft px-4 py-3 text-espresso shadow-lg sm:-left-8"
               style={{ ["--float-rotate" as string]: "-6deg" }}
             >
-              <p className="font-hand text-xl leading-none text-gold">
+              <p className="font-hand text-xl leading-none text-rose-deep">
                 remember this!
               </p>
-              <p className="mt-1 text-[13px] text-cream/80">
+              <p className="mt-1 text-[13px] text-espresso/70">
                 letter opens in 30 days ✉
               </p>
             </div>
@@ -246,7 +246,7 @@ export default function Home() {
           {testimonials.map((t) => (
             <figure
               key={t.name}
-              className={`relative rounded-sm border border-espresso/10 bg-[#fffdf7] p-6 pb-14 pt-8 shadow-[5px_5px_0_rgba(63,46,37,0.1)] transition hover:rotate-0 ${t.rotate}`}
+              className={`relative rounded-sm border border-espresso/10 bg-[#fffefd] p-6 pb-14 pt-8 shadow-[5px_5px_0_rgba(100,80,85,0.12)] transition hover:rotate-0 ${t.rotate}`}
             >
               <Tape className="left-1/2 top-[-12px] -translate-x-1/2 bg-linen" />
               <span className="absolute right-4 top-4 text-2xl">{t.sticker}</span>
@@ -265,22 +265,22 @@ export default function Home() {
 
       {/* CTA — evening ritual */}
       <section id="cta" className="relative overflow-hidden px-5 py-16 sm:px-10 lg:px-16 lg:py-24">
-        <div className="relative w-full overflow-hidden rounded-[36px] bg-espresso text-cream shadow-[8px_8px_0_rgba(111,92,196,0.25)]">
-          {/* lavender glow */}
+        <div className="relative w-full overflow-hidden rounded-[36px] border border-espresso/10 bg-rose-soft text-espresso shadow-[8px_8px_0_rgba(243,198,204,0.9)]">
+          {/* soft pink glow */}
           <div
             aria-hidden
-            className="pointer-events-none absolute -left-24 -top-24 h-96 w-96 rounded-full bg-clay/40 blur-3xl"
+            className="pointer-events-none absolute -left-24 -top-24 h-96 w-96 rounded-full bg-cream/70 blur-3xl"
           />
           <div
             aria-hidden
-            className="pointer-events-none absolute -bottom-32 -right-16 h-[28rem] w-[28rem] rounded-full bg-sage/40 blur-3xl"
+            className="pointer-events-none absolute -bottom-32 -right-16 h-[28rem] w-[28rem] rounded-full bg-linen/70 blur-3xl"
           />
           <div
             aria-hidden
             className="pointer-events-none absolute inset-0 opacity-40"
             style={{
               backgroundImage:
-                "radial-gradient(rgba(250,248,255,0.35) 1px, transparent 1px)",
+                "radial-gradient(rgba(100,80,85,0.14) 1px, transparent 1px)",
               backgroundSize: "22px 22px",
             }}
           />
@@ -289,21 +289,21 @@ export default function Home() {
             {/* copy */}
             <div>
               <div className="flex flex-wrap items-center gap-2">
-                <span className="rounded-full border border-white/20 bg-white/10 px-4 py-1.5 text-xs font-bold uppercase tracking-[0.16em] text-rose-soft">
+                <span className="rounded-full border border-espresso/15 bg-cream/80 px-4 py-1.5 text-xs font-bold uppercase tracking-[0.16em] text-rose-deep">
                   ✦ evening ritual • 9:47 pm
                 </span>
-                <span className="rounded-full border border-white/15 px-4 py-1.5 font-hand text-lg leading-none text-linen">
+                <span className="rounded-full border border-espresso/15 bg-cream/60 px-4 py-1.5 font-hand text-lg leading-none text-cocoa">
                   no streaks, just softness
                 </span>
               </div>
               <h2 className="mt-5 font-serif text-4xl font-medium leading-[1.05] tracking-tight sm:text-5xl">
                 End your day in
                 <br />
-                <em className="italic text-rose-soft">lavender</em> light.
+                <em className="italic text-clay-deep">rosy</em> light.
               </h2>
-              <p className="mt-4 max-w-md text-[17px] leading-relaxed text-cream/75">
+              <p className="mt-4 max-w-md text-[17px] leading-relaxed text-cocoa">
                 A 5-minute wind-down: breathe, keep one small moment, and
-                drift off. Your page glows softly — like lamplight on lilac
+                drift off. Your page glows softly — like lamplight on blush
                 paper.
               </p>
 
@@ -315,14 +315,14 @@ export default function Home() {
                 ].map(([n, t, d]) => (
                   <li
                     key={n}
-                    className="flex items-center gap-4 rounded-2xl border border-white/12 bg-white/[0.06] px-4 py-3 backdrop-blur-sm"
+                    className="flex items-center gap-4 rounded-2xl border border-espresso/10 bg-cream/70 px-4 py-3 backdrop-blur-sm"
                   >
-                    <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-rose-soft font-serif text-sm font-bold text-espresso">
+                    <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-clay font-serif text-sm font-bold text-espresso">
                       {n}
                     </span>
                     <div>
                       <p className="font-bold leading-none">{t}</p>
-                      <p className="mt-1 text-sm text-cream/65">{d}</p>
+                      <p className="mt-1 text-sm text-cocoa">{d}</p>
                     </div>
                   </li>
                 ))}
@@ -331,24 +331,24 @@ export default function Home() {
               <div className="mt-7 flex flex-wrap items-center gap-3">
                 <a
                   href="#top"
-                  className="rounded-full bg-cream px-8 py-4 font-semibold text-espresso shadow-[3px_3px_0_rgba(157,140,255,1)] transition hover:-translate-y-0.5"
+                  className="rounded-full bg-clay px-8 py-4 font-semibold text-espresso shadow-[3px_3px_0_rgba(255,252,248,1)] transition hover:-translate-y-0.5 hover:bg-rose"
                 >
                   Start tonight&apos;s entry ✎
                 </a>
                 <a
                   href="#top"
-                  className="rounded-full border border-white/25 px-7 py-4 font-semibold text-cream/90 transition hover:bg-white/10"
+                  className="rounded-full border border-espresso/20 px-7 py-4 font-semibold text-espresso transition hover:bg-cream/70"
                 >
                   Peek at prompts
                 </a>
               </div>
-              <div className="mt-6 flex flex-wrap items-center gap-x-5 gap-y-3 text-sm text-cream/70">
-                <span className="tracking-tight text-rose-soft">★★★★★ 4.9</span>
+              <div className="mt-6 flex flex-wrap items-center gap-x-5 gap-y-3 text-sm text-cocoa">
+                <span className="tracking-tight text-rose-deep">★★★★★ 4.9</span>
                 <span className="flex -space-x-2">
                   {["AM", "SJ", "JK"].map((ini) => (
                     <span
                       key={ini}
-                      className="flex h-8 w-8 items-center justify-center rounded-full border-2 border-espresso bg-linen text-[11px] font-bold text-espresso"
+                      className="flex h-8 w-8 items-center justify-center rounded-full border-2 border-cream bg-cream text-[11px] font-bold text-espresso"
                     >
                       {ini}
                     </span>
@@ -360,31 +360,31 @@ export default function Home() {
 
             {/* night note card */}
             <div className="relative mx-auto w-full max-w-[400px]">
-              <div className="relative rounded-[24px] border border-white/15 bg-white/[0.08] p-6 shadow-2xl backdrop-blur-md">
+              <div className="relative rounded-[24px] border border-espresso/10 bg-cream/85 p-6 shadow-2xl backdrop-blur-md">
                 <div className="flex items-center justify-between">
-                  <p className="text-xs font-bold uppercase tracking-[0.18em] text-rose-soft">
+                  <p className="text-xs font-bold uppercase tracking-[0.18em] text-rose-deep">
                     ☾ night note — Oct 01
                   </p>
                   <span className="flex gap-1.5" aria-hidden>
                     {["○", "◐", "●"].map((m) => (
-                      <span key={m} className="text-sm text-linen/80">
+                      <span key={m} className="text-sm text-latte">
                         {m}
                       </span>
                     ))}
                   </span>
                 </div>
-                <p className="mt-4 font-hand text-[26px] leading-tight text-cream">
+                <p className="mt-4 font-hand text-[26px] leading-tight text-espresso">
                   “What do you want to dream about tonight?”
                 </p>
-                <div className="mt-4 space-y-0 rounded-xl border border-white/10 bg-espresso/40 p-4">
+                <div className="mt-4 space-y-0 rounded-xl border border-espresso/10 bg-parchment p-4">
                   {[
-                    "lavender on my pillow, window cracked,",
+                    "rose petals on my pillow, window cracked,",
                     "the day folding itself away softly…",
                     "tomorrow can wait — tonight is mine.",
                   ].map((line) => (
                     <p
                       key={line}
-                      className="border-b border-white/10 py-2 font-serif text-[15px] italic leading-6 text-cream/85 last:border-0"
+                      className="border-b border-espresso/10 py-2 font-serif text-[15px] italic leading-6 text-espresso/85 last:border-0"
                     >
                       {line}
                     </p>
@@ -392,17 +392,17 @@ export default function Home() {
                 </div>
                 <div className="mt-4 flex items-center justify-between">
                   <div className="flex gap-1.5">
-                    {["#e9ddff", "#c4a8f0", "#9db4e8", "#8b7bd8", "#faf8ff"].map(
+                    {["#fffcf8", "#fde3e7", "#f9d5d9", "#e79aa6", "#f0a2af"].map(
                       (c) => (
                         <span
                           key={c}
                           style={{ background: c }}
-                          className="h-5 w-5 rounded-full border border-white/30"
+                          className="h-5 w-5 rounded-full border border-espresso/20"
                         />
                       ),
                     )}
                   </div>
-                  <p className="font-hand text-lg text-linen">
+                  <p className="font-hand text-lg text-cocoa">
                     saved • 9:48 pm ✓
                   </p>
                 </div>

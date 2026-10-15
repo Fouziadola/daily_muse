@@ -92,7 +92,7 @@ export default function AuthButtons() {
         <button
           type="button"
           onClick={() => openModal("login")}
-          className="rounded-full border border-espresso bg-espresso px-5 py-2.5 text-[15px] font-semibold text-cream shadow-[3px_3px_0_rgba(198,139,89,0.9)] transition hover:-translate-y-0.5 hover:shadow-[4px_5px_0_rgba(198,139,89,0.9)]"
+          className="rounded-full border border-espresso/15 bg-clay px-5 py-2.5 text-[15px] font-semibold text-espresso shadow-[3px_3px_0_rgba(255,252,248,0.9)] transition hover:-translate-y-0.5 hover:bg-rose hover:shadow-[4px_5px_0_rgba(255,252,248,0.9)]"
         >
           Log in
         </button>
@@ -115,7 +115,7 @@ export default function AuthButtons() {
             className="absolute inset-0 bg-cream/60 backdrop-blur-xl"
           />
           {/* card */}
-          <div className="relative max-h-[90vh] w-full max-w-[400px] -rotate-1 overflow-y-auto rounded-[22px] border border-espresso/15 bg-[#fffdf7] p-7 pt-9 shadow-[8px_8px_0_rgba(63,46,37,0.25)]">
+          <div className="relative max-h-[90vh] w-full max-w-[400px] -rotate-1 overflow-y-auto rounded-[22px] border border-espresso/15 bg-[#fffefd] p-7 pt-9 shadow-[8px_8px_0_rgba(100,80,85,0.2)]">
             <div
               aria-hidden
               className="washi pointer-events-none absolute left-1/2 top-[-14px] h-7 w-24 -translate-x-1/2 rotate-[-3deg] bg-rose-soft opacity-90 shadow-sm"
@@ -145,7 +145,7 @@ export default function AuthButtons() {
                 <button
                   type="button"
                   onClick={() => setOpen(false)}
-                  className="mt-6 w-full rounded-full bg-espresso py-3 font-semibold text-cream transition hover:-translate-y-0.5"
+                  className="mt-6 w-full rounded-full bg-clay py-3 font-semibold text-espresso transition hover:-translate-y-0.5 hover:bg-rose"
                 >
                   Open my journal →
                 </button>
@@ -258,7 +258,7 @@ export default function AuthButtons() {
                   <button
                     type="submit"
                     disabled={status === "loading"}
-                    className="w-full rounded-full bg-espresso py-3.5 font-semibold text-cream shadow-[3px_3px_0_rgba(198,139,89,0.9)] transition hover:-translate-y-0.5 disabled:cursor-wait disabled:opacity-70"
+                    className="w-full rounded-full bg-clay py-3.5 font-semibold text-espresso shadow-[3px_3px_0_rgba(243,198,204,0.9)] transition hover:-translate-y-0.5 hover:bg-rose disabled:cursor-wait disabled:opacity-70"
                   >
                     {status === "loading"
                       ? "Opening…"
