@@ -32,9 +32,9 @@
   --color-gold: #d8a0a6;
   --color-blush: #feeef1;
 
-  --font-display: "Fraunces", Georgia, serif;
-  --font-body: "Karla", ui-sans-serif, system-ui, sans-serif;
-  --font-hand: "Caveat", cursive;
+  --font-display: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+  --font-body: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji", sans-serif;
+  --font-hand: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
 
   --animate-marquee: marquee 28s linear infinite;
   --animate-float: float 7s ease-in-out infinite;

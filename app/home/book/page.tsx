@@ -1,12 +1,14 @@
 "use client";
 
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 
 type Mode = "continue" | "new";
 
 const draftText = `The light through the kitchen window at 7am. Oat latte, still warm. Maya texted “good morning sunshine”…`;
 
 export default function BookPage() {
+  const router = useRouter();
   const [mode, setMode] = useState<Mode>("continue");
   const [text, setText] = useState(draftText);
 
@@ -14,6 +16,10 @@ export default function BookPage() {
     setMode(next);
     if (next === "new") setText("");
     else setText(draftText);
+  };
+
+  const goWrite = () => {
+    router.push(`/home/write?mode=${mode}`);
   };
 
   return (
@@ -119,12 +125,13 @@ export default function BookPage() {
           <p className="font-hand text-lg text-cocoa">
             {mode === "continue" ? "draft saved ✓" : "unsaved fresh page ○"}
           </p>
-          <button
-            type="button"
-            className="rounded-full bg-clay px-6 py-2.5 text-sm font-bold text-espresso transition hover:bg-rose"
-          >
-            {mode === "continue" ? "Keep writing ✎" : "Start writing ✎"}
-          </button>
+        <button
+          type="button"
+          onClick={goWrite}
+          className="rounded-full bg-clay px-6 py-2.5 text-sm font-bold text-espresso transition hover:bg-rose"
+        >
+          {mode === "continue" ? "Keep writing ✎" : "Start writing ✎"}
+        </button>
         </div>
       </div>
     </section>
