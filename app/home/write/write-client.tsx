@@ -21,7 +21,7 @@ export default function WriteClient() {
         >
           ← back
         </button>
-        <p className="font-hand text-xl text-rose-deep">
+        <p className="font-hand text-xl text-lavender-deeper">
           {mode === "continue" ? "✿ continue writing" : "✿ new page"}
         </p>
       </div>
@@ -35,10 +35,10 @@ export default function WriteClient() {
           : "A blank page, just for you."}
       </p>
 
-      <div className="relative mt-5 -rotate-1 rounded-[22px] border border-espresso/15 bg-[#fffefd] p-6 shadow-[8px_8px_0_rgba(100,80,85,0.14)]">
+      <div className="relative mt-5 -rotate-1 rounded-[22px] border border-espresso/15 bg-[#fffefd] p-6 shadow-[8px_8px_0_rgba(138,120,160,0.14)]">
         <div
           aria-hidden
-          className="washi pointer-events-none absolute left-1/2 top-[-14px] h-7 w-24 -translate-x-1/2 rotate-[-3deg] bg-rose-soft opacity-90 shadow-sm"
+          className="washi pointer-events-none absolute left-1/2 top-[-14px] h-7 w-24 -translate-x-1/2 rotate-[-3deg] bg-lavender-soft opacity-90 shadow-sm"
           style={{
             clipPath:
               "polygon(2% 0, 98% 4%, 100% 90%, 97% 100%, 3% 96%, 0 88%)",
@@ -72,7 +72,7 @@ export default function WriteClient() {
           <button
             type="button"
             onClick={() => router.push("/home/book")}
-            className="rounded-full bg-clay px-6 py-2.5 text-sm font-bold text-espresso transition hover:bg-rose"
+            className="rounded-full bg-lavender-deep px-6 py-2.5 text-sm font-bold text-espresso transition hover:bg-lavender-deeper"
           >
             Save & return
           </button>

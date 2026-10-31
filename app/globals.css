@@ -1,8 +1,8 @@
 @import "tailwindcss";
 
 :root {
-  --background: #fffcf8;
-  --foreground: #645055;
+  --background: #fffbfc;
+  --foreground: #8a78a0;
 }
 
 @theme inline {
@@ -14,7 +14,7 @@
 }
 
 @theme {
-  --color-cream: #fffcf8;
+  --color-cream: #fffbfc;
   --color-parchment: #fdf0f2;
   --color-linen: #f9d5d9;
   --color-sand: #f3c6cc;
@@ -26,11 +26,15 @@
   --color-sage: #e5b3b9;
   --color-sage-soft: #fbeff0;
   --color-sage-deep: #a67e84;
-  --color-espresso: #645055;
-  --color-cocoa: #8a787d;
+  --color-espresso: #8a78a0;
+  --color-cocoa: #a898c8;
   --color-latte: #bfa9ad;
   --color-gold: #d8a0a6;
   --color-blush: #feeef1;
+  --color-lavender-soft: #f3f0f8;
+  --color-lavender: #e6e3f2;
+  --color-lavender-deep: #c7b8e0;
+  --color-lavender-deeper: #a898d0;
 
   --font-display: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
   --font-body: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji", sans-serif;
@@ -74,10 +78,10 @@ body {
 
 /* paper grain */
 .paper-grain {
-  background-color: #fffcf8;
+  background-color: #fffbfc;
   background-image:
     radial-gradient(#f3d3d8 0.7px, transparent 0.7px),
-    radial-gradient(#f3d3d8 0.5px, transparent 0.5px);
+    radial-gradient(#e6e3f2 0.5px, transparent 0.5px);
   background-size:
     26px 26px,
     13px 13px;
@@ -90,13 +94,13 @@ body {
   background-image: repeating-linear-gradient(
     transparent,
     transparent 31px,
-    rgba(215, 140, 150, 0.2) 31px,
-    rgba(215, 140, 150, 0.2) 32px
+    rgba(168, 152, 208, 0.2) 31px,
+    rgba(168, 152, 208, 0.2) 32px
   );
 }
 
 .dotted-bg {
-  background-image: radial-gradient(rgba(100, 80, 85, 0.12) 1.2px, transparent 1.2px);
+  background-image: radial-gradient(rgba(138, 120, 160, 0.12) 1.2px, transparent 1.2px);
   background-size: 18px 18px;
 }
 
@@ -116,6 +120,6 @@ body {
 }
 
 ::selection {
-  background: #f9d5d9;
-  color: #645055;
+  background: #c7b8e0;
+  color: #fffbfc;
 }

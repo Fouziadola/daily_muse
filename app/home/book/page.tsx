@@ -24,7 +24,7 @@ export default function BookPage() {
 
   return (
     <section>
-      <p className="font-hand text-2xl text-rose-deep">✿ your book — Oct 01</p>
+      <p className="font-hand text-2xl text-lavender-deeper">✿ your book — Oct 01</p>
       <h1 className="mt-1 font-serif text-4xl font-medium tracking-tight">
         Today&apos;s page
       </h1>
@@ -45,7 +45,7 @@ export default function BookPage() {
           onClick={() => pick("continue")}
           className={`rounded-2xl border p-4 text-left transition ${
             mode === "continue"
-              ? "border-espresso/20 bg-clay text-espresso shadow-[4px_4px_0_rgba(100,80,85,0.15)]"
+              ? "border-espresso/20 bg-lavender-deep text-espresso shadow-[4px_4px_0_rgba(138,120,160,0.15)]"
               : "border-espresso/10 bg-[#fffefd] hover:bg-parchment"
           }`}
         >
@@ -71,7 +71,7 @@ export default function BookPage() {
           onClick={() => pick("new")}
           className={`rounded-2xl border p-4 text-left transition ${
             mode === "new"
-              ? "border-espresso/20 bg-clay text-espresso shadow-[4px_4px_0_rgba(100,80,85,0.15)]"
+              ? "border-espresso/20 bg-lavender-deep text-espresso shadow-[4px_4px_0_rgba(138,120,160,0.15)]"
               : "border-espresso/10 bg-[#fffefd] hover:bg-parchment"
           }`}
         >
@@ -92,10 +92,10 @@ export default function BookPage() {
       </div>
 
       {/* editor card */}
-      <div className="relative mt-4 -rotate-1 rounded-[22px] border border-espresso/15 bg-[#fffefd] p-6 shadow-[8px_8px_0_rgba(100,80,85,0.14)]">
+      <div className="relative mt-4 -rotate-1 rounded-[22px] border border-espresso/15 bg-[#fffefd] p-6 shadow-[8px_8px_0_rgba(138,120,160,0.14)]">
         <div
           aria-hidden
-          className="washi pointer-events-none absolute left-1/2 top-[-14px] h-7 w-24 -translate-x-1/2 rotate-[-3deg] bg-rose-soft opacity-90 shadow-sm"
+          className="washi pointer-events-none absolute left-1/2 top-[-14px] h-7 w-24 -translate-x-1/2 rotate-[-3deg] bg-lavender-soft opacity-90 shadow-sm"
           style={{
             clipPath:
               "polygon(2% 0, 98% 4%, 100% 90%, 97% 100%, 3% 96%, 0 88%)",
@@ -128,7 +128,7 @@ export default function BookPage() {
         <button
           type="button"
           onClick={goWrite}
-          className="rounded-full bg-clay px-6 py-2.5 text-sm font-bold text-espresso transition hover:bg-rose"
+          className="rounded-full bg-lavender-deep px-6 py-2.5 text-sm font-bold text-espresso transition hover:bg-lavender-deeper"
         >
           {mode === "continue" ? "Keep writing ✎" : "Start writing ✎"}
         </button>

@@ -7,7 +7,7 @@ const written = new Set([1, 4, 7, 12, 18, 21, 29]);
 export default function CalendarPage() {
   return (
     <section>
-      <p className="font-hand text-2xl text-rose-deep">📅 gentle streaks</p>
+      <p className="font-hand text-2xl text-lavender-deeper">📅 gentle streaks</p>
       <h1 className="mt-1 font-serif text-4xl font-medium tracking-tight">
         Calendar
       </h1>
@@ -15,7 +15,7 @@ export default function CalendarPage() {
         Pink dots = days you wrote. No pressure, just a soft trail.
       </p>
 
-      <div className="mt-6 rounded-[22px] border border-espresso/15 bg-[#fffefd] p-6 shadow-[8px_8px_0_rgba(100,80,85,0.12)]">
+      <div className="mt-6 rounded-[22px] border border-espresso/15 bg-[#fffefd] p-6 shadow-[8px_8px_0_rgba(138,120,160,0.12)]">
         <div className="flex items-center justify-between">
           <h2 className="font-serif text-xl font-semibold">October 2026</h2>
           <div className="flex gap-2">
@@ -57,9 +57,9 @@ export default function CalendarPage() {
                 aria-label={`Oct ${d}${has ? ", entry written" : ""}`}
                 className={`flex aspect-square flex-col items-center justify-center rounded-2xl border text-sm font-bold transition ${
                   isToday
-                    ? "border-espresso/20 bg-clay text-espresso"
+                    ? "border-espresso/20 bg-lavender-deep text-espresso"
                     : has
-                      ? "border-espresso/10 bg-rose-soft text-espresso"
+                      ? "border-espresso/10 bg-lavender-soft text-espresso"
                       : "border-transparent text-cocoa hover:bg-parchment"
                 }`}
               >

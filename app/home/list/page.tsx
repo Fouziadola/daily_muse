@@ -7,7 +7,7 @@ const entries = [
 export default function ListPage() {
   return (
     <section>
-      <p className="font-hand text-2xl text-rose-deep">☰ all entries</p>
+      <p className="font-hand text-2xl text-lavender-deeper">☰ all entries</p>
       <h1 className="mt-1 font-serif text-4xl font-medium tracking-tight">
         Your list
       </h1>
@@ -28,13 +28,13 @@ export default function ListPage() {
         {entries.map((e) => (
           <li
             key={e.date + e.title}
-            className="rounded-2xl border border-espresso/10 bg-[#fffefd] p-5 shadow-[4px_4px_0_rgba(100,80,85,0.1)] transition hover:-translate-y-0.5"
+            className="rounded-2xl border border-espresso/10 bg-[#fffefd] p-5 shadow-[4px_4px_0_rgba(138,120,160,0.1)] transition hover:-translate-y-0.5"
           >
             <div className="flex items-center justify-between gap-2">
               <p className="text-xs font-bold uppercase tracking-[0.18em] text-latte">
                 {e.date}
               </p>
-              <span className="rounded-full bg-rose-soft px-3 py-1 text-xs font-bold text-rose-deep">
+              <span className="rounded-full bg-lavender-soft px-3 py-1 text-xs font-bold text-lavender-deeper">
                 ● {e.mood}
               </span>
             </div>

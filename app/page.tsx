@@ -58,7 +58,7 @@ function Sticker({
 }) {
   return (
     <span
-      className={`inline-flex items-center justify-center rounded-full border border-espresso/15 bg-cream px-3 py-1 font-hand text-lg leading-none shadow-[2px_2px_0_rgba(100,80,85,0.18)] ${className}`}
+      className={`inline-flex items-center justify-center rounded-full border border-espresso/15 bg-cream px-3 py-1 font-hand text-lg leading-none shadow-[2px_2px_0_rgba(138,120,160,0.18)] ${className}`}
     >
       {children}
     </span>
@@ -89,11 +89,11 @@ export default function Home() {
       <section id="top" className="relative overflow-hidden">
         <div
           aria-hidden
-          className="pointer-events-none absolute -left-24 top-10 h-72 w-72 rounded-full bg-rose-soft/70 blur-3xl"
+          className="pointer-events-none absolute -left-24 top-10 h-72 w-72 rounded-full bg-lavender-soft/70 blur-3xl"
         />
         <div
           aria-hidden
-          className="pointer-events-none absolute -right-20 top-40 h-80 w-80 rounded-full bg-sage-soft blur-3xl"
+          className="pointer-events-none absolute -right-20 top-40 h-80 w-80 rounded-full bg-lavender-soft blur-3xl"
         />
         <div
           aria-hidden
@@ -107,13 +107,13 @@ export default function Home() {
               <Sticker>✿ slow journaling</Sticker>
               <Sticker className="-rotate-3">☕ for soft days</Sticker>
             </div>
-            <p className="mb-3 font-hand text-2xl text-clay-deep">
+            <p className="mb-3 font-hand text-2xl text-lavender-deeper">
               dear diary, but make it aesthetic —
             </p>
             <h1 className="font-serif text-5xl font-medium leading-[1.02] tracking-tight sm:text-6xl lg:text-[4.6rem]">
               Romanticize
               <br />
-              your <em className="italic text-rose-deep">ordinary</em>
+              your <em className="italic text-lavender-deeper">ordinary</em>
               <br />
               days.
             </h1>
@@ -125,7 +125,7 @@ export default function Home() {
             <div className="mt-7 flex flex-wrap items-center gap-3">
               <a
                 href="#cta"
-                className="rounded-full bg-clay px-7 py-3.5 font-semibold text-espresso shadow-[3px_3px_0_#f3c6cc] transition hover:-translate-y-0.5 hover:bg-rose"
+                className="rounded-full bg-lavender-deep px-7 py-3.5 font-semibold text-espresso shadow-[3px_3px_0_#f3c6cc] transition hover:-translate-y-0.5 hover:bg-lavender-deeper"
               >
                 Open your journal →
               </a>
@@ -160,13 +160,13 @@ export default function Home() {
               aria-hidden
               className="absolute -inset-4 -rotate-2 rounded-[28px] bg-sand/60"
             />
-            <div className="relative -rotate-2 rounded-[22px] border border-espresso/15 bg-[#fffefd] p-6 shadow-[8px_8px_0_rgba(100,80,85,0.14)]">
-              <Tape className="left-1/2 top-[-14px] -translate-x-1/2 rotate-[-3deg] bg-rose-soft" />
+            <div className="relative -rotate-2 rounded-[22px] border border-espresso/15 bg-[#fffefd] p-6 shadow-[8px_8px_0_rgba(138,120,160,0.14)]">
+              <Tape className="left-1/2 top-[-14px] -translate-x-1/2 rotate-[-3deg] bg-lavender-soft" />
               <div className="flex items-center justify-between">
                 <p className="text-xs font-bold uppercase tracking-[0.18em] text-latte">
                   ✿ Oct 01 — morning page
                 </p>
-                <span className="rounded-full bg-sage-soft px-3 py-1 text-xs font-bold text-sage-deep">
+                <span className="rounded-full bg-lavender-soft px-3 py-1 text-xs font-bold text-lavender-deeper">
                   ● calm
                 </span>
               </div>
@@ -179,7 +179,7 @@ export default function Home() {
               </div>
               <div className="mt-4 flex items-center justify-between">
                 <div className="flex gap-1.5">
-                  {["#e79aa6", "#f0a2af", "#f9d5d9", "#fde3e7", "#fffcf8"].map(
+                  {["#e79aa6", "#f0a2af", "#f9d5d9", "#fde3e7", "#c7b8e0", "#fffbfc"].map(
                     (c) => (
                       <span
                         key={c}
@@ -202,10 +202,10 @@ export default function Home() {
               <p className="font-serif text-lg font-semibold">12 cozy days</p>
             </div>
             <div
-              className="animate-float-slow absolute -left-3 bottom-10 -rotate-6 rounded-2xl border border-espresso/15 bg-rose-soft px-4 py-3 text-espresso shadow-lg sm:-left-8"
+              className="animate-float-slow absolute -left-3 bottom-10 -rotate-6 rounded-2xl border border-espresso/15 bg-lavender-soft px-4 py-3 text-espresso shadow-lg sm:-left-8"
               style={{ ["--float-rotate" as string]: "-6deg" }}
             >
-              <p className="font-hand text-xl leading-none text-rose-deep">
+              <p className="font-hand text-xl leading-none text-lavender-deeper">
                 remember this!
               </p>
               <p className="mt-1 text-[13px] text-espresso/70">
@@ -224,7 +224,7 @@ export default function Home() {
                   key={i}
                   className="flex items-center gap-8 whitespace-nowrap font-hand text-xl text-cocoa"
                 >
-                  {p} <span className="text-clay">✿</span>
+                  {p} <span className="text-lavender">✿</span>
                 </span>
               ))}
             </div>
@@ -235,7 +235,7 @@ export default function Home() {
       {/* TESTIMONIALS */}
       <section className="w-full px-5 py-16 sm:px-10 lg:px-16 lg:py-24">
         <div className="text-center">
-          <p className="font-hand text-2xl text-clay-deep">
+          <p className="font-hand text-2xl text-lavender-deeper">
             pinned to the corkboard
           </p>
           <h2 className="mt-2 font-serif text-4xl font-medium tracking-tight sm:text-5xl">
@@ -246,7 +246,7 @@ export default function Home() {
           {testimonials.map((t) => (
             <figure
               key={t.name}
-              className={`relative rounded-sm border border-espresso/10 bg-[#fffefd] p-6 pb-14 pt-8 shadow-[5px_5px_0_rgba(100,80,85,0.12)] transition hover:rotate-0 ${t.rotate}`}
+              className={`relative rounded-sm border border-espresso/10 bg-[#fffefd] p-6 pb-14 pt-8 shadow-[5px_5px_0_rgba(138,120,160,0.12)] transition hover:rotate-0 ${t.rotate}`}
             >
               <Tape className="left-1/2 top-[-12px] -translate-x-1/2 bg-linen" />
               <span className="absolute right-4 top-4 text-2xl">{t.sticker}</span>
@@ -265,7 +265,7 @@ export default function Home() {
 
       {/* CTA — evening ritual */}
       <section id="cta" className="relative overflow-hidden px-5 py-16 sm:px-10 lg:px-16 lg:py-24">
-        <div className="relative w-full overflow-hidden rounded-[36px] border border-espresso/10 bg-rose-soft text-espresso shadow-[8px_8px_0_rgba(243,198,204,0.9)]">
+        <div className="relative w-full overflow-hidden rounded-[36px] border border-espresso/10 bg-lavender-soft text-espresso shadow-[8px_8px_0_rgba(168,152,208,0.9)]">
           {/* soft pink glow */}
           <div
             aria-hidden
@@ -280,7 +280,7 @@ export default function Home() {
             className="pointer-events-none absolute inset-0 opacity-40"
             style={{
               backgroundImage:
-                "radial-gradient(rgba(100,80,85,0.14) 1px, transparent 1px)",
+                "radial-gradient(rgba(138,120,160,0.14) 1px, transparent 1px)",
               backgroundSize: "22px 22px",
             }}
           />
@@ -289,7 +289,7 @@ export default function Home() {
             {/* copy */}
             <div>
               <div className="flex flex-wrap items-center gap-2">
-                <span className="rounded-full border border-espresso/15 bg-cream/80 px-4 py-1.5 text-xs font-bold uppercase tracking-[0.16em] text-rose-deep">
+                <span className="rounded-full border border-espresso/15 bg-cream/80 px-4 py-1.5 text-xs font-bold uppercase tracking-[0.16em] text-lavender-deeper">
                   ✦ evening ritual • 9:47 pm
                 </span>
                 <span className="rounded-full border border-espresso/15 bg-cream/60 px-4 py-1.5 font-hand text-lg leading-none text-cocoa">
@@ -299,7 +299,7 @@ export default function Home() {
               <h2 className="mt-5 font-serif text-4xl font-medium leading-[1.05] tracking-tight sm:text-5xl">
                 End your day in
                 <br />
-                <em className="italic text-clay-deep">rosy</em> light.
+                <em className="italic text-lavender-deeper">rosy</em> light.
               </h2>
               <p className="mt-4 max-w-md text-[17px] leading-relaxed text-cocoa">
                 A 5-minute wind-down: breathe, keep one small moment, and
@@ -317,7 +317,7 @@ export default function Home() {
                     key={n}
                     className="flex items-center gap-4 rounded-2xl border border-espresso/10 bg-cream/70 px-4 py-3 backdrop-blur-sm"
                   >
-                    <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-clay font-serif text-sm font-bold text-espresso">
+                    <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-lavender-deep font-serif text-sm font-bold text-espresso">
                       {n}
                     </span>
                     <div>
@@ -331,7 +331,7 @@ export default function Home() {
               <div className="mt-7 flex flex-wrap items-center gap-3">
                 <a
                   href="#top"
-                  className="rounded-full bg-clay px-8 py-4 font-semibold text-espresso shadow-[3px_3px_0_rgba(255,252,248,1)] transition hover:-translate-y-0.5 hover:bg-rose"
+                  className="rounded-full bg-lavender-deep px-8 py-4 font-semibold text-espresso shadow-[3px_3px_0_rgba(255,252,248,1)] transition hover:-translate-y-0.5 hover:bg-lavender-deeper"
                 >
                   Start tonight&apos;s entry ✎
                 </a>
@@ -343,7 +343,7 @@ export default function Home() {
                 </a>
               </div>
               <div className="mt-6 flex flex-wrap items-center gap-x-5 gap-y-3 text-sm text-cocoa">
-                <span className="tracking-tight text-rose-deep">★★★★★ 4.9</span>
+                <span className="tracking-tight text-lavender-deeper">★★★★★ 4.9</span>
                 <span className="flex -space-x-2">
                   {["AM", "SJ", "JK"].map((ini) => (
                     <span
@@ -362,7 +362,7 @@ export default function Home() {
             <div className="relative mx-auto w-full max-w-[400px]">
               <div className="relative rounded-[24px] border border-espresso/10 bg-cream/85 p-6 shadow-2xl backdrop-blur-md">
                 <div className="flex items-center justify-between">
-                  <p className="text-xs font-bold uppercase tracking-[0.18em] text-rose-deep">
+                  <p className="text-xs font-bold uppercase tracking-[0.18em] text-lavender-deeper">
                     ☾ night note — Oct 01
                   </p>
                   <span className="flex gap-1.5" aria-hidden>
@@ -392,7 +392,7 @@ export default function Home() {
                 </div>
                 <div className="mt-4 flex items-center justify-between">
                   <div className="flex gap-1.5">
-                    {["#fffcf8", "#fde3e7", "#f9d5d9", "#e79aa6", "#f0a2af"].map(
+                    {["#fffbfc", "#fde3e7", "#f9d5d9", "#c7b8e0", "#f0a2af"].map(
                       (c) => (
                         <span
                           key={c}
@@ -409,7 +409,7 @@ export default function Home() {
               </div>
 
               <div className="animate-float absolute -right-3 -top-5 rotate-3 rounded-2xl bg-cream px-4 py-3 text-espresso shadow-lg sm:-right-6">
-                <p className="text-[11px] font-bold uppercase tracking-widest text-clay-deep">
+                <p className="text-[11px] font-bold uppercase tracking-widest text-lavender-deeper">
                   ☁ drift off
                 </p>
                 <p className="font-serif text-base font-semibold">
@@ -417,10 +417,10 @@ export default function Home() {
                 </p>
               </div>
               <div
-                className="animate-float-slow absolute -bottom-6 -left-3 -rotate-3 rounded-2xl bg-rose-soft px-4 py-3 text-espresso shadow-lg sm:-left-6"
+                className="animate-float-slow absolute -bottom-6 -left-3 -rotate-3 rounded-2xl bg-lavender-soft px-4 py-3 text-espresso shadow-lg sm:-left-6"
                 style={{ ["--float-rotate" as string]: "-3deg" }}
               >
-                <p className="font-hand text-xl leading-none text-clay-deep">
+                <p className="font-hand text-xl leading-none text-lavender-deeper">
                   sealed with stardust!
                 </p>
                 <p className="mt-1 text-[13px] text-espresso/70">
@@ -446,7 +446,7 @@ export default function Home() {
               A soft place for your thoughts. Made slowly, with tea, for
               people who underline sentences in books.
             </p>
-            <p className="mt-4 font-hand text-xl text-clay-deep">
+            <p className="mt-4 font-hand text-xl text-lavender-deeper">
               write softly, live fully ✿
             </p>
           </div>

@@ -10,7 +10,7 @@ const items = [
 export default function MediaPage() {
   return (
     <section>
-      <p className="font-hand text-2xl text-rose-deep">🖼 little museum</p>
+      <p className="font-hand text-2xl text-lavender-deeper">🖼 little museum</p>
       <h1 className="mt-1 font-serif text-4xl font-medium tracking-tight">
         Media
       </h1>
@@ -22,7 +22,7 @@ export default function MediaPage() {
         {items.map((m, i) => (
           <figure
             key={m.label}
-            className={`rounded-2xl border border-espresso/10 bg-[#fffefd] p-5 text-center shadow-[4px_4px_0_rgba(100,80,85,0.1)] ${
+            className={`rounded-2xl border border-espresso/10 bg-[#fffefd] p-5 text-center shadow-[4px_4px_0_rgba(138,120,160,0.1)] ${
               i % 3 === 1 ? "rotate-1" : i % 3 === 2 ? "-rotate-1" : ""
             }`}
           >
