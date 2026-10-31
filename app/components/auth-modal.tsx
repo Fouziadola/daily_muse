@@ -73,7 +73,10 @@ export default function AuthButtons() {
     setError("");
     setStatus("loading");
     // UI-only for now — no auth backend yet
-    setTimeout(() => setStatus("done"), 900);
+    setTimeout(() => {
+      setOpen(false);
+      router.push("/dashboard");
+    }, 900);
   };
 
   const isLogin = mode === "login";
@@ -135,27 +138,7 @@ export default function AuthButtons() {
               ×
             </button>
 
-            {status === "done" ? (
-              <div className="py-6 text-center">
-                <p className="text-4xl">✿</p>
-                <h2 className="mt-3 font-serif text-3xl font-semibold tracking-tight">
-                  {isLogin ? "Welcome back!" : "You’re in!"}
-                </h2>
-                <p className="mt-2 font-hand text-xl text-cocoa">
-                  the kettle’s on — happy writing
-                </p>
-                <button
-                  type="button"
-                  onClick={() => {
-                    setOpen(false);
-                    router.push("/home");
-                  }}
-                  className="mt-6 w-full rounded-full bg-lavender-deep py-3 font-semibold text-espresso transition hover:-translate-y-0.5 hover:bg-lavender-deeper"
-                >
-                  Enter your space →
-                </button>
-              </div>
-            ) : (
+            {status === "done" ? null : (
               <>
                 <p className="text-xs font-bold uppercase tracking-[0.18em] text-latte">
                   ✿ {isLogin ? "welcome back" : "join the soft club"}
