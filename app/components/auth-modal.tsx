@@ -163,11 +163,6 @@ export default function AuthButtons() {
                 <h2 className="mt-1 font-serif text-3xl font-semibold tracking-tight">
                   {isLogin ? "Log in" : "Sign Up"}
                 </h2>
-                <p className="mt-1 font-hand text-xl leading-none text-cocoa">
-                  {isLogin
-                    ? "your pages missed you —"
-                    : "a soft place for thoughts —"}
-                </p>
 
                 <form onSubmit={submit} className="mt-5 space-y-4">
                   {!isLogin && (
