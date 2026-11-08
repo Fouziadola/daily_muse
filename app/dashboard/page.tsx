@@ -37,9 +37,30 @@ export default function DashboardPage() {
               Daily Muse
             </span>
           </Link>
-          <span className="rounded-full border border-espresso/15 bg-lavender-soft px-4 py-1.5 font-hand text-lg leading-none text-espresso">
-            ✿ your space
-          </span>
+          <div className="flex items-center gap-2.5">
+            <span className="hidden rounded-full border border-espresso/15 bg-blue-soft px-4 py-1.5 font-hand text-lg leading-none text-espresso sm:inline-block">
+              ✿ your space
+            </span>
+            <Link
+              href="/profile"
+              aria-label="Profile"
+              className="flex h-9 w-9 items-center justify-center rounded-full border border-espresso/15 bg-cream text-espresso transition hover:bg-parchment"
+            >
+              <svg
+                aria-hidden
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="1.8"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                className="h-5 w-5"
+              >
+                <circle cx="12" cy="8" r="3.5" />
+                <path d="M5 20c0-3.6 3.1-6.5 7-6.5s7 2.9 7 6.5" />
+              </svg>
+            </Link>
+          </div>
         </div>
       </header>
 

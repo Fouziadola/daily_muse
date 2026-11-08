@@ -73,11 +73,11 @@ export default async function HomeIndex() {
     <div className="relative">
       <div
         aria-hidden
-        className="pointer-events-none absolute -left-24 -top-16 h-64 w-64 rounded-full bg-lavender-soft/70 blur-3xl"
+        className="pointer-events-none absolute -left-24 -top-16 h-64 w-64 rounded-full bg-rose-soft/70 blur-3xl"
       />
       <div
         aria-hidden
-        className="pointer-events-none absolute -right-24 top-40 h-64 w-64 rounded-full bg-lavender-soft blur-3xl"
+        className="pointer-events-none absolute -right-24 top-40 h-64 w-64 rounded-full bg-blue-soft blur-3xl"
       />
 
       <section className="relative">
@@ -102,7 +102,7 @@ export default async function HomeIndex() {
         {/* featured — today's page */}
         <Link
           href="/home/book"
-          className="group relative mt-7 block overflow-hidden rounded-[24px] border border-espresso/15 bg-lavender-soft p-6 shadow-[6px_6px_0_rgba(168,152,208,0.9)] transition hover:-translate-y-0.5 sm:p-8"
+          className="group relative mt-7 block overflow-hidden rounded-[24px] border border-espresso/15 bg-blue-soft p-6 shadow-[6px_6px_0_rgba(168,152,208,0.9)] transition hover:-translate-y-0.5 sm:p-8"
         >
           <Tape className="left-1/2 top-[-14px] -translate-x-1/2 rotate-[-3deg] bg-cream" />
           <div className="relative flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">

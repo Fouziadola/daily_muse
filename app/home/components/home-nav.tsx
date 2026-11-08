@@ -31,7 +31,7 @@ export default function HomeNav() {
               aria-current={active ? "page" : undefined}
               className={`flex flex-col items-center gap-0.5 rounded-2xl px-2 py-2 text-xs font-bold transition ${
                 active
-                  ? "bg-lavender-soft text-espresso shadow-[2px_2px_0_rgba(138,120,160,0.15)]"
+                  ? "bg-blue-soft text-espresso shadow-[2px_2px_0_rgba(138,120,160,0.15)]"
                   : "text-cocoa hover:bg-parchment hover:text-espresso"
               }`}
             >

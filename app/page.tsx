@@ -89,11 +89,11 @@ export default function Home() {
       <section id="top" className="relative overflow-hidden">
         <div
           aria-hidden
-          className="pointer-events-none absolute -left-24 top-10 h-72 w-72 rounded-full bg-lavender-soft/70 blur-3xl"
+          className="pointer-events-none absolute -left-24 top-10 h-72 w-72 rounded-full bg-rose-soft/70 blur-3xl"
         />
         <div
           aria-hidden
-          className="pointer-events-none absolute -right-20 top-40 h-80 w-80 rounded-full bg-lavender-soft blur-3xl"
+          className="pointer-events-none absolute -right-20 top-40 h-80 w-80 rounded-full bg-blue-soft blur-3xl"
         />
         <div
           aria-hidden
@@ -202,10 +202,10 @@ export default function Home() {
               <p className="font-serif text-lg font-semibold">12 cozy days</p>
             </div>
             <div
-              className="animate-float-slow absolute -left-3 bottom-10 -rotate-6 rounded-2xl border border-espresso/15 bg-lavender-soft px-4 py-3 text-espresso shadow-lg sm:-left-8"
+              className="animate-float-slow absolute -left-3 bottom-10 -rotate-6 rounded-2xl border border-espresso/15 bg-blue-soft px-4 py-3 text-espresso shadow-lg sm:-left-8"
               style={{ ["--float-rotate" as string]: "-6deg" }}
             >
-              <p className="font-hand text-xl leading-none text-lavender-deeper">
+              <p className="font-hand text-xl leading-none text-blue-deeper">
                 remember this!
               </p>
               <p className="mt-1 text-[13px] text-espresso/70">
@@ -265,15 +265,15 @@ export default function Home() {
 
       {/* CTA — evening ritual */}
       <section id="cta" className="relative overflow-hidden px-5 py-16 sm:px-10 lg:px-16 lg:py-24">
-        <div className="relative w-full overflow-hidden rounded-[36px] border border-espresso/10 bg-lavender-soft text-espresso shadow-[8px_8px_0_rgba(168,152,208,0.9)]">
+        <div className="relative w-full overflow-hidden rounded-[36px] border border-espresso/10 bg-blue-soft text-espresso shadow-[8px_8px_0_rgba(168,152,208,0.9)]">
           {/* soft pink glow */}
           <div
             aria-hidden
-            className="pointer-events-none absolute -left-24 -top-24 h-96 w-96 rounded-full bg-cream/70 blur-3xl"
+            className="pointer-events-none absolute -left-24 -top-24 h-96 w-96 rounded-full bg-rose-soft/70 blur-3xl"
           />
           <div
             aria-hidden
-            className="pointer-events-none absolute -bottom-32 -right-16 h-[28rem] w-[28rem] rounded-full bg-linen/70 blur-3xl"
+            className="pointer-events-none absolute -bottom-32 -right-16 h-[28rem] w-[28rem] rounded-full bg-blue-soft/70 blur-3xl"
           />
           <div
             aria-hidden
@@ -408,8 +408,8 @@ export default function Home() {
                 </div>
               </div>
 
-              <div className="animate-float absolute -right-3 -top-5 rotate-3 rounded-2xl bg-cream px-4 py-3 text-espresso shadow-lg sm:-right-6">
-                <p className="text-[11px] font-bold uppercase tracking-widest text-lavender-deeper">
+              <div className="animate-float absolute -right-3 -top-5 rotate-3 rounded-2xl bg-rose-soft px-4 py-3 text-espresso shadow-lg sm:-right-6">
+                <p className="text-[11px] font-bold uppercase tracking-widest text-rose-deep">
                   ☁ drift off
                 </p>
                 <p className="font-serif text-base font-semibold">
@@ -417,10 +417,10 @@ export default function Home() {
                 </p>
               </div>
               <div
-                className="animate-float-slow absolute -bottom-6 -left-3 -rotate-3 rounded-2xl bg-lavender-soft px-4 py-3 text-espresso shadow-lg sm:-left-6"
+                className="animate-float-slow absolute -bottom-6 -left-3 -rotate-3 rounded-2xl bg-blue-soft px-4 py-3 text-espresso shadow-lg sm:-left-6"
                 style={{ ["--float-rotate" as string]: "-3deg" }}
               >
-                <p className="font-hand text-xl leading-none text-lavender-deeper">
+                <p className="font-hand text-xl leading-none text-blue-deeper">
                   sealed with stardust!
                 </p>
                 <p className="mt-1 text-[13px] text-espresso/70">

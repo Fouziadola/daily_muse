@@ -72,7 +72,7 @@ export default function WriteClient() {
           <button
             type="button"
             onClick={() => router.push("/home/book")}
-            className="rounded-full bg-lavender-deep px-6 py-2.5 text-sm font-bold text-espresso transition hover:bg-lavender-deeper"
+            className="rounded-full bg-blue-deep px-6 py-2.5 text-sm font-bold text-espresso transition hover:bg-blue-deeper"
           >
             Save & return
           </button>

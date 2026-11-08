@@ -17,6 +17,7 @@ export default function AuthButtons() {
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState("");
   const [status, setStatus] = useState<"idle" | "loading" | "done">("idle");
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
 
   const openModal = (next: Mode) => {
@@ -75,8 +76,14 @@ export default function AuthButtons() {
     // UI-only for now — no auth backend yet
     setTimeout(() => {
       setOpen(false);
+      setIsLoggedIn(true);
       router.push("/dashboard");
     }, 900);
+  };
+
+  const handleLogout = () => {
+    setIsLoggedIn(false);
+    router.push("/");
   };
 
   const isLogin = mode === "login";
@@ -87,20 +94,41 @@ export default function AuthButtons() {
   return (
     <>
       <div className="flex items-center gap-2.5">
-        <button
-          type="button"
-          onClick={() => openModal("signup")}
-          className="rounded-full border border-espresso/20 bg-cream px-5 py-2.5 text-[15px] font-semibold text-espresso transition hover:border-espresso hover:bg-parchment"
-        >
-          Sign Up
-        </button>
-        <button
-          type="button"
-          onClick={() => openModal("login")}
-          className="rounded-full border border-espresso/15 bg-lavender-deep px-5 py-2.5 text-[15px] font-semibold text-espresso shadow-[3px_3px_0_rgba(243,240,248,0.9)] transition hover:-translate-y-0.5 hover:bg-lavender-deeper hover:shadow-[4px_5px_0_rgba(243,240,248,0.9)]"
-        >
-          Log in
-        </button>
+        {isLoggedIn ? (
+          <>
+            <button
+              type="button"
+              aria-label="Profile"
+              className="flex h-9 w-9 items-center justify-center rounded-full border border-espresso/15 bg-cream text-lg leading-none transition hover:bg-parchment"
+            >
+              ☾
+            </button>
+            <button
+              type="button"
+              onClick={handleLogout}
+              className="rounded-full border border-espresso/15 bg-cream px-5 py-2.5 text-[15px] font-semibold text-espresso transition hover:bg-parchment hover:text-blue-deeper"
+            >
+              Log out
+            </button>
+          </>
+        ) : (
+          <>
+            <button
+              type="button"
+              onClick={() => openModal("signup")}
+              className="rounded-full border border-espresso/20 bg-cream px-5 py-2.5 text-[15px] font-semibold text-espresso transition hover:border-espresso hover:bg-parchment"
+            >
+              Sign Up
+            </button>
+            <button
+              type="button"
+              onClick={() => openModal("login")}
+              className="rounded-full border border-espresso/15 bg-lavender-deep px-5 py-2.5 text-[15px] font-semibold text-espresso shadow-[3px_3px_0_rgba(243,240,248,0.9)] transition hover:-translate-y-0.5 hover:bg-lavender-deeper hover:shadow-[4px_5px_0_rgba(243,240,248,0.9)]"
+            >
+              Log in
+            </button>
+          </>
+        )}
       </div>
 
       {open &&

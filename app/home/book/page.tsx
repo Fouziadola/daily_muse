@@ -128,7 +128,7 @@ export default function BookPage() {
         <button
           type="button"
           onClick={goWrite}
-          className="rounded-full bg-lavender-deep px-6 py-2.5 text-sm font-bold text-espresso transition hover:bg-lavender-deeper"
+          className="rounded-full bg-blue-deep px-6 py-2.5 text-sm font-bold text-espresso transition hover:bg-blue-deeper"
         >
           {mode === "continue" ? "Keep writing ✎" : "Start writing ✎"}
         </button>

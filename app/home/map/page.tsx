@@ -34,7 +34,7 @@ export default function MapPage() {
               type="button"
               title={`${p.place} — ${p.note}`}
               style={{ left: p.left, top: p.top }}
-              className="group absolute -translate-x-1/2 -translate-y-1/2 rounded-full border border-espresso/15 bg-lavender-soft px-3 py-1.5 text-lg shadow-md transition hover:scale-110 hover:bg-lavender-deep"
+              className="group absolute -translate-x-1/2 -translate-y-1/2 rounded-full border border-espresso/15 bg-blue-soft px-3 py-1.5 text-lg shadow-md transition hover:scale-110 hover:bg-blue-deep"
             >
               <span aria-hidden>📍</span>
               <span className="sr-only">{p.place}</span>
