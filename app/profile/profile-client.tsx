@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 import Link from "next/link";
 
 type Tab = "posts" | "saved" | "journal";
@@ -9,18 +9,23 @@ type JournalEntry = {
   id: string;
   text: string;
   date: string;
+  image?: string;
+  theme?: string;
 };
 
 const JOURNAL_STORAGE_KEY = "daily-muse-journal";
+const JOURNAL_THEME_KEY = "daily-muse-journal-theme";
 
-const highlights = [
-  { label: "morning", emoji: "☀️" },
-  { label: "moods", emoji: "🎨" },
-  { label: "letters", emoji: "✉️" },
-  { label: "places", emoji: "🗺️" },
-  { label: "tiny joys", emoji: "✿" },
-  { label: "night", emoji: "☾" },
+const journalThemes = [
+  { id: "blush", label: "Blush", color: "#fdeef1" },
+  { id: "lavender", label: "Lavender", color: "#f3f0f8" },
+  { id: "sky", label: "Sky", color: "#eef2fb" },
+  { id: "butter", label: "Butter", color: "#fdf6e9" },
+  { id: "mint", label: "Mint", color: "#edf6f0" },
+  { id: "cream", label: "Cream", color: "#fffbfc" },
 ];
+
+const defaultTheme = journalThemes[0];
 
 const posts = [
   {
@@ -118,7 +123,7 @@ const posts = [
 const tabs: { id: Tab; label: string }[] = [
   { id: "posts", label: "Posts" },
   { id: "saved", label: "Saved" },
-  { id: "journal", label: "Journal" },
+  { id: "journal", label: "My Journal" },
 ];
 
 function GridIcon() {
@@ -221,6 +226,49 @@ export default function ProfileClient() {
     }
   });
   const [saveStatus, setSaveStatus] = useState<"idle" | "saved">("idle");
+  const [journalTheme, setJournalTheme] = useState<string>(() => {
+    if (typeof window === "undefined") return defaultTheme.id;
+    const stored = window.localStorage.getItem(JOURNAL_THEME_KEY);
+    return journalThemes.some((t) => t.id === stored)
+      ? (stored as string)
+      : defaultTheme.id;
+  });
+  const [journalImage, setJournalImage] = useState<string | null>(null);
+  const [imageError, setImageError] = useState("");
+  const fileInputRef = useRef<HTMLInputElement>(null);
+
+  const activeTheme =
+    journalThemes.find((t) => t.id === journalTheme) ?? defaultTheme;
+
+  const chooseTheme = (id: string) => {
+    setJournalTheme(id);
+    try {
+      window.localStorage.setItem(JOURNAL_THEME_KEY, id);
+    } catch {
+      // storage may be unavailable; keep in-memory
+    }
+  };
+
+  const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    e.target.value = "";
+    if (!file) return;
+    if (!file.type.startsWith("image/")) {
+      setImageError("Please choose an image file.");
+      return;
+    }
+    if (file.size > 2 * 1024 * 1024) {
+      setImageError("Keep pictures under 2 MB so your journal stays light.");
+      return;
+    }
+    const reader = new FileReader();
+    reader.onload = () => {
+      setJournalImage(typeof reader.result === "string" ? reader.result : null);
+      setImageError("");
+    };
+    reader.onerror = () => setImageError("Could not read that picture.");
+    reader.readAsDataURL(file);
+  };
 
   const persistEntries = (next: JournalEntry[]) => {
     setEntries(next);
@@ -238,12 +286,16 @@ export default function ProfileClient() {
       id: crypto.randomUUID(),
       text,
       date: new Date().toLocaleDateString("en-US", {
-        month: "short",
-        day: "2-digit",
+        month: "long",
+        day: "numeric",
+        year: "numeric",
       }),
+      image: journalImage ?? undefined,
+      theme: activeTheme.color,
     };
     persistEntries([entry, ...entries]);
     setJournalText("");
+    setJournalImage(null);
     setSaveStatus("saved");
     setTimeout(() => setSaveStatus("idle"), 2500);
   };
@@ -254,6 +306,18 @@ export default function ProfileClient() {
 
   const visiblePosts =
     tab === "saved" ? posts.filter((p) => p.saved) : posts;
+
+  const entriesByDate = entries.reduce<
+    { date: string; items: JournalEntry[] }[]
+  >((groups, entry) => {
+    const group = groups.find((g) => g.date === entry.date);
+    if (group) {
+      group.items.push(entry);
+    } else {
+      groups.push({ date: entry.date, items: [entry] });
+    }
+    return groups;
+  }, []);
 
   const startEditing = () => {
     setDraftName(displayName);
@@ -382,27 +446,6 @@ export default function ProfileClient() {
         </section>
       )}
 
-      {/* highlights */}
-      <section aria-label="Journal highlights" className="mt-8">
-        <ul className="flex gap-5 overflow-x-auto pb-2 sm:justify-center">
-          {highlights.map((h) => (
-            <li key={h.label} className="shrink-0">
-              <button
-                type="button"
-                className="group flex flex-col items-center gap-1.5"
-              >
-                <span className="flex h-16 w-16 items-center justify-center rounded-full border-2 border-espresso/15 bg-cream text-2xl shadow-[3px_3px_0_rgba(138,120,160,0.12)] transition group-hover:-translate-y-0.5 group-hover:border-lavender-deeper">
-                  {h.emoji}
-                </span>
-                <span className="text-xs font-bold text-cocoa">
-                  {h.label}
-                </span>
-              </button>
-            </li>
-          ))}
-        </ul>
-      </section>
-
       {/* tabs */}
       <div className="mt-8 border-t border-espresso/15">
         <div
@@ -452,6 +495,41 @@ export default function ProfileClient() {
             <p className="mt-2 font-hand text-[24px] leading-tight text-espresso">
               “What small moment do you want to keep today?”
             </p>
+
+            <div className="mt-3 flex flex-wrap items-center gap-2.5">
+              <span className="text-xs font-bold uppercase tracking-[0.18em] text-latte">
+                page color
+              </span>
+              <div
+                role="group"
+                aria-label="Journal page color"
+                className="flex items-center gap-1.5"
+              >
+                {journalThemes.map((theme) => {
+                  const active = journalTheme === theme.id;
+                  return (
+                    <button
+                      key={theme.id}
+                      type="button"
+                      onClick={() => chooseTheme(theme.id)}
+                      aria-label={`${theme.label} page color`}
+                      aria-pressed={active}
+                      title={theme.label}
+                      style={{ backgroundColor: theme.color }}
+                      className={`h-6 w-6 rounded-full border transition ${
+                        active
+                          ? "scale-110 border-espresso ring-2 ring-espresso/30"
+                          : "border-espresso/25 hover:scale-105"
+                      }`}
+                    />
+                  );
+                })}
+              </div>
+              <span className="font-hand text-base text-cocoa">
+                {activeTheme.label}
+              </span>
+            </div>
+
             <textarea
               value={journalText}
               onChange={(e) => {
@@ -461,57 +539,121 @@ export default function ProfileClient() {
               rows={6}
               placeholder="Write softly… this page is only yours."
               aria-label="Write a journal entry"
-              className="paper-lines mt-3 w-full resize-none rounded-xl border border-espresso/10 bg-parchment/60 p-4 font-serif text-[16px] leading-[32px] text-espresso/90 placeholder:text-latte/70 focus:border-clay focus:outline-none"
+              style={{ backgroundColor: activeTheme.color }}
+              className="paper-lines mt-3 w-full resize-none rounded-xl border border-espresso/10 p-4 font-serif text-[16px] leading-[32px] text-espresso/90 placeholder:text-latte/70 focus:border-clay focus:outline-none"
             />
-            <div className="mt-3 flex flex-wrap items-center justify-between gap-2">
-              <p className="font-hand text-lg text-cocoa">
-                {saveStatus === "saved"
-                  ? "saved to your pages ✓"
-                  : journalText.trim()
-                    ? "unsaved page ○"
-                    : "a blank page, just for you ✿"}
+
+            {journalImage && (
+              <div className="relative mt-3 overflow-hidden rounded-xl border border-espresso/10">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={journalImage}
+                  alt="Attached journal picture"
+                  className="max-h-64 w-full object-cover"
+                />
+                <button
+                  type="button"
+                  onClick={() => setJournalImage(null)}
+                  aria-label="Remove picture"
+                  className="absolute right-2 top-2 flex h-7 w-7 items-center justify-center rounded-full border border-espresso/15 bg-cream/90 text-lg leading-none text-espresso transition hover:bg-parchment"
+                >
+                  ×
+                </button>
+              </div>
+            )}
+
+            {imageError && (
+              <p className="mt-2 rounded-2xl border border-lavender-deeper/30 bg-lavender-soft px-4 py-2 text-sm font-semibold text-lavender-deeper">
+                {imageError}
               </p>
-              <button
-                type="button"
-                onClick={saveEntry}
-                disabled={!journalText.trim()}
-                className="rounded-full bg-lavender-deep px-6 py-2.5 text-sm font-bold text-espresso shadow-[2px_2px_0_rgba(168,152,208,0.9)] transition hover:bg-lavender-deeper disabled:cursor-not-allowed disabled:opacity-50"
-              >
-                Save entry
-              </button>
+            )}
+
+            <div className="mt-3 flex flex-wrap items-center justify-between gap-3">
+              <div className="flex items-center gap-2">
+                <input
+                  ref={fileInputRef}
+                  type="file"
+                  accept="image/*"
+                  onChange={handleImageChange}
+                  className="sr-only"
+                  aria-label="Add picture"
+                />
+                <button
+                  type="button"
+                  onClick={() => fileInputRef.current?.click()}
+                  className="rounded-full border border-espresso/20 bg-cream px-4 py-2 text-sm font-bold text-espresso transition hover:bg-parchment"
+                >
+                  🖼 Add picture
+                </button>
+              </div>
+              <div className="flex items-center gap-3">
+                <p className="font-hand text-lg text-cocoa">
+                  {saveStatus === "saved"
+                    ? "saved to your pages ✓"
+                    : journalText.trim()
+                      ? "unsaved page ○"
+                      : "a blank page, just for you ✿"}
+                </p>
+                <button
+                  type="button"
+                  onClick={saveEntry}
+                  disabled={!journalText.trim()}
+                  className="rounded-full bg-lavender-deep px-6 py-2.5 text-sm font-bold text-espresso shadow-[2px_2px_0_rgba(168,152,208,0.9)] transition hover:bg-lavender-deeper disabled:cursor-not-allowed disabled:opacity-50"
+                >
+                  Save entry
+                </button>
+              </div>
             </div>
           </div>
 
           {entries.length > 0 ? (
             <div className="mt-7">
               <p className="font-hand text-xl text-lavender-deeper">
-                ✿ your saved pages
+                ✿ saved by date
               </p>
-              <ul className="mt-3 space-y-3">
-                {entries.map((entry) => (
-                  <li
-                    key={entry.id}
-                    className="rounded-2xl border border-espresso/10 bg-[#fffefd] p-5 shadow-[4px_4px_0_rgba(138,120,160,0.1)]"
-                  >
-                    <div className="flex items-center justify-between gap-2">
-                      <p className="text-xs font-bold uppercase tracking-[0.18em] text-latte">
-                        {entry.date}
-                      </p>
-                      <button
-                        type="button"
-                        onClick={() => deleteEntry(entry.id)}
-                        aria-label="Delete entry"
-                        className="rounded-full px-2 py-0.5 text-sm font-bold text-latte transition hover:bg-parchment hover:text-rose-deep"
-                      >
-                        ×
-                      </button>
-                    </div>
-                    <p className="mt-2 whitespace-pre-line font-serif text-[15.5px] italic leading-relaxed text-espresso/90">
-                      {entry.text}
+              <div className="mt-3 space-y-6">
+                {entriesByDate.map((group) => (
+                  <div key={group.date}>
+                    <p className="text-xs font-bold uppercase tracking-[0.18em] text-latte">
+                      {group.date}
                     </p>
-                  </li>
+                    <ul className="mt-2 space-y-3">
+                      {group.items.map((entry) => (
+                        <li
+                          key={entry.id}
+                          style={{ backgroundColor: entry.theme ?? "#fffefd" }}
+                          className="rounded-2xl border border-espresso/10 p-5 shadow-[4px_4px_0_rgba(138,120,160,0.1)]"
+                        >
+                          <div className="flex items-center justify-between gap-2">
+                            <span className="rounded-full bg-lavender-soft px-3 py-1 text-xs font-bold text-lavender-deeper">
+                              ✿ journal page
+                            </span>
+                            <button
+                              type="button"
+                              onClick={() => deleteEntry(entry.id)}
+                              aria-label="Delete entry"
+                              className="rounded-full px-2 py-0.5 text-sm font-bold text-latte transition hover:bg-parchment hover:text-rose-deep"
+                            >
+                              ×
+                            </button>
+                          </div>
+                          <p className="mt-2 whitespace-pre-line font-serif text-[15.5px] italic leading-relaxed text-espresso/90">
+                            {entry.text}
+                          </p>
+                          {entry.image && (
+                            // eslint-disable-next-line @next/next/no-img-element
+                            <img
+                              src={entry.image}
+                              alt="Journal attachment"
+                              className="mt-3 max-h-72 w-full rounded-xl border border-espresso/10 object-cover"
+                            />
+                          )}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
                 ))}
-              </ul>
+              </div>
             </div>
           ) : (
             <p className="mt-6 text-center font-hand text-xl text-cocoa">

@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 :root {
-  --background: #feeef1;
+  --background: #eaf6ee;
   --foreground: #b09fc0;
 }
 
@@ -31,6 +31,7 @@
   --color-latte: #bfa9ad;
   --color-gold: #d8a0a6;
   --color-blush: #feeef1;
+  --color-mint: #eaf6ee;
   --color-lavender-soft: #f3f0f8;
   --color-lavender: #e6e3f2;
   --color-lavender-deep: #c7b8e0;
@@ -92,11 +93,11 @@ body {
 
 /* paper grain */
 .paper-grain {
-  background-color: #feeef1;
+  background-color: #eaf6ee;
   background-image:
-    radial-gradient(#f3d3d8 0.7px, transparent 0.7px),
-    radial-gradient(#e6e3f2 0.5px, transparent 0.5px),
-    radial-gradient(#cbd5f0 0.4px, transparent 0.4px);
+    radial-gradient(#cbe6d6 0.7px, transparent 0.7px),
+    radial-gradient(#dcefe3 0.5px, transparent 0.5px),
+    radial-gradient(#bcdcc9 0.4px, transparent 0.4px);
   background-size:
     26px 26px,
     13px 13px,
