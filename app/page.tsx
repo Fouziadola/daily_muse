@@ -1,4 +1,5 @@
 import AuthButtons from "./components/auth-modal";
+import AppActions from "./components/app-actions";
 
 const prompts = [
   "what made you smile today?",
@@ -81,7 +82,10 @@ export default function Home() {
               </span>
             </span>
           </a>
-          <AuthButtons />
+          <div className="flex items-center gap-2.5">
+            <AppActions />
+            <AuthButtons />
+          </div>
         </nav>
       </header>
 

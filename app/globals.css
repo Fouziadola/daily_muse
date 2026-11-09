@@ -15,6 +15,7 @@
 
 @theme {
   --color-cream: #fffbfc;
+  --color-paper: #fffefd;
   --color-parchment: #fdf0f2;
   --color-linen: #f9d5d9;
   --color-sand: #f3c6cc;
@@ -140,4 +141,79 @@ body {
 ::selection {
   background: #c7b8e0;
   color: #fffbfc;
+}
+
+/* ---------- dark mode ---------- */
+.dark {
+  --background: #1b1723;
+  --foreground: #e8e2f2;
+
+  --color-cream: #241e2f;
+  --color-paper: #221d2c;
+  --color-parchment: #2c2538;
+  --color-linen: #3a2f45;
+  --color-sand: #493a52;
+  --color-clay: #c08e9c;
+  --color-clay-deep: #d8a9b4;
+  --color-rose: #c98a9a;
+  --color-rose-soft: #362935;
+  --color-rose-deep: #e0aeb9;
+  --color-sage: #6b5560;
+  --color-sage-soft: #2e2733;
+  --color-sage-deep: #c9aab2;
+  --color-espresso: #e7def3;
+  --color-cocoa: #b6a8cc;
+  --color-latte: #8f83a6;
+  --color-gold: #e0b3b8;
+  --color-blush: #2b2433;
+  --color-mint: #1b1723;
+  --color-lavender-soft: #312a3f;
+  --color-lavender: #3b3450;
+  --color-lavender-deep: #6d5f8f;
+  --color-lavender-deeper: #bcaae8;
+  --color-blue-soft: #232a3c;
+  --color-blue: #354060;
+  --color-blue-deep: #4c5b82;
+  --color-blue-deeper: #a9b8e8;
+  --color-blue-deepest: #9fb0e3;
+
+  --color-mixer-off: #221d2c;
+  --color-mixer-pink: #33262f;
+  --color-mixer-blue: #232a3c;
+  --color-mixer-lavender: #2c2840;
+  --color-mixer-blend: #2b2433;
+  --color-mixer-pink-deep: #4a3640;
+  --color-mixer-blue-deep: #2f3a52;
+  --color-mixer-lavender-deep: #3a3350;
+
+  color-scheme: dark;
+}
+
+/* cards that used a literal paper color */
+.dark .bg-\[\#fffefd\] {
+  background-color: var(--color-paper);
+}
+
+.dark .paper-grain {
+  background-color: #1b1723;
+  background-image:
+    radial-gradient(#2c2638 0.7px, transparent 0.7px),
+    radial-gradient(#332c40 0.5px, transparent 0.5px),
+    radial-gradient(#241f2f 0.4px, transparent 0.4px);
+}
+
+.dark .paper-lines {
+  background-image: repeating-linear-gradient(
+    transparent,
+    transparent 31px,
+    rgba(188, 170, 232, 0.16) 31px,
+    rgba(188, 170, 232, 0.16) 32px
+  );
+}
+
+.dark .dotted-bg {
+  background-image: radial-gradient(
+    rgba(188, 170, 232, 0.16) 1.2px,
+    transparent 1.2px
+  );
 }

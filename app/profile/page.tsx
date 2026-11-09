@@ -1,5 +1,6 @@
 import Link from "next/link";
 import ProfileClient from "./profile-client";
+import AppActions from "../components/app-actions";
 
 export default function ProfilePage() {
   return (
@@ -11,12 +12,15 @@ export default function ProfilePage() {
               Daily Muse
             </span>
           </Link>
-          <Link
-            href="/dashboard"
-            className="rounded-full border border-espresso/15 bg-blue-soft px-4 py-1.5 font-hand text-lg leading-none text-espresso"
-          >
-            ← back to space
-          </Link>
+          <div className="flex items-center gap-2.5">
+            <Link
+              href="/dashboard"
+              className="hidden rounded-full border border-espresso/15 bg-blue-soft px-4 py-1.5 font-hand text-lg leading-none text-espresso sm:inline-block"
+            >
+              ← back to space
+            </Link>
+            <AppActions />
+          </div>
         </div>
       </header>
 

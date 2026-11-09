@@ -15,6 +15,7 @@ type JournalEntry = {
 
 const JOURNAL_STORAGE_KEY = "daily-muse-journal";
 const JOURNAL_THEME_KEY = "daily-muse-journal-theme";
+const PROFILE_IMAGE_KEY = "daily-muse-profile-image";
 
 const journalThemes = [
   { id: "blush", label: "Blush", color: "#fdeef1" },
@@ -207,10 +208,12 @@ function CommentIcon() {
 export default function ProfileClient() {
   const [tab, setTab] = useState<Tab>("posts");
   const [editing, setEditing] = useState(false);
+  const [username, setUsername] = useState("dailymuse");
   const [displayName, setDisplayName] = useState("June Aurora");
   const [bio, setBio] = useState(
     "collecting small moments in soft ink ✿ morning pages, oat lattes, and letters to future-me."
   );
+  const [draftUsername, setDraftUsername] = useState(username);
   const [draftName, setDraftName] = useState(displayName);
   const [draftBio, setDraftBio] = useState(bio);
   const [journalText, setJournalText] = useState("");
@@ -236,6 +239,16 @@ export default function ProfileClient() {
   const [journalImage, setJournalImage] = useState<string | null>(null);
   const [imageError, setImageError] = useState("");
   const fileInputRef = useRef<HTMLInputElement>(null);
+  const [profileImage, setProfileImage] = useState<string | null>(() => {
+    if (typeof window === "undefined") return null;
+    try {
+      return window.localStorage.getItem(PROFILE_IMAGE_KEY);
+    } catch {
+      return null;
+    }
+  });
+  const [profileImageError, setProfileImageError] = useState("");
+  const profileInputRef = useRef<HTMLInputElement>(null);
 
   const activeTheme =
     journalThemes.find((t) => t.id === journalTheme) ?? defaultTheme;
@@ -267,6 +280,37 @@ export default function ProfileClient() {
       setImageError("");
     };
     reader.onerror = () => setImageError("Could not read that picture.");
+    reader.readAsDataURL(file);
+  };
+
+  const handleProfileImageChange = (
+    e: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    const file = e.target.files?.[0];
+    e.target.value = "";
+    if (!file) return;
+    if (!file.type.startsWith("image/")) {
+      setProfileImageError("Please choose an image file.");
+      return;
+    }
+    if (file.size > 2 * 1024 * 1024) {
+      setProfileImageError("Keep pictures under 2 MB.");
+      return;
+    }
+    const reader = new FileReader();
+    reader.onload = () => {
+      const result = typeof reader.result === "string" ? reader.result : null;
+      if (result) {
+        setProfileImage(result);
+        try {
+          window.localStorage.setItem(PROFILE_IMAGE_KEY, result);
+        } catch {
+          // storage may be unavailable; keep in-memory
+        }
+      }
+      setProfileImageError("");
+    };
+    reader.onerror = () => setProfileImageError("Could not read that picture.");
     reader.readAsDataURL(file);
   };
 
@@ -320,12 +364,15 @@ export default function ProfileClient() {
   }, []);
 
   const startEditing = () => {
+    setDraftUsername(username);
     setDraftName(displayName);
     setDraftBio(bio);
     setEditing(true);
   };
 
   const saveProfile = () => {
+    const nextUsername = draftUsername.trim().replace(/^@+/, "");
+    setUsername(nextUsername || username);
     setDisplayName(draftName.trim() || displayName);
     setBio(draftBio.trim() || bio);
     setEditing(false);
@@ -336,20 +383,60 @@ export default function ProfileClient() {
       {/* profile header */}
       <section className="flex flex-col items-center gap-6 sm:flex-row sm:items-start sm:gap-10">
         <div className="relative shrink-0">
-          <div className="flex h-24 w-24 items-center justify-center rounded-full bg-gradient-to-tr from-rose via-lavender to-blue-deep p-[3px] shadow-[4px_4px_0_rgba(138,120,160,0.14)] sm:h-28 sm:w-28">
-            <div className="flex h-full w-full items-center justify-center rounded-full border-2 border-cream bg-[#fffefd] font-serif text-4xl italic text-lavender-deeper">
-              J
-            </div>
+          <input
+            ref={profileInputRef}
+            type="file"
+            accept="image/*"
+            onChange={handleProfileImageChange}
+            className="sr-only"
+            aria-label="Upload profile picture"
+          />
+          <div className="flex h-24 w-24 items-center justify-center overflow-hidden rounded-full bg-gradient-to-tr from-rose via-lavender to-blue-deep p-[3px] shadow-[4px_4px_0_rgba(138,120,160,0.14)] sm:h-28 sm:w-28">
+            {profileImage ? (
+              // eslint-disable-next-line @next/next/no-img-element
+              <img
+                src={profileImage}
+                alt="Profile picture"
+                className="h-full w-full rounded-full border-2 border-cream object-cover"
+              />
+            ) : (
+              <div className="flex h-full w-full items-center justify-center rounded-full border-2 border-cream bg-[#fffefd] font-serif text-4xl italic text-lavender-deeper">
+                J
+              </div>
+            )}
           </div>
-          <span className="absolute -bottom-1 -right-1 flex h-8 w-8 items-center justify-center rounded-full border-2 border-cream bg-lavender-deep text-lg leading-none text-espresso">
-            ✿
-          </span>
+          <button
+            type="button"
+            onClick={() => profileInputRef.current?.click()}
+            aria-label={
+              profileImage ? "Change profile picture" : "Add profile picture"
+            }
+            title={profileImage ? "Change profile picture" : "Add profile picture"}
+            className="absolute -bottom-1 -right-1 flex h-8 w-8 items-center justify-center rounded-full border-2 border-cream bg-lavender-deep text-espresso shadow-[2px_2px_0_rgba(168,152,208,0.7)] transition hover:bg-lavender-deeper"
+          >
+            <svg
+              aria-hidden
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2.4"
+              strokeLinecap="round"
+              className="h-4 w-4"
+            >
+              <path d="M12 5v14M5 12h14" />
+            </svg>
+          </button>
+          {profileImageError && (
+            <p className="absolute left-1/2 top-full mt-2 w-40 -translate-x-1/2 rounded-xl border border-lavender-deeper/30 bg-lavender-soft px-3 py-1.5 text-center text-[11px] font-semibold text-lavender-deeper">
+              {profileImageError}
+            </p>
+          )}
         </div>
 
         <div className="w-full flex-1 text-center sm:text-left">
           <div className="flex flex-wrap items-center justify-center gap-2.5 sm:justify-start">
             <h1 className="font-serif text-2xl font-semibold tracking-tight">
-              @dailymuse
+              @{username}
             </h1>
             <button
               type="button"
@@ -397,6 +484,21 @@ export default function ProfileClient() {
       {editing && (
         <section className="mt-6 rounded-[24px] border border-espresso/15 bg-[#fffefd] p-5 shadow-[5px_5px_0_rgba(138,120,160,0.12)]">
           <div className="space-y-3">
+            <div>
+              <label
+                htmlFor="profile-username"
+                className="mb-1.5 block text-sm font-bold text-espresso"
+              >
+                Username
+              </label>
+              <input
+                id="profile-username"
+                value={draftUsername}
+                onChange={(e) => setDraftUsername(e.target.value)}
+                placeholder="dailymuse"
+                className="w-full rounded-2xl border border-espresso/20 bg-cream px-4 py-2.5 text-[15px] text-espresso focus:border-clay focus:outline-none focus:ring-2 focus:ring-clay/30"
+              />
+            </div>
             <div>
               <label
                 htmlFor="profile-name"
