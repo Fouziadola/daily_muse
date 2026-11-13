@@ -77,7 +77,7 @@ export default function AuthButtons() {
     setTimeout(() => {
       setOpen(false);
       setIsLoggedIn(true);
-      router.push("/dashboard");
+      router.push("/profile");
     }, 900);
   };
 

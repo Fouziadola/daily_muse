@@ -381,7 +381,7 @@ export default function ProfileClient() {
   return (
     <>
       {/* profile header */}
-      <section className="flex flex-col items-center gap-6 sm:flex-row sm:items-start sm:gap-10">
+      <section className="flex items-start gap-6 sm:gap-10">
         <div className="relative shrink-0">
           <input
             ref={profileInputRef}
@@ -433,8 +433,8 @@ export default function ProfileClient() {
           )}
         </div>
 
-        <div className="w-full flex-1 text-center sm:text-left">
-          <div className="flex flex-wrap items-center justify-center gap-2.5 sm:justify-start">
+        <div className="w-full flex-1 text-left">
+          <div className="flex flex-wrap items-center justify-start gap-2.5">
             <h1 className="font-serif text-2xl font-semibold tracking-tight">
               @{username}
             </h1>
@@ -453,7 +453,7 @@ export default function ProfileClient() {
             </button>
           </div>
 
-          <dl className="mt-5 flex items-center justify-center gap-8 sm:justify-start">
+          <dl className="mt-5 flex items-center justify-start gap-8">
             {[
               ["posts", String(posts.length + entries.length)],
               ["followers", "2.4k"],
@@ -471,7 +471,7 @@ export default function ProfileClient() {
 
           <div className="mt-4 space-y-1">
             <p className="text-[15px] font-bold">{displayName}</p>
-            <p className="mx-auto max-w-sm whitespace-pre-line text-[14.5px] leading-relaxed text-cocoa sm:mx-0">
+            <p className="max-w-sm whitespace-pre-line text-[14.5px] leading-relaxed text-cocoa">
               {bio}
             </p>
             <p className="font-hand text-lg text-lavender-deeper">
@@ -553,7 +553,7 @@ export default function ProfileClient() {
         <div
           role="tablist"
           aria-label="Profile sections"
-          className="flex items-center justify-center gap-10"
+          className="flex items-center justify-start gap-10"
         >
           {tabs.map((t) => {
             const active = tab === t.id;
