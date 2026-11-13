@@ -1,8 +1,8 @@
 @import "tailwindcss";
 
 :root {
-  --background: #eaf6ee;
-  --foreground: #b09fc0;
+  --background: #f7f4ec;
+  --foreground: #3f3a32;
 }
 
 @theme inline {
@@ -14,43 +14,45 @@
 }
 
 @theme {
-  --color-cream: #fffbfc;
-  --color-paper: #fffefd;
-  --color-parchment: #fdf0f2;
-  --color-linen: #f9d5d9;
-  --color-sand: #f3c6cc;
-  --color-clay: #e79aa6;
-  --color-clay-deep: #c77e89;
-  --color-rose: #f0a2af;
-  --color-rose-soft: #fde3e7;
-  --color-rose-deep: #c77e89;
-  --color-sage: #e5b3b9;
-  --color-sage-soft: #fbeff0;
-  --color-sage-deep: #a67e84;
-  --color-espresso: #8a78a0;
-  --color-cocoa: #a898c8;
-  --color-latte: #bfa9ad;
-  --color-gold: #d8a0a6;
-  --color-blush: #feeef1;
-  --color-mint: #eaf6ee;
-  --color-lavender-soft: #f3f0f8;
-  --color-lavender: #e6e3f2;
-  --color-lavender-deep: #c7b8e0;
-  --color-lavender-deeper: #a898d0;
-  --color-blue-soft: #eef2fb;
-  --color-blue: #cbd5f0;
-  --color-blue-deep: #a5b8e8;
-  --color-blue-deeper: #8a9ede;
-  --color-blue-deepest: #7a8ed1;
+  --color-cream: #fbf9f3;
+  --color-paper: #fffdf8;
+  --color-parchment: #edf1e4;
+  --color-linen: #dce5d1;
+  --color-sand: #ccd9bd;
+  --color-clay: #9caf8c;
+  --color-clay-deep: #6f8462;
+  --color-rose: #e6b3a4;
+  --color-rose-soft: #f4e3da;
+  --color-rose-deep: #c9573d;
+  --color-sage: #dce5d1;
+  --color-sage-soft: #e9efe0;
+  --color-sage-deep: #5f7355;
+  --color-espresso: #3f3a32;
+  --color-cocoa: #6d6759;
+  --color-latte: #9a9382;
+  --color-gold: #c98a4b;
+  --color-blush: #f3ece1;
+  --color-mint: #f7f4ec;
+  --color-tomato: #e4572e;
+  --color-tomato-deep: #c8451f;
+  --color-lavender-soft: #e9efe0;
+  --color-lavender: #dce5d1;
+  --color-lavender-deep: #6f8462;
+  --color-lavender-deeper: #5f7355;
+  --color-blue-soft: #e3ead8;
+  --color-blue: #ccd9bd;
+  --color-blue-deep: #9caf8c;
+  --color-blue-deeper: #6f8462;
+  --color-blue-deepest: #5f7355;
 
-  --color-mixer-off: #fffbfc;
-  --color-mixer-pink: #fbe8ec;
-  --color-mixer-blue: #eff5fb;
-  --color-mixer-lavender: #f4f2f9;
-  --color-mixer-blend: #f7f0f5;
-  --color-mixer-pink-deep: #f3d5da;
-  --color-mixer-blue-deep: #dce7f4;
-  --color-mixer-lavender-deep: #e4e1ee;
+  --color-mixer-off: #fbf9f3;
+  --color-mixer-pink: #f4e3da;
+  --color-mixer-blue: #edf1e4;
+  --color-mixer-lavender: #e9efe0;
+  --color-mixer-blend: #f1f0e6;
+  --color-mixer-pink-deep: #e8cfc2;
+  --color-mixer-blue-deep: #dce5d1;
+  --color-mixer-lavender-deep: #d7e2ca;
 
   --font-display: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
   --font-body: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji", sans-serif;
@@ -94,11 +96,11 @@ body {
 
 /* paper grain */
 .paper-grain {
-  background-color: #eaf6ee;
+  background-color: #f7f4ec;
   background-image:
-    radial-gradient(#cbe6d6 0.7px, transparent 0.7px),
-    radial-gradient(#dcefe3 0.5px, transparent 0.5px),
-    radial-gradient(#bcdcc9 0.4px, transparent 0.4px);
+    radial-gradient(#d9e0cc 0.7px, transparent 0.7px),
+    radial-gradient(#e6ebdb 0.5px, transparent 0.5px),
+    radial-gradient(#cfd9c0 0.4px, transparent 0.4px);
   background-size:
     26px 26px,
     13px 13px,
@@ -113,13 +115,13 @@ body {
   background-image: repeating-linear-gradient(
     transparent,
     transparent 31px,
-    rgba(168, 152, 208, 0.2) 31px,
-    rgba(168, 152, 208, 0.2) 32px
+    rgba(95, 115, 85, 0.2) 31px,
+    rgba(95, 115, 85, 0.2) 32px
   );
 }
 
 .dotted-bg {
-  background-image: radial-gradient(rgba(138, 120, 160, 0.12) 1.2px, transparent 1.2px);
+  background-image: radial-gradient(rgba(95, 115, 85, 0.16) 1.2px, transparent 1.2px);
   background-size: 18px 18px;
 }
 
@@ -139,52 +141,54 @@ body {
 }
 
 ::selection {
-  background: #c7b8e0;
-  color: #fffbfc;
+  background: #ccd9bd;
+  color: #3f3a32;
 }
 
 /* ---------- dark mode ---------- */
 .dark {
-  --background: #1b1723;
-  --foreground: #e8e2f2;
+  --background: #1b211a;
+  --foreground: #eceee5;
 
-  --color-cream: #241e2f;
-  --color-paper: #221d2c;
-  --color-parchment: #2c2538;
-  --color-linen: #3a2f45;
-  --color-sand: #493a52;
-  --color-clay: #c08e9c;
-  --color-clay-deep: #d8a9b4;
-  --color-rose: #c98a9a;
-  --color-rose-soft: #362935;
-  --color-rose-deep: #e0aeb9;
-  --color-sage: #6b5560;
-  --color-sage-soft: #2e2733;
-  --color-sage-deep: #c9aab2;
-  --color-espresso: #e7def3;
-  --color-cocoa: #b6a8cc;
-  --color-latte: #8f83a6;
-  --color-gold: #e0b3b8;
-  --color-blush: #2b2433;
-  --color-mint: #1b1723;
-  --color-lavender-soft: #312a3f;
-  --color-lavender: #3b3450;
-  --color-lavender-deep: #6d5f8f;
-  --color-lavender-deeper: #bcaae8;
-  --color-blue-soft: #232a3c;
-  --color-blue: #354060;
-  --color-blue-deep: #4c5b82;
-  --color-blue-deeper: #a9b8e8;
-  --color-blue-deepest: #9fb0e3;
+  --color-cream: #232a22;
+  --color-paper: #20261f;
+  --color-parchment: #2a3327;
+  --color-linen: #354033;
+  --color-sand: #41503e;
+  --color-clay: #9caf8c;
+  --color-clay-deep: #b8c9a8;
+  --color-rose: #d99a87;
+  --color-rose-soft: #33251f;
+  --color-rose-deep: #f0906f;
+  --color-sage: #2f3a2b;
+  --color-sage-soft: #2a3327;
+  --color-sage-deep: #a9bf99;
+  --color-espresso: #eceee5;
+  --color-cocoa: #b9b5a6;
+  --color-latte: #8e8a7c;
+  --color-gold: #e0a860;
+  --color-blush: #2b2620;
+  --color-mint: #1b211a;
+  --color-tomato: #ff6a45;
+  --color-tomato-deep: #ff8a6b;
+  --color-lavender-soft: #2a3327;
+  --color-lavender: #354033;
+  --color-lavender-deep: #4f6249;
+  --color-lavender-deeper: #b8c9a8;
+  --color-blue-soft: #2f3a2b;
+  --color-blue: #41503e;
+  --color-blue-deep: #4f6249;
+  --color-blue-deeper: #b8c9a8;
+  --color-blue-deepest: #c6d6b6;
 
-  --color-mixer-off: #221d2c;
-  --color-mixer-pink: #33262f;
-  --color-mixer-blue: #232a3c;
-  --color-mixer-lavender: #2c2840;
-  --color-mixer-blend: #2b2433;
-  --color-mixer-pink-deep: #4a3640;
-  --color-mixer-blue-deep: #2f3a52;
-  --color-mixer-lavender-deep: #3a3350;
+  --color-mixer-off: #232a22;
+  --color-mixer-pink: #33251f;
+  --color-mixer-blue: #2a3327;
+  --color-mixer-lavender: #2f3a2b;
+  --color-mixer-blend: #2b2f26;
+  --color-mixer-pink-deep: #4a3329;
+  --color-mixer-blue-deep: #354033;
+  --color-mixer-lavender-deep: #3d4a37;
 
   color-scheme: dark;
 }
@@ -195,25 +199,25 @@ body {
 }
 
 .dark .paper-grain {
-  background-color: #1b1723;
+  background-color: #1b211a;
   background-image:
-    radial-gradient(#2c2638 0.7px, transparent 0.7px),
-    radial-gradient(#332c40 0.5px, transparent 0.5px),
-    radial-gradient(#241f2f 0.4px, transparent 0.4px);
+    radial-gradient(#2a3327 0.7px, transparent 0.7px),
+    radial-gradient(#333f2f 0.5px, transparent 0.5px),
+    radial-gradient(#242b22 0.4px, transparent 0.4px);
 }
 
 .dark .paper-lines {
   background-image: repeating-linear-gradient(
     transparent,
     transparent 31px,
-    rgba(188, 170, 232, 0.16) 31px,
-    rgba(188, 170, 232, 0.16) 32px
+    rgba(169, 191, 153, 0.16) 31px,
+    rgba(169, 191, 153, 0.16) 32px
   );
 }
 
 .dark .dotted-bg {
   background-image: radial-gradient(
-    rgba(188, 170, 232, 0.16) 1.2px,
+    rgba(169, 191, 153, 0.16) 1.2px,
     transparent 1.2px
   );
 }

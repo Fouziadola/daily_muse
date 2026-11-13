@@ -64,7 +64,7 @@ export default function DashboardPage() {
             <a
               key={s.href}
               href={s.href}
-              className="relative rounded-[28px] border border-espresso/10 bg-[#fffefd] p-8 shadow-[5px_5px_0_rgba(138,120,160,0.12)] transition hover:-translate-y-0.5 hover:border-espresso/20"
+              className="relative rounded-[28px] border border-espresso/10 bg-sage p-8 shadow-[5px_5px_0_rgba(138,120,160,0.12)] transition hover:-translate-y-0.5 hover:border-espresso/20"
             >
               <span aria-hidden className="text-4xl mb-3 block">{s.icon}</span>
               <h3 className="font-serif text-xl font-semibold tracking-tight mb-1">

@@ -45,8 +45,8 @@ export default function BookPage() {
           onClick={() => pick("continue")}
           className={`rounded-2xl border p-4 text-left transition ${
             mode === "continue"
-              ? "border-espresso/20 bg-lavender-deep text-espresso shadow-[4px_4px_0_rgba(138,120,160,0.15)]"
-              : "border-espresso/10 bg-[#fffefd] hover:bg-parchment"
+              ? "border-tomato-deep/20 bg-tomato text-white shadow-[4px_4px_0_rgba(95,115,85,0.3)]"
+              : "border-espresso/10 bg-sage hover:bg-parchment"
           }`}
         >
           <span aria-hidden className="text-2xl">
@@ -71,8 +71,8 @@ export default function BookPage() {
           onClick={() => pick("new")}
           className={`rounded-2xl border p-4 text-left transition ${
             mode === "new"
-              ? "border-espresso/20 bg-lavender-deep text-espresso shadow-[4px_4px_0_rgba(138,120,160,0.15)]"
-              : "border-espresso/10 bg-[#fffefd] hover:bg-parchment"
+              ? "border-tomato-deep/20 bg-tomato text-white shadow-[4px_4px_0_rgba(95,115,85,0.3)]"
+              : "border-espresso/10 bg-sage hover:bg-parchment"
           }`}
         >
           <span aria-hidden className="text-2xl">
@@ -92,7 +92,7 @@ export default function BookPage() {
       </div>
 
       {/* editor card */}
-      <div className="relative mt-4 -rotate-1 rounded-[22px] border border-espresso/15 bg-[#fffefd] p-6 shadow-[8px_8px_0_rgba(138,120,160,0.14)]">
+      <div className="relative mt-4 -rotate-1 rounded-[22px] border border-espresso/15 bg-sage p-6 shadow-[8px_8px_0_rgba(138,120,160,0.14)]">
         <div
           aria-hidden
           className="washi pointer-events-none absolute left-1/2 top-[-14px] h-7 w-24 -translate-x-1/2 rotate-[-3deg] bg-lavender-soft opacity-90 shadow-sm"
@@ -128,7 +128,7 @@ export default function BookPage() {
         <button
           type="button"
           onClick={goWrite}
-          className="rounded-full bg-blue-deep px-6 py-2.5 text-sm font-bold text-espresso transition hover:bg-blue-deeper"
+          className="rounded-full bg-tomato px-6 py-2.5 text-sm font-bold text-white shadow-[2px_2px_0_rgba(72,52,46,0.18)] transition hover:-translate-y-0.5 hover:bg-tomato-deep"
         >
           {mode === "continue" ? "Keep writing ✎" : "Start writing ✎"}
         </button>

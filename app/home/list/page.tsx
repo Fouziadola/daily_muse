@@ -28,7 +28,7 @@ export default function ListPage() {
         {entries.map((e) => (
           <li
             key={e.date + e.title}
-            className="rounded-2xl border border-espresso/10 bg-[#fffefd] p-5 shadow-[4px_4px_0_rgba(138,120,160,0.1)] transition hover:-translate-y-0.5"
+            className="rounded-2xl border border-espresso/10 bg-sage p-5 shadow-[4px_4px_0_rgba(138,120,160,0.1)] transition hover:-translate-y-0.5"
           >
             <div className="flex items-center justify-between gap-2">
               <p className="text-xs font-bold uppercase tracking-[0.18em] text-latte">

@@ -120,13 +120,13 @@ export default async function HomeIndex() {
                 Continue your morning draft or open a fresh page. Five soft
                 minutes is enough.
               </p>
-              <span className="mt-4 inline-flex items-center gap-1.5 rounded-full bg-lavender-deep px-5 py-2.5 text-sm font-bold text-espresso transition group-hover:bg-lavender-deeper">
+              <span className="mt-4 inline-flex items-center gap-1.5 rounded-full bg-tomato px-5 py-2.5 text-sm font-bold text-white transition group-hover:bg-tomato-deep">
                 Open your book →
               </span>
             </div>
 
             <div className="relative w-full max-w-[190px] shrink-0 self-center">
-              <div className="paper-lines rotate-2 rounded-2xl border border-espresso/15 bg-[#fffefd] p-4 font-serif text-[13px] italic leading-[32px] text-espresso/80 shadow-[4px_4px_0_rgba(138,120,160,0.12)]">
+              <div className="paper-lines rotate-2 rounded-2xl border border-espresso/15 bg-sage p-4 font-serif text-[13px] italic leading-[32px] text-espresso/80 shadow-[4px_4px_0_rgba(138,120,160,0.12)]">
                 The light through the kitchen window at 7am. Oat latte, still
                 warm…
               </div>
@@ -143,7 +143,7 @@ export default async function HomeIndex() {
             <Link
               key={f.href}
               href={f.href}
-              className={`group relative flex flex-col rounded-[20px] border border-espresso/10 bg-[#fffefd] p-5 shadow-[4px_4px_0_rgba(138,120,160,0.1)] transition hover:-translate-y-0.5 hover:rotate-0 hover:border-espresso/20 ${f.rotate}`}
+              className={`group relative flex flex-col rounded-[20px] border border-espresso/10 bg-sage p-5 shadow-[4px_4px_0_rgba(138,120,160,0.1)] transition hover:-translate-y-0.5 hover:rotate-0 hover:border-espresso/20 ${f.rotate}`}
             >
               <span aria-hidden className="text-2xl leading-none">
                 {f.icon}

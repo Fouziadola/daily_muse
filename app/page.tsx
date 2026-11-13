@@ -1,5 +1,4 @@
 import AuthButtons from "./components/auth-modal";
-import AppActions from "./components/app-actions";
 
 const prompts = [
   "what made you smile today?",
@@ -83,7 +82,6 @@ export default function Home() {
             </span>
           </a>
           <div className="flex items-center gap-2.5">
-            <AppActions />
             <AuthButtons />
           </div>
         </nav>
@@ -129,7 +127,7 @@ export default function Home() {
             <div className="mt-7 flex flex-wrap items-center gap-3">
               <a
                 href="#cta"
-                className="rounded-full bg-lavender-deep px-7 py-3.5 font-semibold text-espresso shadow-[3px_3px_0_#f3c6cc] transition hover:-translate-y-0.5 hover:bg-lavender-deeper"
+                className="rounded-full bg-tomato px-7 py-3.5 font-semibold text-white shadow-[3px_3px_0_#ccd9bd] transition hover:-translate-y-0.5 hover:bg-tomato-deep"
               >
                 Open your journal →
               </a>
@@ -164,7 +162,7 @@ export default function Home() {
               aria-hidden
               className="absolute -inset-4 -rotate-2 rounded-[28px] bg-sand/60"
             />
-            <div className="relative -rotate-2 rounded-[22px] border border-espresso/15 bg-[#fffefd] p-6 shadow-[8px_8px_0_rgba(138,120,160,0.14)]">
+            <div className="relative -rotate-2 rounded-[22px] border border-espresso/15 bg-sage p-6 shadow-[8px_8px_0_rgba(138,120,160,0.14)]">
               <Tape className="left-1/2 top-[-14px] -translate-x-1/2 rotate-[-3deg] bg-lavender-soft" />
               <div className="flex items-center justify-between">
                 <p className="text-xs font-bold uppercase tracking-[0.18em] text-latte">
@@ -183,7 +181,7 @@ export default function Home() {
               </div>
               <div className="mt-4 flex items-center justify-between">
                 <div className="flex gap-1.5">
-                  {["#e79aa6", "#f0a2af", "#f9d5d9", "#fde3e7", "#c7b8e0", "#fffbfc"].map(
+                  {["#e4572e", "#e6b3a4", "#ccd9bd", "#dce5d1", "#9caf8c", "#fbf9f3"].map(
                     (c) => (
                       <span
                         key={c}
@@ -250,7 +248,7 @@ export default function Home() {
           {testimonials.map((t) => (
             <figure
               key={t.name}
-              className={`relative rounded-sm border border-espresso/10 bg-[#fffefd] p-6 pb-14 pt-8 shadow-[5px_5px_0_rgba(138,120,160,0.12)] transition hover:rotate-0 ${t.rotate}`}
+              className={`relative rounded-sm border border-espresso/10 bg-sage p-6 pb-14 pt-8 shadow-[5px_5px_0_rgba(138,120,160,0.12)] transition hover:rotate-0 ${t.rotate}`}
             >
               <Tape className="left-1/2 top-[-12px] -translate-x-1/2 bg-linen" />
               <span className="absolute right-4 top-4 text-2xl">{t.sticker}</span>
@@ -284,7 +282,7 @@ export default function Home() {
             className="pointer-events-none absolute inset-0 opacity-40"
             style={{
               backgroundImage:
-                "radial-gradient(rgba(138,120,160,0.14) 1px, transparent 1px)",
+                "radial-gradient(rgba(95,115,85,0.16) 1px, transparent 1px)",
               backgroundSize: "22px 22px",
             }}
           />
@@ -321,7 +319,7 @@ export default function Home() {
                     key={n}
                     className="flex items-center gap-4 rounded-2xl border border-espresso/10 bg-cream/70 px-4 py-3 backdrop-blur-sm"
                   >
-                    <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-lavender-deep font-serif text-sm font-bold text-espresso">
+                    <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-tomato font-serif text-sm font-bold text-white">
                       {n}
                     </span>
                     <div>
@@ -335,7 +333,7 @@ export default function Home() {
               <div className="mt-7 flex flex-wrap items-center gap-3">
                 <a
                   href="#top"
-                  className="rounded-full bg-lavender-deep px-8 py-4 font-semibold text-espresso shadow-[3px_3px_0_rgba(255,252,248,1)] transition hover:-translate-y-0.5 hover:bg-lavender-deeper"
+                  className="rounded-full bg-tomato px-8 py-4 font-semibold text-white shadow-[3px_3px_0_rgba(204,217,189,1)] transition hover:-translate-y-0.5 hover:bg-tomato-deep"
                 >
                   Start tonight&apos;s entry ✎
                 </a>
@@ -396,7 +394,7 @@ export default function Home() {
                 </div>
                 <div className="mt-4 flex items-center justify-between">
                   <div className="flex gap-1.5">
-                    {["#fffbfc", "#fde3e7", "#f9d5d9", "#c7b8e0", "#f0a2af"].map(
+                    {["#fbf9f3", "#f4e3da", "#ccd9bd", "#9caf8c", "#e4572e"].map(
                       (c) => (
                         <span
                           key={c}

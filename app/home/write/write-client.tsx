@@ -35,7 +35,7 @@ export default function WriteClient() {
           : "A blank page, just for you."}
       </p>
 
-      <div className="relative mt-5 -rotate-1 rounded-[22px] border border-espresso/15 bg-[#fffefd] p-6 shadow-[8px_8px_0_rgba(138,120,160,0.14)]">
+      <div className="relative mt-5 -rotate-1 rounded-[22px] border border-espresso/15 bg-sage p-6 shadow-[8px_8px_0_rgba(138,120,160,0.14)]">
         <div
           aria-hidden
           className="washi pointer-events-none absolute left-1/2 top-[-14px] h-7 w-24 -translate-x-1/2 rotate-[-3deg] bg-lavender-soft opacity-90 shadow-sm"
@@ -72,7 +72,7 @@ export default function WriteClient() {
           <button
             type="button"
             onClick={() => router.push("/home/book")}
-            className="rounded-full bg-blue-deep px-6 py-2.5 text-sm font-bold text-espresso transition hover:bg-blue-deeper"
+            className="rounded-full bg-tomato px-6 py-2.5 text-sm font-bold text-white shadow-[2px_2px_0_rgba(72,52,46,0.18)] transition hover:-translate-y-0.5 hover:bg-tomato-deep"
           >
             Save & return
           </button>

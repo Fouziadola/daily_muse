@@ -18,12 +18,12 @@ const JOURNAL_THEME_KEY = "daily-muse-journal-theme";
 const PROFILE_IMAGE_KEY = "daily-muse-profile-image";
 
 const journalThemes = [
-  { id: "blush", label: "Blush", color: "#fdeef1" },
-  { id: "lavender", label: "Lavender", color: "#f3f0f8" },
-  { id: "sky", label: "Sky", color: "#eef2fb" },
-  { id: "butter", label: "Butter", color: "#fdf6e9" },
-  { id: "mint", label: "Mint", color: "#edf6f0" },
-  { id: "cream", label: "Cream", color: "#fffbfc" },
+  { id: "sage", label: "Sage", color: "#dce5d1" },
+  { id: "linen", label: "Linen", color: "#edf1e4" },
+  { id: "sky", label: "Sky", color: "#e9efe0" },
+  { id: "butter", label: "Butter", color: "#f3ece1" },
+  { id: "blush", label: "Blush", color: "#f4e3da" },
+  { id: "cream", label: "Cream", color: "#fbf9f3" },
 ];
 
 const defaultTheme = journalThemes[0];
@@ -400,7 +400,7 @@ export default function ProfileClient() {
                 className="h-full w-full rounded-full border-2 border-cream object-cover"
               />
             ) : (
-              <div className="flex h-full w-full items-center justify-center rounded-full border-2 border-cream bg-[#fffefd] font-serif text-4xl italic text-lavender-deeper">
+              <div className="flex h-full w-full items-center justify-center rounded-full border-2 border-cream bg-sage font-serif text-4xl italic text-lavender-deeper">
                 J
               </div>
             )}
@@ -412,7 +412,7 @@ export default function ProfileClient() {
               profileImage ? "Change profile picture" : "Add profile picture"
             }
             title={profileImage ? "Change profile picture" : "Add profile picture"}
-            className="absolute -bottom-1 -right-1 flex h-8 w-8 items-center justify-center rounded-full border-2 border-cream bg-lavender-deep text-espresso shadow-[2px_2px_0_rgba(168,152,208,0.7)] transition hover:bg-lavender-deeper"
+            className="absolute -bottom-1 -right-1 flex h-8 w-8 items-center justify-center rounded-full border-2 border-cream bg-tomato text-white shadow-[2px_2px_0_rgba(95,115,85,0.35)] transition hover:bg-tomato-deep"
           >
             <svg
               aria-hidden
@@ -482,7 +482,7 @@ export default function ProfileClient() {
       </section>
 
       {editing && (
-        <section className="mt-6 rounded-[24px] border border-espresso/15 bg-[#fffefd] p-5 shadow-[5px_5px_0_rgba(138,120,160,0.12)]">
+        <section className="mt-6 rounded-[24px] border border-espresso/15 bg-sage p-5 shadow-[5px_5px_0_rgba(138,120,160,0.12)]">
           <div className="space-y-3">
             <div>
               <label
@@ -540,7 +540,7 @@ export default function ProfileClient() {
             <button
               type="button"
               onClick={saveProfile}
-              className="rounded-full bg-lavender-deep px-5 py-2 text-sm font-bold text-espresso shadow-[2px_2px_0_rgba(168,152,208,0.9)] transition hover:bg-lavender-deeper"
+              className="rounded-full bg-tomato px-5 py-2 text-sm font-bold text-white shadow-[2px_2px_0_rgba(95,115,85,0.35)] transition hover:bg-tomato-deep"
             >
               Save
             </button>
@@ -582,7 +582,7 @@ export default function ProfileClient() {
       {/* journal or grid */}
       {tab === "journal" ? (
         <section className="mt-6">
-          <div className="relative rounded-[24px] border border-espresso/15 bg-[#fffefd] p-6 shadow-[6px_6px_0_rgba(138,120,160,0.12)]">
+          <div className="relative rounded-[24px] border border-espresso/15 bg-sage p-6 shadow-[6px_6px_0_rgba(138,120,160,0.12)]">
             <div
               aria-hidden
               className="washi pointer-events-none absolute left-1/2 top-[-14px] h-7 w-24 -translate-x-1/2 rotate-[-3deg] bg-lavender-soft opacity-90 shadow-sm"
@@ -700,7 +700,7 @@ export default function ProfileClient() {
                   type="button"
                   onClick={saveEntry}
                   disabled={!journalText.trim()}
-                  className="rounded-full bg-lavender-deep px-6 py-2.5 text-sm font-bold text-espresso shadow-[2px_2px_0_rgba(168,152,208,0.9)] transition hover:bg-lavender-deeper disabled:cursor-not-allowed disabled:opacity-50"
+                  className="rounded-full bg-tomato px-6 py-2.5 text-sm font-bold text-white shadow-[2px_2px_0_rgba(95,115,85,0.35)] transition hover:bg-tomato-deep disabled:cursor-not-allowed disabled:opacity-50"
                 >
                   Save entry
                 </button>
@@ -723,7 +723,7 @@ export default function ProfileClient() {
                       {group.items.map((entry) => (
                         <li
                           key={entry.id}
-                          style={{ backgroundColor: entry.theme ?? "#fffefd" }}
+                          style={{ backgroundColor: entry.theme ?? "#dce5d1" }}
                           className="rounded-2xl border border-espresso/10 p-5 shadow-[4px_4px_0_rgba(138,120,160,0.1)]"
                         >
                           <div className="flex items-center justify-between gap-2">

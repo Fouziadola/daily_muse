@@ -22,7 +22,7 @@ export default function MediaPage() {
         {items.map((m, i) => (
           <figure
             key={m.label}
-            className={`rounded-2xl border border-espresso/10 bg-[#fffefd] p-5 text-center shadow-[4px_4px_0_rgba(138,120,160,0.1)] ${
+            className={`rounded-2xl border border-espresso/10 bg-sage p-5 text-center shadow-[4px_4px_0_rgba(138,120,160,0.1)] ${
               i % 3 === 1 ? "rotate-1" : i % 3 === 2 ? "-rotate-1" : ""
             }`}
           >

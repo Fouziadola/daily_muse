@@ -46,7 +46,7 @@ export default function MapPage() {
           {pins.map((p) => (
             <li
               key={p.place}
-              className="flex items-center justify-between gap-2 rounded-2xl border border-espresso/10 bg-[#fffefd] px-4 py-3"
+              className="flex items-center justify-between gap-2 rounded-2xl border border-espresso/10 bg-sage px-4 py-3"
             >
               <div>
                 <p className="text-sm font-bold">📍 {p.place}</p>

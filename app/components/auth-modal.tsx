@@ -123,7 +123,7 @@ export default function AuthButtons() {
             <button
               type="button"
               onClick={() => openModal("login")}
-              className="rounded-full border border-espresso/15 bg-lavender-deep px-5 py-2.5 text-[15px] font-semibold text-espresso shadow-[3px_3px_0_rgba(243,240,248,0.9)] transition hover:-translate-y-0.5 hover:bg-lavender-deeper hover:shadow-[4px_5px_0_rgba(243,240,248,0.9)]"
+              className="rounded-full border border-tomato-deep/20 bg-tomato px-5 py-2.5 text-[15px] font-semibold text-white shadow-[3px_3px_0_rgba(95,115,85,0.35)] transition hover:-translate-y-0.5 hover:bg-tomato-deep hover:shadow-[4px_5px_0_rgba(95,115,85,0.35)]"
             >
               Log in
             </button>
@@ -148,7 +148,7 @@ export default function AuthButtons() {
             className="absolute inset-0 bg-cream/60 backdrop-blur-xl"
           />
           {/* card */}
-          <div className="relative max-h-[90vh] w-full max-w-[400px] -rotate-1 overflow-y-auto rounded-[22px] border border-espresso/15 bg-[#fffefd] p-7 pt-9 shadow-[8px_8px_0_rgba(138,120,160,0.2)]">
+          <div className="relative max-h-[90vh] w-full max-w-[400px] -rotate-1 overflow-y-auto rounded-[22px] border border-espresso/15 bg-sage p-7 pt-9 shadow-[8px_8px_0_rgba(138,120,160,0.2)]">
             <div
               aria-hidden
               className="washi pointer-events-none absolute left-1/2 top-[-14px] h-7 w-24 -translate-x-1/2 rotate-[-3deg] bg-lavender-soft opacity-90 shadow-sm"
@@ -269,7 +269,7 @@ export default function AuthButtons() {
                   <button
                     type="submit"
                     disabled={status === "loading"}
-                    className="w-full rounded-full bg-lavender-deep py-3.5 font-semibold text-espresso shadow-[3px_3px_0_rgba(168,152,208,0.9)] transition hover:-translate-y-0.5 hover:bg-lavender-deeper disabled:cursor-wait disabled:opacity-70"
+                    className="w-full rounded-full bg-tomato py-3.5 font-semibold text-white shadow-[3px_3px_0_rgba(95,115,85,0.4)] transition hover:-translate-y-0.5 hover:bg-tomato-deep disabled:cursor-wait disabled:opacity-70"
                   >
                     {status === "loading"
                       ? "Opening…"
