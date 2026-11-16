@@ -8,18 +8,34 @@ export default function ProfilePage() {
     <div className="paper-grain flex min-h-dvh flex-col text-espresso">
       <header className="sticky top-0 z-40 border-b border-espresso/10 bg-cream/85 backdrop-blur-md">
         <div className="flex w-full items-center justify-between px-5 py-3.5 sm:px-10 lg:px-16">
-          <Link href="/" className="leading-tight">
-            <span className="block font-serif text-lg font-semibold tracking-tight">
-              Daily Muse
-            </span>
-          </Link>
-          <div className="flex items-center gap-2.5">
+          <div className="flex items-center gap-3">
             <Link
               href="/dashboard"
-              className="hidden rounded-full border border-espresso/15 bg-blue-soft px-4 py-1.5 font-hand text-lg leading-none text-espresso sm:inline-block"
+              aria-label="Back to space"
+              title="Back to space"
+              className="flex h-9 w-9 items-center justify-center rounded-full border border-espresso/15 bg-blue-soft text-espresso transition hover:bg-parchment"
             >
-              ← back to space
+              <svg
+                aria-hidden
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                className="h-4 w-4"
+              >
+                <path d="M19 12H5" />
+                <path d="m12 19-7-7 7-7" />
+              </svg>
             </Link>
+            <Link href="/" className="leading-tight">
+              <span className="block font-serif text-lg font-semibold tracking-tight">
+                Daily Muse
+              </span>
+            </Link>
+          </div>
+          <div className="flex items-center gap-2.5">
             <AppActions />
           </div>
         </div>

@@ -1,9 +1,6 @@
 "use client";
 
 import { useRef, useState } from "react";
-import Link from "next/link";
-
-type Tab = "posts" | "saved" | "journal";
 
 type JournalEntry = {
   id: string;
@@ -15,9 +12,12 @@ type JournalEntry = {
 
 const JOURNAL_STORAGE_KEY = "daily-muse-journal";
 const JOURNAL_THEME_KEY = "daily-muse-journal-theme";
+const JOURNAL_COLORS_KEY = "daily-muse-journal-colors";
 const PROFILE_IMAGE_KEY = "daily-muse-profile-image";
 
-const journalThemes = [
+type JournalTheme = { id: string; label: string; color: string };
+
+const defaultThemes: JournalTheme[] = [
   { id: "sage", label: "Sage", color: "#dce5d1" },
   { id: "linen", label: "Linen", color: "#edf1e4" },
   { id: "sky", label: "Sky", color: "#e9efe0" },
@@ -26,187 +26,9 @@ const journalThemes = [
   { id: "cream", label: "Cream", color: "#fbf9f3" },
 ];
 
-const defaultTheme = journalThemes[0];
-
-const posts = [
-  {
-    id: 1,
-    emoji: "☕",
-    date: "Oct 01",
-    title: "Oat latte, still warm",
-    likes: 24,
-    comments: 3,
-    saved: false,
-    gradient: "from-rose-soft to-linen",
-  },
-  {
-    id: 2,
-    emoji: "🌷",
-    date: "Sep 30",
-    title: "Tulips on the kitchen sill",
-    likes: 41,
-    comments: 7,
-    saved: true,
-    gradient: "from-lavender-soft to-lavender",
-  },
-  {
-    id: 3,
-    emoji: "☾",
-    date: "Sep 29",
-    title: "Night walk, moon timer",
-    likes: 18,
-    comments: 2,
-    saved: false,
-    gradient: "from-blue-soft to-blue",
-  },
-  {
-    id: 4,
-    emoji: "📖",
-    date: "Sep 27",
-    title: "Morning pages, page 12",
-    likes: 33,
-    comments: 5,
-    saved: false,
-    gradient: "from-parchment to-sand",
-  },
-  {
-    id: 5,
-    emoji: "🌧️",
-    date: "Sep 25",
-    title: "Rainy café, good cry",
-    likes: 56,
-    comments: 11,
-    saved: true,
-    gradient: "from-blush to-linen",
-  },
-  {
-    id: 6,
-    emoji: "🍓",
-    date: "Sep 23",
-    title: "Strawberries at the market",
-    likes: 29,
-    comments: 4,
-    saved: false,
-    gradient: "from-sage-soft to-sage",
-  },
-  {
-    id: 7,
-    emoji: "✉️",
-    date: "Sep 21",
-    title: "A letter for future-you",
-    likes: 47,
-    comments: 8,
-    saved: true,
-    gradient: "from-blue-soft to-lavender",
-  },
-  {
-    id: 8,
-    emoji: "🕯️",
-    date: "Sep 19",
-    title: "Candlelit wind-down",
-    likes: 22,
-    comments: 1,
-    saved: false,
-    gradient: "from-lavender-soft to-blush",
-  },
-  {
-    id: 9,
-    emoji: "🌿",
-    date: "Sep 17",
-    title: "Pressed a fern from the park",
-    likes: 38,
-    comments: 6,
-    saved: false,
-    gradient: "from-linen to-rose",
-  },
-];
-
-const tabs: { id: Tab; label: string }[] = [
-  { id: "posts", label: "Posts" },
-  { id: "saved", label: "Saved" },
-  { id: "journal", label: "My Journal" },
-];
-
-function GridIcon() {
-  return (
-    <svg
-      aria-hidden
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="1.8"
-      className="h-4 w-4"
-    >
-      <rect x="3" y="3" width="7" height="7" rx="1.5" />
-      <rect x="14" y="3" width="7" height="7" rx="1.5" />
-      <rect x="3" y="14" width="7" height="7" rx="1.5" />
-      <rect x="14" y="14" width="7" height="7" rx="1.5" />
-    </svg>
-  );
-}
-
-function BookmarkIcon() {
-  return (
-    <svg
-      aria-hidden
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="1.8"
-      strokeLinejoin="round"
-      className="h-4 w-4"
-    >
-      <path d="M6 4h12a1 1 0 0 1 1 1v15l-7-4.5L5 20V5a1 1 0 0 1 1-1Z" />
-    </svg>
-  );
-}
-
-function PenIcon() {
-  return (
-    <svg
-      aria-hidden
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="1.8"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      className="h-4 w-4"
-    >
-      <path d="M12 20h9" />
-      <path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z" />
-    </svg>
-  );
-}
-
-function HeartIcon({ className = "h-4 w-4" }: { className?: string }) {
-  return (
-    <svg
-      aria-hidden
-      viewBox="0 0 24 24"
-      fill="currentColor"
-      className={className}
-    >
-      <path d="M12 21s-7.5-4.6-9.4-9A5.4 5.4 0 0 1 12 6.5 5.4 5.4 0 0 1 21.4 12C19.5 16.4 12 21 12 21Z" />
-    </svg>
-  );
-}
-
-function CommentIcon() {
-  return (
-    <svg
-      aria-hidden
-      viewBox="0 0 24 24"
-      fill="currentColor"
-      className="h-4 w-4"
-    >
-      <path d="M12 3a9 9 0 0 1 9 9 9 9 0 0 1-9 9H4l1.8-3.3A9 9 0 0 1 3 12a9 9 0 0 1 9-9Z" />
-    </svg>
-  );
-}
+const defaultTheme = defaultThemes[0];
 
 export default function ProfileClient() {
-  const [tab, setTab] = useState<Tab>("posts");
   const [editing, setEditing] = useState(false);
   const [username, setUsername] = useState("dailymuse");
   const [displayName, setDisplayName] = useState("June Aurora");
@@ -229,16 +51,35 @@ export default function ProfileClient() {
     }
   });
   const [saveStatus, setSaveStatus] = useState<"idle" | "saved">("idle");
+  const [themes, setThemes] = useState<JournalTheme[]>(() => {
+    if (typeof window === "undefined") return defaultThemes;
+    try {
+      const stored = window.localStorage.getItem(JOURNAL_COLORS_KEY);
+      const parsed = stored ? JSON.parse(stored) : [];
+      const customs = Array.isArray(parsed)
+        ? parsed.filter(
+            (t): t is JournalTheme =>
+              typeof t?.id === "string" &&
+              typeof t?.label === "string" &&
+              typeof t?.color === "string"
+          )
+        : [];
+      return [...defaultThemes, ...customs];
+    } catch {
+      return defaultThemes;
+    }
+  });
   const [journalTheme, setJournalTheme] = useState<string>(() => {
     if (typeof window === "undefined") return defaultTheme.id;
     const stored = window.localStorage.getItem(JOURNAL_THEME_KEY);
-    return journalThemes.some((t) => t.id === stored)
+    return themes.some((t) => t.id === stored)
       ? (stored as string)
       : defaultTheme.id;
   });
   const [journalImage, setJournalImage] = useState<string | null>(null);
   const [imageError, setImageError] = useState("");
   const fileInputRef = useRef<HTMLInputElement>(null);
+  const colorInputRef = useRef<HTMLInputElement>(null);
   const [profileImage, setProfileImage] = useState<string | null>(() => {
     if (typeof window === "undefined") return null;
     try {
@@ -251,12 +92,38 @@ export default function ProfileClient() {
   const profileInputRef = useRef<HTMLInputElement>(null);
 
   const activeTheme =
-    journalThemes.find((t) => t.id === journalTheme) ?? defaultTheme;
+    themes.find((t) => t.id === journalTheme) ?? defaultTheme;
 
   const chooseTheme = (id: string) => {
     setJournalTheme(id);
     try {
       window.localStorage.setItem(JOURNAL_THEME_KEY, id);
+    } catch {
+      // storage may be unavailable; keep in-memory
+    }
+  };
+
+  const addColor = (color: string) => {
+    const normalized = color.toLowerCase();
+    const existing = themes.find((t) => t.color.toLowerCase() === normalized);
+    if (existing) {
+      chooseTheme(existing.id);
+      return;
+    }
+    const count = themes.filter((t) => t.id.startsWith("custom-")).length;
+    const theme: JournalTheme = {
+      id: `custom-${Date.now()}`,
+      label: `Custom ${count + 1}`,
+      color,
+    };
+    const next = [...themes, theme];
+    setThemes(next);
+    chooseTheme(theme.id);
+    try {
+      window.localStorage.setItem(
+        JOURNAL_COLORS_KEY,
+        JSON.stringify(next.filter((t) => t.id.startsWith("custom-")))
+      );
     } catch {
       // storage may be unavailable; keep in-memory
     }
@@ -347,9 +214,6 @@ export default function ProfileClient() {
   const deleteEntry = (id: string) => {
     persistEntries(entries.filter((entry) => entry.id !== id));
   };
-
-  const visiblePosts =
-    tab === "saved" ? posts.filter((p) => p.saved) : posts;
 
   const entriesByDate = entries.reduce<
     { date: string; items: JournalEntry[] }[]
@@ -455,7 +319,7 @@ export default function ProfileClient() {
 
           <dl className="mt-5 flex items-center justify-start gap-8">
             {[
-              ["posts", String(posts.length + entries.length)],
+              ["entries", String(entries.length)],
               ["followers", "2.4k"],
               ["following", "180"],
             ].map(([label, value]) => (
@@ -548,40 +412,8 @@ export default function ProfileClient() {
         </section>
       )}
 
-      {/* tabs */}
-      <div className="mt-8 border-t border-espresso/15">
-        <div
-          role="tablist"
-          aria-label="Profile sections"
-          className="flex items-center justify-start gap-10"
-        >
-          {tabs.map((t) => {
-            const active = tab === t.id;
-            return (
-              <button
-                key={t.id}
-                role="tab"
-                aria-selected={active}
-                onClick={() => setTab(t.id)}
-                className={`flex items-center gap-1.5 border-t-2 px-1 py-4 text-xs font-bold uppercase tracking-[0.16em] transition ${
-                  active
-                    ? "-mt-px border-espresso text-espresso"
-                    : "border-transparent text-latte hover:text-cocoa"
-                }`}
-              >
-                {t.id === "posts" && <GridIcon />}
-                {t.id === "saved" && <BookmarkIcon />}
-                {t.id === "journal" && <PenIcon />}
-                {t.label}
-              </button>
-            );
-          })}
-        </div>
-      </div>
-
-      {/* journal or grid */}
-      {tab === "journal" ? (
-        <section className="mt-6">
+      {/* journal */}
+      <section className="mt-8 border-t border-espresso/15 pt-6">
           <div className="relative rounded-[24px] border border-espresso/15 bg-sage p-6 shadow-[6px_6px_0_rgba(138,120,160,0.12)]">
             <div
               aria-hidden
@@ -607,7 +439,7 @@ export default function ProfileClient() {
                 aria-label="Journal page color"
                 className="flex items-center gap-1.5"
               >
-                {journalThemes.map((theme) => {
+                {themes.map((theme) => {
                   const active = journalTheme === theme.id;
                   return (
                     <button
@@ -626,6 +458,33 @@ export default function ProfileClient() {
                     />
                   );
                 })}
+                <input
+                  ref={colorInputRef}
+                  type="color"
+                  onChange={(e) => addColor(e.target.value)}
+                  className="sr-only"
+                  aria-label="Add a custom page color"
+                  tabIndex={-1}
+                />
+                <button
+                  type="button"
+                  onClick={() => colorInputRef.current?.click()}
+                  aria-label="Add a custom page color"
+                  title="Add a custom color"
+                  className="flex h-6 w-6 items-center justify-center rounded-full border border-dashed border-espresso/40 bg-cream text-espresso transition hover:scale-105 hover:bg-parchment"
+                >
+                  <svg
+                    aria-hidden
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2.2"
+                    strokeLinecap="round"
+                    className="h-3.5 w-3.5"
+                  >
+                    <path d="M12 5v14M5 12h14" />
+                  </svg>
+                </button>
               </div>
               <span className="font-hand text-base text-cocoa">
                 {activeTheme.label}
@@ -763,43 +622,6 @@ export default function ProfileClient() {
             </p>
           )}
         </section>
-      ) : (
-        <ul className="mt-2 grid grid-cols-3 gap-1 sm:gap-1.5">
-          {visiblePosts.map((p) => (
-            <li key={p.id}>
-              <Link
-                href="/home/list"
-                aria-label={`${p.title} — ${p.date}`}
-                className={`group relative flex aspect-square flex-col items-center justify-center overflow-hidden bg-gradient-to-br ${p.gradient} p-2 text-center transition hover:brightness-[1.02]`}
-              >
-                <span aria-hidden className="text-3xl drop-shadow-sm">
-                  {p.emoji}
-                </span>
-                <span className="mt-2 line-clamp-2 font-serif text-[12px] italic leading-snug text-espresso/80 sm:text-[13px]">
-                  {p.title}
-                </span>
-                <span className="absolute left-2 top-2 text-[10px] font-bold uppercase tracking-wide text-espresso/50">
-                  {p.date}
-                </span>
-                <span className="absolute inset-0 flex items-center justify-center gap-3 bg-espresso/45 text-sm font-bold text-cream opacity-0 backdrop-blur-[1px] transition group-hover:opacity-100">
-                  <span className="flex items-center gap-1">
-                    <HeartIcon /> {p.likes}
-                  </span>
-                  <span className="flex items-center gap-1">
-                    <CommentIcon /> {p.comments}
-                  </span>
-                </span>
-              </Link>
-            </li>
-          ))}
-        </ul>
-      )}
-
-      {tab === "saved" && visiblePosts.length === 0 && (
-        <p className="mt-6 text-center font-hand text-xl text-cocoa">
-          nothing tucked away yet ✿
-        </p>
-      )}
     </>
   );
 }
