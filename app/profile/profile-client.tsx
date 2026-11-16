@@ -94,6 +94,13 @@ export default function ProfileClient() {
   const activeTheme =
     themes.find((t) => t.id === journalTheme) ?? defaultTheme;
 
+  const todayLabel = new Date().toLocaleDateString("en-US", {
+    weekday: "long",
+    month: "long",
+    day: "numeric",
+    year: "numeric",
+  });
+
   const chooseTheme = (id: string) => {
     setJournalTheme(id);
     try {
@@ -423,11 +430,11 @@ export default function ProfileClient() {
                   "polygon(2% 0, 98% 4%, 100% 90%, 97% 100%, 3% 96%, 0 88%)",
               }}
             />
-            <p className="text-xs font-bold uppercase tracking-[0.18em] text-latte">
-              ✿ new journal page
-            </p>
-            <p className="mt-2 font-hand text-[24px] leading-tight text-espresso">
-              “What small moment do you want to keep today?”
+            <p
+              className="font-hand text-[24px] leading-tight text-espresso"
+              suppressHydrationWarning
+            >
+              ✿ {todayLabel}
             </p>
 
             <div className="mt-3 flex flex-wrap items-center gap-2.5">
