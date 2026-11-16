@@ -422,14 +422,6 @@ export default function ProfileClient() {
       {/* journal */}
       <section className="mt-8 border-t border-espresso/15 pt-6">
           <div className="relative rounded-[24px] border border-espresso/15 bg-sage p-6 shadow-[6px_6px_0_rgba(138,120,160,0.12)]">
-            <div
-              aria-hidden
-              className="washi pointer-events-none absolute left-1/2 top-[-14px] h-7 w-24 -translate-x-1/2 rotate-[-3deg] bg-lavender-soft opacity-90 shadow-sm"
-              style={{
-                clipPath:
-                  "polygon(2% 0, 98% 4%, 100% 90%, 97% 100%, 3% 96%, 0 88%)",
-              }}
-            />
             <p
               className="font-hand text-[24px] leading-tight text-espresso"
               suppressHydrationWarning
@@ -555,20 +547,20 @@ export default function ProfileClient() {
                 </button>
               </div>
               <div className="flex items-center gap-3">
-                <p className="font-hand text-lg text-cocoa">
-                  {saveStatus === "saved"
-                    ? "saved to your pages ✓"
-                    : journalText.trim()
-                      ? "unsaved page ○"
-                      : "a blank page, just for you ✿"}
-                </p>
+                {(saveStatus === "saved" || journalText.trim()) && (
+                  <p className="font-hand text-lg text-cocoa">
+                    {saveStatus === "saved"
+                      ? "saved to your pages ✓"
+                      : "unsaved page ○"}
+                  </p>
+                )}
                 <button
                   type="button"
                   onClick={saveEntry}
                   disabled={!journalText.trim()}
                   className="rounded-full bg-tomato px-6 py-2.5 text-sm font-bold text-white shadow-[2px_2px_0_rgba(95,115,85,0.35)] transition hover:bg-tomato-deep disabled:cursor-not-allowed disabled:opacity-50"
                 >
-                  Save entry
+                  Save
                 </button>
               </div>
             </div>
