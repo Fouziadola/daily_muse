@@ -55,7 +55,7 @@ function SettingsIcon() {
   );
 }
 
-export default function AppActions() {
+export default function AppActions({ showProfile = true }: { showProfile?: boolean }) {
   const [open, setOpen] = useState(false);
   const dark = useSyncExternalStore(
     subscribeTheme,
@@ -99,9 +99,11 @@ export default function AppActions() {
 
   return (
     <div className="flex items-center gap-2.5">
-      <Link href="/profile" aria-label="Profile" className={iconButton}>
-        <ProfileIcon />
-      </Link>
+      {showProfile && (
+        <Link href="/profile" aria-label="Profile" className={iconButton}>
+          <ProfileIcon />
+        </Link>
+      )}
 
       <div className="relative" ref={menuRef}>
         <button

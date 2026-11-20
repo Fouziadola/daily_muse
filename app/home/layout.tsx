@@ -20,9 +20,6 @@ export default function HomeLayout({
             </span>
           </a>
           <div className="flex items-center gap-2.5">
-            <span className="hidden rounded-full border border-espresso/15 bg-lavender-soft px-4 py-1.5 font-hand text-lg leading-none text-espresso sm:inline-block">
-              ✿ cozy space
-            </span>
             <AppActions />
           </div>
         </div>

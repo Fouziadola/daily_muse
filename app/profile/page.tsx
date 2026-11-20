@@ -36,7 +36,7 @@ export default function ProfilePage() {
             </Link>
           </div>
           <div className="flex items-center gap-2.5">
-            <AppActions />
+            <AppActions showProfile={false} />
           </div>
         </div>
       </header>

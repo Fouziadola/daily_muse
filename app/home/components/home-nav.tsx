@@ -5,7 +5,6 @@ import { usePathname } from "next/navigation";
 
 const tabs = [
   { href: "/home/calendar", label: "Calendar", icon: CalendarIcon },
-  { href: "/home/list", label: "To-do", icon: ListIcon },
   { href: "/home", label: "Public", icon: GlobeIcon },
   { href: "/profile", label: "Profile", icon: UserIcon },
 ];
@@ -57,26 +56,6 @@ function CalendarIcon() {
     >
       <rect x="3" y="5" width="18" height="16" rx="2.5" />
       <path d="M3 10h18M8 3v4M16 3v4" />
-    </svg>
-  );
-}
-
-function ListIcon() {
-  return (
-    <svg
-      aria-hidden
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="1.8"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      className="h-5 w-5"
-    >
-      <path d="M4 6.5 5.5 8 8 5" />
-      <path d="M4 12.5 5.5 14 8 11" />
-      <path d="M4 18.5 5.5 20 8 17" />
-      <path d="M11 7h9M11 13h9M11 19h9" />
     </svg>
   );
 }

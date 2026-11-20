@@ -1,4 +1,6 @@
+import { Suspense } from "react";
 import AuthButtons from "./components/auth-modal";
+import WorldNews, { WorldNewsSkeleton } from "./components/world-news";
 
 const prompts = [
   "what made you smile today?",
@@ -102,7 +104,7 @@ export default function Home() {
           className="dotted-bg absolute inset-x-0 top-0 h-40 opacity-60 [mask-image:linear-gradient(to_bottom,black,transparent)]"
         />
 
-        <div className="relative grid w-full items-center gap-12 px-5 pb-16 pt-12 sm:px-10 lg:grid-cols-[1.05fr_0.95fr] lg:px-16 lg:pt-20">
+        <div className="relative w-full px-5 pb-16 pt-12 sm:px-10 lg:px-16 lg:pt-20">
           {/* copy */}
           <div>
             <div className="mb-5 flex flex-wrap items-center gap-2">
@@ -155,66 +157,6 @@ export default function Home() {
               </div>
             </div>
           </div>
-
-          {/* journal mock */}
-          <div className="relative mx-auto w-full max-w-[440px]">
-            <div
-              aria-hidden
-              className="absolute -inset-4 -rotate-2 rounded-[28px] bg-sand/60"
-            />
-            <div className="relative -rotate-2 rounded-[22px] border border-espresso/15 bg-sage p-6 shadow-[8px_8px_0_rgba(138,120,160,0.14)]">
-              <Tape className="left-1/2 top-[-14px] -translate-x-1/2 rotate-[-3deg] bg-lavender-soft" />
-              <div className="flex items-center justify-between">
-                <p className="text-xs font-bold uppercase tracking-[0.18em] text-latte">
-                  ✿ Oct 01 — morning page
-                </p>
-                <span className="rounded-full bg-lavender-soft px-3 py-1 text-xs font-bold text-lavender-deeper">
-                  ● calm
-                </span>
-              </div>
-              <p className="mt-4 font-hand text-[26px] leading-tight text-espresso">
-                “What small moment do you want to keep from today?”
-              </p>
-              <div className="paper-lines mt-3 rounded-xl border border-espresso/10 bg-parchment/60 p-4 font-serif text-[15.5px] italic leading-[32px] text-espresso/90">
-                The light through the kitchen window at 7am. Oat latte,
-                still warm. Maya texted “good morning sunshine”…
-              </div>
-              <div className="mt-4 flex items-center justify-between">
-                <div className="flex gap-1.5">
-                  {["#e4572e", "#e6b3a4", "#ccd9bd", "#dce5d1", "#9caf8c", "#fbf9f3"].map(
-                    (c) => (
-                      <span
-                        key={c}
-                        style={{ background: c }}
-                        className="h-5 w-5 rounded-full border border-espresso/20"
-                      />
-                    ),
-                  )}
-                </div>
-                <p className="font-hand text-lg text-cocoa">
-                  mood: soft & rosy ✓
-                </p>
-              </div>
-            </div>
-
-            <div className="animate-float absolute -right-4 top-8 rotate-6 rounded-2xl border border-espresso/15 bg-cream px-4 py-3 shadow-lg sm:-right-8">
-              <p className="text-[11px] font-bold uppercase tracking-widest text-latte">
-                streak, but gentle
-              </p>
-              <p className="font-serif text-lg font-semibold">12 cozy days</p>
-            </div>
-            <div
-              className="animate-float-slow absolute -left-3 bottom-10 -rotate-6 rounded-2xl border border-espresso/15 bg-blue-soft px-4 py-3 text-espresso shadow-lg sm:-left-8"
-              style={{ ["--float-rotate" as string]: "-6deg" }}
-            >
-              <p className="font-hand text-xl leading-none text-blue-deeper">
-                remember this!
-              </p>
-              <p className="mt-1 text-[13px] text-espresso/70">
-                letter opens in 30 days ✉
-              </p>
-            </div>
-          </div>
         </div>
 
         {/* marquee */}
@@ -231,6 +173,41 @@ export default function Home() {
               ))}
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* WORLD NEWS */}
+      <section className="w-full px-5 py-16 sm:px-10 lg:px-16 lg:py-24">
+        <div className="relative w-full overflow-hidden rounded-[32px] border border-espresso/10 bg-sage p-6 shadow-[8px_8px_0_rgba(138,120,160,0.12)] sm:p-10">
+          <div
+            aria-hidden
+            className="pointer-events-none absolute -right-24 -top-24 h-72 w-72 rounded-full bg-lavender-soft/60 blur-3xl"
+          />
+          <div className="relative flex flex-wrap items-end justify-between gap-4">
+            <div>
+              <p className="font-hand text-2xl text-lavender-deeper">
+                ✿ around the world
+              </p>
+              <h2 className="mt-2 font-serif text-3xl font-medium tracking-tight sm:text-4xl">
+                Recently happening, everywhere
+              </h2>
+              <p className="mt-2 max-w-xl text-[15px] leading-relaxed text-cocoa">
+                A gentle glance beyond your window — fresh headlines from
+                around the globe, refreshed every few minutes.
+              </p>
+            </div>
+            <a
+              href="https://news.google.com"
+              target="_blank"
+              rel="noreferrer"
+              className="rounded-full border border-espresso/20 bg-cream px-5 py-2 text-sm font-bold text-espresso transition hover:bg-parchment"
+            >
+              All world news →
+            </a>
+          </div>
+          <Suspense fallback={<WorldNewsSkeleton />}>
+            <WorldNews />
+          </Suspense>
         </div>
       </section>
 
