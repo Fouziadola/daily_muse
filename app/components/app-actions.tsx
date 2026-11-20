@@ -92,6 +92,7 @@ export default function AppActions({ showProfile = true }: { showProfile?: boole
       // storage may be unavailable; keep in-memory
     }
     window.dispatchEvent(new Event(THEME_EVENT));
+    setOpen(false);
   };
 
   const iconButton =
@@ -150,11 +151,6 @@ export default function AppActions({ showProfile = true }: { showProfile?: boole
                 />
               </button>
             </div>
-            <p className="mt-2 text-[12px] leading-snug text-cocoa">
-              {dark
-                ? "soft night pages are on ✿"
-                : "switch to a dimmer, evening palette."}
-            </p>
           </div>
         )}
       </div>
