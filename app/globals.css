@@ -112,12 +112,15 @@ body {
 }
 
 .paper-lines {
+  --paper-line-height: 32px;
   background-image: repeating-linear-gradient(
-    transparent,
-    transparent 31px,
-    rgba(95, 115, 85, 0.2) 31px,
-    rgba(95, 115, 85, 0.2) 32px
+    transparent 0,
+    transparent calc(var(--paper-line-height) - 1px),
+    rgba(95, 115, 85, 0.2) calc(var(--paper-line-height) - 1px),
+    rgba(95, 115, 85, 0.2) var(--paper-line-height)
   );
+  background-size: 100% var(--paper-line-height);
+  background-origin: content-box;
 }
 
 .dotted-bg {
@@ -208,10 +211,10 @@ body {
 
 .dark .paper-lines {
   background-image: repeating-linear-gradient(
-    transparent,
-    transparent 31px,
-    rgba(169, 191, 153, 0.16) 31px,
-    rgba(169, 191, 153, 0.16) 32px
+    transparent 0,
+    transparent calc(var(--paper-line-height) - 1px),
+    rgba(169, 191, 153, 0.16) calc(var(--paper-line-height) - 1px),
+    rgba(169, 191, 153, 0.16) var(--paper-line-height)
   );
 }
 

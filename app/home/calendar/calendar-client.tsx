@@ -375,7 +375,7 @@ export default function CalendarClient() {
               onChange={(e) => setDraftNote(e.target.value)}
               rows={4}
               placeholder="What small moment do you want to keep?"
-              className="paper-lines mt-1.5 w-full resize-none rounded-xl border border-espresso/15 bg-parchment/60 p-3 font-serif text-[15px] leading-[30px] text-espresso/90 placeholder:text-latte/70 focus:border-clay focus:outline-none"
+              className="paper-lines [--paper-line-height:30px] mt-1.5 w-full resize-none rounded-xl border border-espresso/15 bg-parchment/60 p-3 font-serif text-[15px] leading-[30px] text-espresso/90 placeholder:text-latte/70 focus:border-clay focus:outline-none"
             />
 
             <div className="mt-4 flex items-center justify-between gap-2">

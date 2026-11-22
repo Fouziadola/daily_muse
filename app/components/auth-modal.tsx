@@ -116,7 +116,7 @@ export default function AuthButtons() {
             <button
               type="button"
               onClick={() => openModal("signup")}
-              className="rounded-full border border-espresso/20 bg-cream px-5 py-2.5 text-[15px] font-semibold text-espresso transition hover:border-espresso hover:bg-parchment"
+              className="rounded-full border border-espresso/20 bg-cream px-5 py-2.5 text-[15px] font-semibold text-espresso shadow-[3px_3px_0_rgba(95,115,85,0.35)] transition hover:-translate-y-0.5 hover:border-espresso hover:bg-parchment hover:shadow-[4px_5px_0_rgba(95,115,85,0.35)]"
             >
               Sign Up
             </button>

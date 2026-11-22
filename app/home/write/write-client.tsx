@@ -62,7 +62,7 @@ export default function WriteClient() {
               : "Begin your new page…"
           }
           aria-label={mode === "continue" ? "Continue draft" : "New page text"}
-          className="paper-lines mt-3 min-h-[320px] w-full rounded-xl border border-espresso/10 bg-parchment/60 p-4 font-serif text-[16px] leading-[36px] text-espresso/90 placeholder:text-latte/70 focus:border-clay focus:outline-none"
+          className="paper-lines [--paper-line-height:36px] mt-3 min-h-[320px] w-full rounded-xl border border-espresso/10 bg-parchment/60 p-4 font-serif text-[16px] leading-[36px] text-espresso/90 placeholder:text-latte/70 focus:border-clay focus:outline-none"
           autoFocus
         />
         <div className="mt-4 flex flex-wrap items-center justify-between gap-2">

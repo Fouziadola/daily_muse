@@ -118,41 +118,45 @@ export default function AppActions({ showProfile = true }: { showProfile?: boole
           <SettingsIcon />
         </button>
 
-        {open && (
-          <div
-            role="menu"
-            aria-label="Settings"
-            className="absolute right-0 top-full z-50 mt-2 w-64 rounded-2xl border border-espresso/15 bg-cream p-4 text-espresso shadow-[6px_6px_0_rgba(138,120,160,0.16)]"
-          >
-            <p className="font-hand text-lg leading-none text-lavender-deeper">
-              ✿ settings
-            </p>
-            <div className="mt-3 flex items-center justify-between gap-3 rounded-xl border border-espresso/10 bg-parchment/60 px-3 py-2.5">
-              <span className="flex items-center gap-2 text-sm font-bold">
-                <span aria-hidden>{dark ? "☾" : "☀"}</span>
-                Dark mode
-              </span>
-              <button
-                type="button"
-                role="switch"
-                aria-checked={dark}
-                aria-label="Toggle dark mode"
-                onClick={toggleDark}
-                className={`relative h-6 w-11 shrink-0 rounded-full border transition ${
-                  dark
-                    ? "border-lavender-deeper bg-lavender-deep"
-                    : "border-espresso/25 bg-cream"
+        <div
+          role="menu"
+          aria-label="Settings"
+          aria-hidden={!open}
+          inert={!open}
+          className={`absolute right-0 top-full z-50 mt-2 w-64 origin-top-right rounded-2xl border border-espresso/15 bg-cream p-4 text-espresso shadow-[6px_6px_0_rgba(138,120,160,0.16)] transition-all ease-out ${open ? "duration-200" : "duration-700"} ${
+            open
+              ? "visible translate-y-0 scale-100 opacity-100 blur-0"
+              : "invisible -translate-y-2 scale-95 opacity-0 blur-sm"
+          }`}
+        >
+          <p className="font-hand text-lg leading-none text-lavender-deeper">
+            ✿ settings
+          </p>
+          <div className="mt-3 flex items-center justify-between gap-3 rounded-xl border border-espresso/10 bg-parchment/60 px-3 py-2.5">
+            <span className="flex items-center gap-2 text-sm font-bold">
+              <span aria-hidden>{dark ? "☾" : "☀"}</span>
+              Dark mode
+            </span>
+            <button
+              type="button"
+              role="switch"
+              aria-checked={dark}
+              aria-label="Toggle dark mode"
+              onClick={toggleDark}
+              className={`relative h-6 w-11 shrink-0 rounded-full border transition ${
+                dark
+                  ? "border-lavender-deeper bg-lavender-deep"
+                  : "border-espresso/25 bg-cream"
+              }`}
+            >
+              <span
+                className={`absolute top-1/2 h-4 w-4 -translate-y-1/2 rounded-full bg-espresso shadow transition-all ${
+                  dark ? "left-[22px]" : "left-1"
                 }`}
-              >
-                <span
-                  className={`absolute top-1/2 h-4 w-4 -translate-y-1/2 rounded-full bg-espresso shadow transition-all ${
-                    dark ? "left-[22px]" : "left-1"
-                  }`}
-                />
-              </button>
-            </div>
+              />
+            </button>
           </div>
-        )}
+        </div>
       </div>
     </div>
   );
