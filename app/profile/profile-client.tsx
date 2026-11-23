@@ -7,26 +7,12 @@ type JournalEntry = {
   text: string;
   date: string;
   image?: string;
-  theme?: string;
+  color?: string;
 };
 
 const JOURNAL_STORAGE_KEY = "daily-muse-journal";
-const JOURNAL_THEME_KEY = "daily-muse-journal-theme";
-const JOURNAL_COLORS_KEY = "daily-muse-journal-colors";
+const JOURNAL_PAGE_COLOR_KEY = "daily-muse-journal-page-color";
 const PROFILE_IMAGE_KEY = "daily-muse-profile-image";
-
-type JournalTheme = { id: string; label: string; color: string };
-
-const defaultThemes: JournalTheme[] = [
-  { id: "sage", label: "Sage", color: "#dce5d1" },
-  { id: "linen", label: "Linen", color: "#edf1e4" },
-  { id: "sky", label: "Sky", color: "#e9efe0" },
-  { id: "butter", label: "Butter", color: "#f3ece1" },
-  { id: "blush", label: "Blush", color: "#f4e3da" },
-  { id: "cream", label: "Cream", color: "#fbf9f3" },
-];
-
-const defaultTheme = defaultThemes[0];
 
 export default function ProfileClient() {
   const [editing, setEditing] = useState(false);
@@ -51,35 +37,18 @@ export default function ProfileClient() {
     }
   });
   const [saveStatus, setSaveStatus] = useState<"idle" | "saved">("idle");
-  const [themes, setThemes] = useState<JournalTheme[]>(() => {
-    if (typeof window === "undefined") return defaultThemes;
+  const [pageColor, setPageColor] = useState<string>(() => {
+    if (typeof window === "undefined") return "";
     try {
-      const stored = window.localStorage.getItem(JOURNAL_COLORS_KEY);
-      const parsed = stored ? JSON.parse(stored) : [];
-      const customs = Array.isArray(parsed)
-        ? parsed.filter(
-            (t): t is JournalTheme =>
-              typeof t?.id === "string" &&
-              typeof t?.label === "string" &&
-              typeof t?.color === "string"
-          )
-        : [];
-      return [...defaultThemes, ...customs];
+      return window.localStorage.getItem(JOURNAL_PAGE_COLOR_KEY) ?? "";
     } catch {
-      return defaultThemes;
+      return "";
     }
   });
-  const [journalTheme, setJournalTheme] = useState<string>(() => {
-    if (typeof window === "undefined") return defaultTheme.id;
-    const stored = window.localStorage.getItem(JOURNAL_THEME_KEY);
-    return themes.some((t) => t.id === stored)
-      ? (stored as string)
-      : defaultTheme.id;
-  });
+  const pageColorInputRef = useRef<HTMLInputElement>(null);
   const [journalImage, setJournalImage] = useState<string | null>(null);
   const [imageError, setImageError] = useState("");
   const fileInputRef = useRef<HTMLInputElement>(null);
-  const colorInputRef = useRef<HTMLInputElement>(null);
   const [profileImage, setProfileImage] = useState<string | null>(() => {
     if (typeof window === "undefined") return null;
     try {
@@ -91,9 +60,6 @@ export default function ProfileClient() {
   const [profileImageError, setProfileImageError] = useState("");
   const profileInputRef = useRef<HTMLInputElement>(null);
 
-  const activeTheme =
-    themes.find((t) => t.id === journalTheme) ?? defaultTheme;
-
   const todayLabel = new Date().toLocaleDateString("en-US", {
     weekday: "long",
     month: "long",
@@ -101,36 +67,19 @@ export default function ProfileClient() {
     year: "numeric",
   });
 
-  const chooseTheme = (id: string) => {
-    setJournalTheme(id);
+  const choosePageColor = (color: string) => {
+    setPageColor(color);
     try {
-      window.localStorage.setItem(JOURNAL_THEME_KEY, id);
+      window.localStorage.setItem(JOURNAL_PAGE_COLOR_KEY, color);
     } catch {
       // storage may be unavailable; keep in-memory
     }
   };
 
-  const addColor = (color: string) => {
-    const normalized = color.toLowerCase();
-    const existing = themes.find((t) => t.color.toLowerCase() === normalized);
-    if (existing) {
-      chooseTheme(existing.id);
-      return;
-    }
-    const count = themes.filter((t) => t.id.startsWith("custom-")).length;
-    const theme: JournalTheme = {
-      id: `custom-${Date.now()}`,
-      label: `Custom ${count + 1}`,
-      color,
-    };
-    const next = [...themes, theme];
-    setThemes(next);
-    chooseTheme(theme.id);
+  const resetPageColor = () => {
+    setPageColor("");
     try {
-      window.localStorage.setItem(
-        JOURNAL_COLORS_KEY,
-        JSON.stringify(next.filter((t) => t.id.startsWith("custom-")))
-      );
+      window.localStorage.removeItem(JOURNAL_PAGE_COLOR_KEY);
     } catch {
       // storage may be unavailable; keep in-memory
     }
@@ -209,7 +158,7 @@ export default function ProfileClient() {
         year: "numeric",
       }),
       image: journalImage ?? undefined,
-      theme: activeTheme.color,
+      color: pageColor || undefined,
     };
     persistEntries([entry, ...entries]);
     setJournalText("");
@@ -430,64 +379,41 @@ export default function ProfileClient() {
             </p>
 
             <div className="mt-3 flex flex-wrap items-center gap-2.5">
-              <span className="text-xs font-bold uppercase tracking-[0.18em] text-latte">
+              <span className="text-[11px] font-bold uppercase tracking-[0.18em] text-latte">
                 page color
               </span>
-              <div
-                role="group"
-                aria-label="Journal page color"
-                className="flex items-center gap-1.5"
+              <input
+                ref={pageColorInputRef}
+                type="color"
+                value={pageColor || "#fbf9f3"}
+                onChange={(e) => choosePageColor(e.target.value)}
+                className="sr-only"
+                aria-label="Choose page color"
+                tabIndex={-1}
+              />
+              <button
+                type="button"
+                onClick={() => pageColorInputRef.current?.click()}
+                aria-label={pageColor ? "Change page color" : "Add a page color"}
+                title={pageColor ? "Change page color" : "Add a page color"}
+                className="flex items-center gap-2 rounded-full border border-espresso/20 bg-cream px-2.5 py-1 text-xs font-bold text-espresso transition hover:border-espresso/40 hover:bg-parchment"
               >
-                {themes.map((theme) => {
-                  const active = journalTheme === theme.id;
-                  return (
-                    <button
-                      key={theme.id}
-                      type="button"
-                      onClick={() => chooseTheme(theme.id)}
-                      aria-label={`${theme.label} page color`}
-                      aria-pressed={active}
-                      title={theme.label}
-                      style={{ backgroundColor: theme.color }}
-                      className={`h-6 w-6 rounded-full border transition ${
-                        active
-                          ? "scale-110 border-espresso ring-2 ring-espresso/30"
-                          : "border-espresso/25 hover:scale-105"
-                      }`}
-                    />
-                  );
-                })}
-                <input
-                  ref={colorInputRef}
-                  type="color"
-                  onChange={(e) => addColor(e.target.value)}
-                  className="sr-only"
-                  aria-label="Add a custom page color"
-                  tabIndex={-1}
+                <span
+                  aria-hidden
+                  className="h-4 w-4 rounded-full border border-espresso/25"
+                  style={{ backgroundColor: pageColor || "#fbf9f3" }}
                 />
+                {pageColor ? pageColor.toUpperCase() : "Add color"}
+              </button>
+              {pageColor && (
                 <button
                   type="button"
-                  onClick={() => colorInputRef.current?.click()}
-                  aria-label="Add a custom page color"
-                  title="Add a custom color"
-                  className="flex h-6 w-6 items-center justify-center rounded-full border border-dashed border-espresso/40 bg-cream text-espresso transition hover:scale-105 hover:bg-parchment"
+                  onClick={resetPageColor}
+                  className="font-hand text-sm text-cocoa underline-offset-2 transition hover:text-espresso hover:underline"
                 >
-                  <svg
-                    aria-hidden
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2.2"
-                    strokeLinecap="round"
-                    className="h-3.5 w-3.5"
-                  >
-                    <path d="M12 5v14M5 12h14" />
-                  </svg>
+                  reset
                 </button>
-              </div>
-              <span className="font-hand text-base text-cocoa">
-                {activeTheme.label}
-              </span>
+              )}
             </div>
 
             <textarea
@@ -499,8 +425,8 @@ export default function ProfileClient() {
               rows={6}
               placeholder="Write softly… this page is only yours."
               aria-label="Write a journal entry"
-              style={{ backgroundColor: activeTheme.color }}
-              className="paper-lines mt-3 w-full resize-none rounded-xl border border-espresso/10 p-4 font-serif text-[16px] leading-[32px] text-espresso/90 placeholder:text-latte/70 focus:border-clay focus:outline-none"
+              style={{ backgroundColor: pageColor || undefined }}
+              className="paper-lines mt-3 w-full resize-none rounded-xl border border-espresso/10 bg-cream p-4 font-serif text-[16px] leading-[32px] text-espresso/90 placeholder:text-latte/70 focus:border-clay focus:outline-none"
             />
 
             {journalImage && (
@@ -581,8 +507,8 @@ export default function ProfileClient() {
                       {group.items.map((entry) => (
                         <li
                           key={entry.id}
-                          style={{ backgroundColor: entry.theme ?? "#dce5d1" }}
-                          className="rounded-2xl border border-espresso/10 p-5 shadow-[4px_4px_0_rgba(138,120,160,0.1)]"
+                          style={{ backgroundColor: entry.color ?? undefined }}
+                          className="rounded-2xl border border-espresso/10 bg-cream p-5 shadow-[4px_4px_0_rgba(138,120,160,0.1)]"
                         >
                           <div className="flex items-center justify-between gap-2">
                             <span className="rounded-full bg-lavender-soft px-3 py-1 text-xs font-bold text-lavender-deeper">
