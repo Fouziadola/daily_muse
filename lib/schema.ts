@@ -31,7 +31,24 @@ export const posts = sqliteTable(
   (table) => [index("posts_user_id_idx").on(table.userId)]
 );
 
+export const sharedPapers = sqliteTable(
+  "shared_papers",
+  {
+    id: text("id").primaryKey().$defaultFn(() => crypto.randomUUID()),
+    authorName: text("author_name").notNull(),
+    authorHandle: text("author_handle").notNull(),
+    text: text("text").notNull(),
+    color: text("color"),
+    createdAt: integer("created_at", { mode: "timestamp" })
+      .notNull()
+      .default(sql`(unixepoch())`),
+  },
+  (table) => [index("shared_papers_created_at_idx").on(table.createdAt)]
+);
+
 export type User = typeof users.$inferSelect;
 export type NewUser = typeof users.$inferInsert;
 export type Post = typeof posts.$inferSelect;
 export type NewPost = typeof posts.$inferInsert;
+export type SharedPaper = typeof sharedPapers.$inferSelect;
+export type NewSharedPaper = typeof sharedPapers.$inferInsert;

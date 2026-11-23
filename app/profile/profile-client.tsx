@@ -46,6 +46,8 @@ export default function ProfileClient() {
     }
   });
   const pageColorInputRef = useRef<HTMLInputElement>(null);
+  const [sharingId, setSharingId] = useState<string | null>(null);
+  const [sharedIds, setSharedIds] = useState<Record<string, boolean>>({});
   const [journalImage, setJournalImage] = useState<string | null>(null);
   const [imageError, setImageError] = useState("");
   const fileInputRef = useRef<HTMLInputElement>(null);
@@ -169,6 +171,30 @@ export default function ProfileClient() {
 
   const deleteEntry = (id: string) => {
     persistEntries(entries.filter((entry) => entry.id !== id));
+  };
+
+  const shareEntry = async (entry: JournalEntry) => {
+    if (sharedIds[entry.id] || sharingId) return;
+    setSharingId(entry.id);
+    try {
+      const res = await fetch("/api/shared", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          authorName: displayName,
+          authorHandle: username,
+          text: entry.text,
+          color: entry.color,
+        }),
+      });
+      if (res.ok) {
+        setSharedIds((prev) => ({ ...prev, [entry.id]: true }));
+      }
+    } catch {
+      // sharing is best-effort; the entry stays safe in the journal
+    } finally {
+      setSharingId(null);
+    }
   };
 
   const entriesByDate = entries.reduce<
@@ -514,14 +540,30 @@ export default function ProfileClient() {
                             <span className="rounded-full bg-lavender-soft px-3 py-1 text-xs font-bold text-lavender-deeper">
                               ✿ journal page
                             </span>
-                            <button
-                              type="button"
-                              onClick={() => deleteEntry(entry.id)}
-                              aria-label="Delete entry"
-                              className="rounded-full px-2 py-0.5 text-sm font-bold text-latte transition hover:bg-parchment hover:text-rose-deep"
-                            >
-                              ×
-                            </button>
+                            <div className="flex items-center gap-1.5">
+                              <button
+                                type="button"
+                                onClick={() => shareEntry(entry)}
+                                disabled={
+                                  sharingId === entry.id || sharedIds[entry.id]
+                                }
+                                className="rounded-full border border-espresso/15 bg-cream/70 px-2.5 py-0.5 text-[11px] font-bold text-cocoa transition hover:bg-parchment hover:text-espresso disabled:cursor-default disabled:opacity-70"
+                              >
+                                {sharedIds[entry.id]
+                                  ? "shared ✓"
+                                  : sharingId === entry.id
+                                    ? "sharing…"
+                                    : "share"}
+                              </button>
+                              <button
+                                type="button"
+                                onClick={() => deleteEntry(entry.id)}
+                                aria-label="Delete entry"
+                                className="rounded-full px-2 py-0.5 text-sm font-bold text-latte transition hover:bg-parchment hover:text-rose-deep"
+                              >
+                                ×
+                              </button>
+                            </div>
                           </div>
                           <p className="mt-2 whitespace-pre-line font-serif text-[15.5px] italic leading-relaxed text-espresso/90">
                             {entry.text}

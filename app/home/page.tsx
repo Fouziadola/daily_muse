@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { connection } from "next/server";
 import WorldNews from "./components/world-news";
+import SharedPapers from "./components/shared-papers";
 
 const features = [
   {
@@ -139,6 +140,8 @@ export default async function HomeIndex() {
         </Link>
 
         <WorldNews />
+
+        <SharedPapers />
 
         {/* feature cards */}
         <div className="mt-6 grid gap-4 sm:grid-cols-2">

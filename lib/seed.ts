@@ -1,6 +1,6 @@
 import "dotenv/config";
 import { db, client } from "./db";
-import { users, posts } from "./schema";
+import { users, posts, sharedPapers } from "./schema";
 
 async function main() {
   // Ensure tables exist if not using drizzle-kit migrate yet (quick dev fallback)
@@ -21,6 +21,47 @@ async function main() {
       created_at INTEGER NOT NULL DEFAULT (unixepoch())
     )
   `);
+  await client.execute(`
+    CREATE TABLE IF NOT EXISTS shared_papers (
+      id TEXT PRIMARY KEY,
+      author_name TEXT NOT NULL,
+      author_handle TEXT NOT NULL,
+      text TEXT NOT NULL,
+      color TEXT,
+      created_at INTEGER NOT NULL DEFAULT (unixepoch())
+    )
+  `);
+
+  // Seed the community shelf if it is empty
+  const existingShared = await db.select().from(sharedPapers).limit(1);
+  if (existingShared.length === 0) {
+    await db.insert(sharedPapers).values([
+      {
+        authorName: "June Aurora",
+        authorHandle: "june.aurora",
+        color: "#dce5d1",
+        text: "The light through the kitchen window at 7am. Oat latte, still warm. Maya texted “good morning sunshine” — I kept the whole morning in my pocket.",
+      },
+      {
+        authorName: "Sofia Marlow",
+        authorHandle: "sofiawrites",
+        color: "#f4e3da",
+        text: "Rain on the café window and a good cry. “What felt like home today?” got me. Home was the waitress refilling my cup without asking.",
+      },
+      {
+        authorName: "Theo Park",
+        authorHandle: "nightpages",
+        color: "#e9efe0",
+        text: "Night walk, moon timer. Five slow breaths, then a note sealed for November. Tomorrow can wait — tonight is mine.",
+      },
+      {
+        authorName: "Amara Ellis",
+        authorHandle: "slowmornings",
+        color: "#f3ece1",
+        text: "Pressed a maple leaf into this page. The season is changing and so am I, quietly, in the way that matters.",
+      },
+    ]);
+  }
 
   // Idempotent seed
   const existing = await db.select().from(users).limit(1);
