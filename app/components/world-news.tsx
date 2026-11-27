@@ -128,7 +128,7 @@ export default async function WorldNews() {
             href={item.link}
             target="_blank"
             rel="noreferrer"
-            className="group flex h-full flex-col justify-between rounded-2xl border border-espresso/15 bg-cream/80 p-5 shadow-[4px_4px_0_rgba(138,120,160,0.1)] transition hover:-translate-y-0.5 hover:bg-cream"
+            className="group flex h-full flex-col justify-between rounded-2xl border border-espresso/15 bg-cream/80 p-5 shadow-[4px_4px_0_rgba(95,115,85,0.1)] transition hover:-translate-y-0.5 hover:bg-cream"
           >
             <div className="flex items-center gap-2 text-[11px] font-bold uppercase tracking-[0.16em] text-latte">
               <span className="rounded-full bg-lavender-soft px-2.5 py-1 text-lavender-deeper">

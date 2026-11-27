@@ -123,7 +123,7 @@ export default function AppActions({ showProfile = true }: { showProfile?: boole
           aria-label="Settings"
           aria-hidden={!open}
           inert={!open}
-          className={`absolute right-0 top-full z-50 mt-2 w-64 origin-top-right rounded-2xl border border-espresso/15 bg-cream p-4 text-espresso shadow-[6px_6px_0_rgba(138,120,160,0.16)] transition-all ease-out ${open ? "duration-200" : "duration-700"} ${
+          className={`absolute right-0 top-full z-50 mt-2 w-64 origin-top-right rounded-2xl border border-espresso/15 bg-cream p-4 text-espresso shadow-[6px_6px_0_rgba(95,115,85,0.16)] transition-all ease-out ${open ? "duration-200" : "duration-700"} ${
             open
               ? "visible translate-y-0 scale-100 opacity-100 blur-0"
               : "invisible -translate-y-2 scale-95 opacity-0 blur-sm"

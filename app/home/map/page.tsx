@@ -15,7 +15,7 @@ export default function MapPage() {
         Entries pinned to the places that held them.
       </p>
 
-      <div className="dotted-bg relative mt-6 overflow-hidden rounded-[22px] border border-espresso/15 bg-parchment/60 p-6 shadow-[8px_8px_0_rgba(138,120,160,0.12)]">
+      <div className="dotted-bg relative mt-6 overflow-hidden rounded-[22px] border border-espresso/15 bg-parchment/60 p-6 shadow-[8px_8px_0_rgba(95,115,85,0.12)]">
         <div
           aria-hidden
           className="pointer-events-none absolute -right-16 -top-16 h-56 w-56 rounded-full bg-lavender-soft/70 blur-3xl"

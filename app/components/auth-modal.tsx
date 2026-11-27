@@ -148,7 +148,7 @@ export default function AuthButtons() {
             className="absolute inset-0 bg-cream/60 backdrop-blur-xl"
           />
           {/* card */}
-          <div className="relative max-h-[90vh] w-full max-w-[400px] -rotate-1 overflow-y-auto rounded-[22px] border border-espresso/15 bg-sage p-7 pt-9 shadow-[8px_8px_0_rgba(138,120,160,0.2)]">
+          <div className="relative max-h-[90vh] w-full max-w-[400px] -rotate-1 overflow-y-auto rounded-[22px] border border-espresso/15 bg-sage p-7 pt-9 shadow-[8px_8px_0_rgba(95,115,85,0.2)]">
             <div
               aria-hidden
               className="washi pointer-events-none absolute left-1/2 top-[-14px] h-7 w-24 -translate-x-1/2 rotate-[-3deg] bg-lavender-soft opacity-90 shadow-sm"

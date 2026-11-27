@@ -237,7 +237,7 @@ export default function ProfileClient() {
             className="sr-only"
             aria-label="Upload profile picture"
           />
-          <div className="flex h-24 w-24 items-center justify-center overflow-hidden rounded-full bg-gradient-to-tr from-rose via-lavender to-blue-deep p-[3px] shadow-[4px_4px_0_rgba(138,120,160,0.14)] sm:h-28 sm:w-28">
+          <div className="flex h-24 w-24 items-center justify-center overflow-hidden rounded-full bg-gradient-to-tr from-rose via-lavender to-blue-deep p-[3px] shadow-[4px_4px_0_rgba(95,115,85,0.14)] sm:h-28 sm:w-28">
             {profileImage ? (
               // eslint-disable-next-line @next/next/no-img-element
               <img
@@ -328,7 +328,7 @@ export default function ProfileClient() {
       </section>
 
       {editing && (
-        <section className="mt-6 rounded-[24px] border border-espresso/15 bg-sage p-5 shadow-[5px_5px_0_rgba(138,120,160,0.12)]">
+        <section className="mt-6 rounded-[24px] border border-espresso/15 bg-sage p-5 shadow-[5px_5px_0_rgba(95,115,85,0.12)]">
           <div className="space-y-3">
             <div>
               <label
@@ -396,7 +396,7 @@ export default function ProfileClient() {
 
       {/* journal */}
       <section className="mt-8 border-t border-espresso/15 pt-6">
-          <div className="relative rounded-[24px] border border-espresso/15 bg-sage p-6 shadow-[6px_6px_0_rgba(138,120,160,0.12)]">
+          <div className="relative rounded-[24px] border border-espresso/15 bg-sage p-6 shadow-[6px_6px_0_rgba(95,115,85,0.12)]">
             <p
               className="font-hand text-[24px] leading-tight text-espresso"
               suppressHydrationWarning
@@ -411,7 +411,7 @@ export default function ProfileClient() {
               <input
                 ref={pageColorInputRef}
                 type="color"
-                value={pageColor || "#fbf9f3"}
+                value={pageColor || "#fbf8f1"}
                 onChange={(e) => choosePageColor(e.target.value)}
                 className="sr-only"
                 aria-label="Choose page color"
@@ -427,7 +427,7 @@ export default function ProfileClient() {
                 <span
                   aria-hidden
                   className="h-4 w-4 rounded-full border border-espresso/25"
-                  style={{ backgroundColor: pageColor || "#fbf9f3" }}
+                  style={{ backgroundColor: pageColor || "#fbf8f1" }}
                 />
                 {pageColor ? pageColor.toUpperCase() : "Add color"}
               </button>
@@ -534,7 +534,7 @@ export default function ProfileClient() {
                         <li
                           key={entry.id}
                           style={{ backgroundColor: entry.color ?? undefined }}
-                          className="rounded-2xl border border-espresso/10 bg-cream p-5 shadow-[4px_4px_0_rgba(138,120,160,0.1)]"
+                          className="rounded-2xl border border-espresso/10 bg-cream p-5 shadow-[4px_4px_0_rgba(95,115,85,0.1)]"
                         >
                           <div className="flex items-center justify-between gap-2">
                             <span className="rounded-full bg-lavender-soft px-3 py-1 text-xs font-bold text-lavender-deeper">

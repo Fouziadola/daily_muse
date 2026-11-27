@@ -6,7 +6,7 @@ const samplePapers = [
     id: "sample-1",
     authorName: "June Aurora",
     authorHandle: "june.aurora",
-    color: "#dce5d1",
+    color: "#dde5d0",
     daysAgo: 0,
     text: "The light through the kitchen window at 7am. Oat latte, still warm. Maya texted “good morning sunshine” — I kept the whole morning in my pocket.",
   },
@@ -14,7 +14,7 @@ const samplePapers = [
     id: "sample-2",
     authorName: "Sofia Marlow",
     authorHandle: "sofiawrites",
-    color: "#f4e3da",
+    color: "#e9efe0",
     daysAgo: 1,
     text: "Rain on the café window and a good cry. “What felt like home today?” got me. Home was the waitress refilling my cup without asking.",
   },
@@ -22,7 +22,7 @@ const samplePapers = [
     id: "sample-3",
     authorName: "Theo Park",
     authorHandle: "nightpages",
-    color: "#e9efe0",
+    color: "#e3ead8",
     daysAgo: 2,
     text: "Night walk, moon timer. Five slow breaths, then a note sealed for November. Tomorrow can wait — tonight is mine.",
   },
@@ -87,7 +87,7 @@ export default async function SharedPapers() {
           <li
             key={paper.id}
             style={{ backgroundColor: paper.color ?? undefined }}
-            className="relative flex flex-col rounded-[20px] border border-espresso/10 bg-cream p-5 shadow-[4px_4px_0_rgba(138,120,160,0.1)]"
+            className="relative flex flex-col rounded-[20px] border border-espresso/10 bg-cream p-5 shadow-[4px_4px_0_rgba(95,115,85,0.1)]"
           >
             <div className="flex items-center justify-between gap-2">
               <span className="rounded-full bg-cream/70 px-3 py-1 text-xs font-bold text-lavender-deeper">

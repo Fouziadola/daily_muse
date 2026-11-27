@@ -39,19 +39,19 @@ async function main() {
       {
         authorName: "June Aurora",
         authorHandle: "june.aurora",
-        color: "#dce5d1",
+        color: "#dde5d0",
         text: "The light through the kitchen window at 7am. Oat latte, still warm. Maya texted “good morning sunshine” — I kept the whole morning in my pocket.",
       },
       {
         authorName: "Sofia Marlow",
         authorHandle: "sofiawrites",
-        color: "#f4e3da",
+        color: "#e9efe0",
         text: "Rain on the café window and a good cry. “What felt like home today?” got me. Home was the waitress refilling my cup without asking.",
       },
       {
         authorName: "Theo Park",
         authorHandle: "nightpages",
-        color: "#e9efe0",
+        color: "#e3ead8",
         text: "Night walk, moon timer. Five slow breaths, then a note sealed for November. Tomorrow can wait — tonight is mine.",
       },
       {

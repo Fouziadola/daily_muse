@@ -1,8 +1,8 @@
 @import "tailwindcss";
 
 :root {
-  --background: #f7f4ec;
-  --foreground: #3f3a32;
+  --background: #fbf8f1;
+  --foreground: #3b3a33;
 }
 
 @theme inline {
@@ -14,44 +14,44 @@
 }
 
 @theme {
-  --color-cream: #fbf9f3;
-  --color-paper: #fffdf8;
-  --color-parchment: #edf1e4;
-  --color-linen: #dce5d1;
+  --color-cream: #fbf8f1;
+  --color-paper: #fffdf7;
+  --color-parchment: #f1f0e4;
+  --color-linen: #dde5d0;
   --color-sand: #ccd9bd;
   --color-clay: #9caf8c;
   --color-clay-deep: #6f8462;
   --color-rose: #e6b3a4;
   --color-rose-soft: #f4e3da;
-  --color-rose-deep: #c9573d;
-  --color-sage: #dce5d1;
+  --color-rose-deep: #e8553a;
+  --color-sage: #dde5d0;
   --color-sage-soft: #e9efe0;
   --color-sage-deep: #5f7355;
-  --color-espresso: #3f3a32;
+  --color-espresso: #3b3a33;
   --color-cocoa: #6d6759;
-  --color-latte: #9a9382;
+  --color-latte: #8a8a78;
   --color-gold: #c98a4b;
   --color-blush: #f3ece1;
-  --color-mint: #f7f4ec;
-  --color-tomato: #e4572e;
+  --color-mint: #fbf8f1;
+  --color-tomato: #e8553a;
   --color-tomato-deep: #c8451f;
   --color-lavender-soft: #e9efe0;
-  --color-lavender: #dce5d1;
+  --color-lavender: #dde5d0;
   --color-lavender-deep: #6f8462;
   --color-lavender-deeper: #5f7355;
   --color-blue-soft: #e3ead8;
-  --color-blue: #ccd9bd;
+  --color-blue: #dde5d0;
   --color-blue-deep: #9caf8c;
   --color-blue-deeper: #6f8462;
   --color-blue-deepest: #5f7355;
 
-  --color-mixer-off: #fbf9f3;
+  --color-mixer-off: #fbf8f1;
   --color-mixer-pink: #f4e3da;
-  --color-mixer-blue: #edf1e4;
-  --color-mixer-lavender: #e9efe0;
+  --color-mixer-blue: #e9efe0;
+  --color-mixer-lavender: #e3ead8;
   --color-mixer-blend: #f1f0e6;
   --color-mixer-pink-deep: #e8cfc2;
-  --color-mixer-blue-deep: #dce5d1;
+  --color-mixer-blue-deep: #dde5d0;
   --color-mixer-lavender-deep: #d7e2ca;
 
   --font-display: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
@@ -96,7 +96,7 @@ body {
 
 /* paper grain */
 .paper-grain {
-  background-color: #f7f4ec;
+  background-color: #fbf8f1;
   background-image:
     radial-gradient(#d9e0cc 0.7px, transparent 0.7px),
     radial-gradient(#e6ebdb 0.5px, transparent 0.5px),
@@ -144,13 +144,13 @@ body {
 }
 
 ::selection {
-  background: #ccd9bd;
-  color: #3f3a32;
+  background: #dde5d0;
+  color: #3b3a33;
 }
 
 /* ---------- dark mode ---------- */
 .dark {
-  --background: #1b211a;
+  --background: #1e211b;
   --foreground: #eceee5;
 
   --color-cream: #232a22;
@@ -171,7 +171,7 @@ body {
   --color-latte: #8e8a7c;
   --color-gold: #e0a860;
   --color-blush: #2b2620;
-  --color-mint: #1b211a;
+  --color-mint: #1e211b;
   --color-tomato: #ff6a45;
   --color-tomato-deep: #ff8a6b;
   --color-lavender-soft: #2a3327;
@@ -202,7 +202,7 @@ body {
 }
 
 .dark .paper-grain {
-  background-color: #1b211a;
+  background-color: #1e211b;
   background-image:
     radial-gradient(#2a3327 0.7px, transparent 0.7px),
     radial-gradient(#333f2f 0.5px, transparent 0.5px),

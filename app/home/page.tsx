@@ -96,7 +96,7 @@ export default async function HomeIndex() {
               keepsakes all live here.
             </p>
           </div>
-          <span className="rounded-full border border-espresso/15 bg-cream px-4 py-1.5 font-hand text-lg leading-none text-espresso shadow-[2px_2px_0_rgba(138,120,160,0.12)]">
+          <span className="rounded-full border border-espresso/15 bg-cream px-4 py-1.5 font-hand text-lg leading-none text-espresso shadow-[2px_2px_0_rgba(95,115,85,0.12)]">
             ☾ {dateLabel}
           </span>
         </div>
@@ -104,7 +104,7 @@ export default async function HomeIndex() {
         {/* featured — today's page */}
         <Link
           href="/home/book"
-          className="group relative mt-7 block overflow-hidden rounded-[24px] border border-espresso/15 bg-blue-soft p-6 shadow-[6px_6px_0_rgba(168,152,208,0.9)] transition hover:-translate-y-0.5 sm:p-8"
+          className="group relative mt-7 block overflow-hidden rounded-[24px] border border-espresso/15 bg-blue-soft p-6 shadow-[6px_6px_0_rgba(156,175,140,0.9)] transition hover:-translate-y-0.5 sm:p-8"
         >
           <Tape className="left-1/2 top-[-14px] -translate-x-1/2 rotate-[-3deg] bg-cream" />
           <div className="relative flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
@@ -128,7 +128,7 @@ export default async function HomeIndex() {
             </div>
 
             <div className="relative w-full max-w-[190px] shrink-0 self-center">
-              <div className="paper-lines rotate-2 rounded-2xl border border-espresso/15 bg-sage p-4 font-serif text-[13px] italic leading-[32px] text-espresso/80 shadow-[4px_4px_0_rgba(138,120,160,0.12)]">
+              <div className="paper-lines rotate-2 rounded-2xl border border-espresso/15 bg-sage p-4 font-serif text-[13px] italic leading-[32px] text-espresso/80 shadow-[4px_4px_0_rgba(95,115,85,0.12)]">
                 The light through the kitchen window at 7am. Oat latte, still
                 warm…
               </div>
@@ -149,7 +149,7 @@ export default async function HomeIndex() {
             <Link
               key={f.href}
               href={f.href}
-              className={`group relative flex flex-col rounded-[20px] border border-espresso/10 bg-sage p-5 shadow-[4px_4px_0_rgba(138,120,160,0.1)] transition hover:-translate-y-0.5 hover:rotate-0 hover:border-espresso/20 ${f.rotate}`}
+              className={`group relative flex flex-col rounded-[20px] border border-espresso/10 bg-sage p-5 shadow-[4px_4px_0_rgba(95,115,85,0.1)] transition hover:-translate-y-0.5 hover:rotate-0 hover:border-espresso/20 ${f.rotate}`}
             >
               <span aria-hidden className="text-2xl leading-none">
                 {f.icon}

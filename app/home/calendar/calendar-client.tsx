@@ -159,7 +159,7 @@ export default function CalendarClient() {
         Calendar
       </h1>
 
-      <div className="mt-6 rounded-[22px] border border-espresso/15 bg-sage p-6 shadow-[8px_8px_0_rgba(138,120,160,0.12)] sm:p-8 lg:p-10">
+      <div className="mt-6 rounded-[22px] border border-espresso/15 bg-sage p-6 shadow-[8px_8px_0_rgba(95,115,85,0.12)] sm:p-8 lg:p-10">
         <div className="flex items-center justify-between">
           <h2
             className="font-serif text-xl font-semibold sm:text-2xl"
@@ -220,7 +220,7 @@ export default function CalendarClient() {
                 className={`group relative flex aspect-[4/5] flex-col items-center justify-end overflow-hidden rounded-t-[999px] rounded-b-2xl border text-sm font-bold transition hover:-translate-y-0.5 sm:text-base lg:text-lg ${
                   isToday
                     ? "border-tomato-deep/30 bg-tomato text-white shadow-[3px_3px_0_rgba(95,115,85,0.25)]"
-                    : "border-espresso/15 bg-cream text-espresso shadow-[3px_3px_0_rgba(138,120,160,0.12)] hover:bg-parchment"
+                    : "border-espresso/15 bg-cream text-espresso shadow-[3px_3px_0_rgba(95,115,85,0.12)] hover:bg-parchment"
                 }`}
               >
                 {entry?.image ? (
@@ -290,7 +290,7 @@ export default function CalendarClient() {
             role="dialog"
             aria-modal="true"
             aria-label={`Edit ${selectedLabel}`}
-            className="w-full max-w-md rounded-[24px] border border-espresso/15 bg-cream p-6 shadow-[8px_8px_0_rgba(138,120,160,0.2)]"
+            className="w-full max-w-md rounded-[24px] border border-espresso/15 bg-cream p-6 shadow-[8px_8px_0_rgba(95,115,85,0.2)]"
           >
             <div className="flex items-start justify-between gap-3">
               <div>

@@ -80,7 +80,7 @@ export default async function WorldNews() {
           href="https://www.bbc.com/news/world"
           target="_blank"
           rel="noopener noreferrer"
-          className="rounded-full border border-espresso/15 bg-cream px-4 py-1.5 font-hand text-lg leading-none text-cocoa shadow-[2px_2px_0_rgba(138,120,160,0.12)] transition hover:bg-parchment hover:text-espresso"
+          className="rounded-full border border-espresso/15 bg-cream px-4 py-1.5 font-hand text-lg leading-none text-cocoa shadow-[2px_2px_0_rgba(95,115,85,0.12)] transition hover:bg-parchment hover:text-espresso"
         >
           more from BBC World →
         </a>
@@ -94,7 +94,7 @@ export default async function WorldNews() {
                 href={item.link}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group flex items-start gap-3 rounded-2xl border border-espresso/10 bg-sage p-4 shadow-[3px_3px_0_rgba(138,120,160,0.1)] transition hover:-translate-y-0.5 hover:border-espresso/20"
+                className="group flex items-start gap-3 rounded-2xl border border-espresso/10 bg-sage p-4 shadow-[3px_3px_0_rgba(95,115,85,0.1)] transition hover:-translate-y-0.5 hover:border-espresso/20"
               >
                 <span
                   aria-hidden

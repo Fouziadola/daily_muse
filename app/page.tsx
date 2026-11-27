@@ -60,7 +60,7 @@ function Sticker({
 }) {
   return (
     <span
-      className={`inline-flex items-center justify-center rounded-full border border-espresso/15 bg-cream px-3 py-1 font-hand text-lg leading-none shadow-[2px_2px_0_rgba(138,120,160,0.18)] ${className}`}
+      className={`inline-flex items-center justify-center rounded-full border border-espresso/15 bg-cream px-3 py-1 font-hand text-lg leading-none shadow-[2px_2px_0_rgba(95,115,85,0.18)] ${className}`}
     >
       {children}
     </span>
@@ -178,7 +178,7 @@ export default function Home() {
 
       {/* WORLD NEWS */}
       <section className="w-full px-5 py-16 sm:px-10 lg:px-16 lg:py-24">
-        <div className="relative w-full overflow-hidden rounded-[32px] border border-espresso/10 bg-sage p-6 shadow-[8px_8px_0_rgba(138,120,160,0.12)] sm:p-10">
+        <div className="relative w-full overflow-hidden rounded-[32px] border border-espresso/10 bg-sage p-6 shadow-[8px_8px_0_rgba(95,115,85,0.12)] sm:p-10">
           <div
             aria-hidden
             className="pointer-events-none absolute -right-24 -top-24 h-72 w-72 rounded-full bg-lavender-soft/60 blur-3xl"
@@ -225,7 +225,7 @@ export default function Home() {
           {testimonials.map((t) => (
             <figure
               key={t.name}
-              className={`relative rounded-sm border border-espresso/10 bg-sage p-6 pb-14 pt-8 shadow-[5px_5px_0_rgba(138,120,160,0.12)] transition hover:rotate-0 ${t.rotate}`}
+              className={`relative rounded-sm border border-espresso/10 bg-sage p-6 pb-14 pt-8 shadow-[5px_5px_0_rgba(95,115,85,0.12)] transition hover:rotate-0 ${t.rotate}`}
             >
               <Tape className="left-1/2 top-[-12px] -translate-x-1/2 bg-linen" />
               <span className="absolute right-4 top-4 text-2xl">{t.sticker}</span>
@@ -244,7 +244,7 @@ export default function Home() {
 
       {/* CTA — evening ritual */}
       <section id="cta" className="relative overflow-hidden px-5 py-16 sm:px-10 lg:px-16 lg:py-24">
-        <div className="relative w-full overflow-hidden rounded-[36px] border border-espresso/10 bg-blue-soft text-espresso shadow-[8px_8px_0_rgba(168,152,208,0.9)]">
+        <div className="relative w-full overflow-hidden rounded-[36px] border border-espresso/10 bg-blue-soft text-espresso shadow-[8px_8px_0_rgba(156,175,140,0.9)]">
           {/* soft pink glow */}
           <div
             aria-hidden
@@ -310,7 +310,7 @@ export default function Home() {
               <div className="mt-7 flex flex-wrap items-center gap-3">
                 <a
                   href="#top"
-                  className="rounded-full bg-tomato px-8 py-4 font-semibold text-white shadow-[3px_3px_0_rgba(204,217,189,1)] transition hover:-translate-y-0.5 hover:bg-tomato-deep"
+                  className="rounded-full bg-tomato px-8 py-4 font-semibold text-white shadow-[3px_3px_0_rgba(240,217,210,1)] transition hover:-translate-y-0.5 hover:bg-tomato-deep"
                 >
                   Start tonight&apos;s entry ✎
                 </a>
@@ -371,7 +371,7 @@ export default function Home() {
                 </div>
                 <div className="mt-4 flex items-center justify-between">
                   <div className="flex gap-1.5">
-                    {["#fbf9f3", "#f4e3da", "#ccd9bd", "#9caf8c", "#e4572e"].map(
+                    {["#fbf8f1", "#dde5d0", "#9caf8c", "#e8553a", "#c8451f"].map(
                       (c) => (
                         <span
                           key={c}

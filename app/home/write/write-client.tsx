@@ -35,7 +35,7 @@ export default function WriteClient() {
           : "A blank page, just for you."}
       </p>
 
-      <div className="relative mt-5 -rotate-1 rounded-[22px] border border-espresso/15 bg-sage p-6 shadow-[8px_8px_0_rgba(138,120,160,0.14)]">
+      <div className="relative mt-5 -rotate-1 rounded-[22px] border border-espresso/15 bg-sage p-6 shadow-[8px_8px_0_rgba(95,115,85,0.14)]">
         <div
           aria-hidden
           className="washi pointer-events-none absolute left-1/2 top-[-14px] h-7 w-24 -translate-x-1/2 rotate-[-3deg] bg-lavender-soft opacity-90 shadow-sm"
