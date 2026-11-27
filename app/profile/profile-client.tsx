@@ -233,13 +233,6 @@ export default function ProfileClient() {
     return groups;
   }, []);
 
-  const startEditing = () => {
-    setDraftUsername(username);
-    setDraftName(displayName);
-    setDraftBio(bio);
-    setEditing(true);
-  };
-
   const saveProfile = () => {
     const nextUsername = draftUsername.trim().replace(/^@+/, "");
     const nextName = draftName.trim();
@@ -325,19 +318,6 @@ export default function ProfileClient() {
             <h1 className="font-serif text-2xl font-semibold tracking-tight">
               @{username}
             </h1>
-            <button
-              type="button"
-              onClick={startEditing}
-              className="rounded-full border border-espresso/20 bg-cream px-4 py-1.5 text-sm font-bold text-espresso transition hover:bg-parchment"
-            >
-              Edit profile
-            </button>
-            <button
-              type="button"
-              className="rounded-full border border-espresso/20 bg-cream px-4 py-1.5 text-sm font-bold text-espresso transition hover:bg-parchment"
-            >
-              Share profile
-            </button>
           </div>
 
           <dl className="mt-5 flex items-center justify-start gap-8">
