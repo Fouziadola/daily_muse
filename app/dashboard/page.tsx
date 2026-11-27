@@ -42,7 +42,7 @@ export default function DashboardPage() {
             <span className="hidden rounded-full border border-espresso/15 bg-blue-soft px-4 py-1.5 font-hand text-lg leading-none text-espresso sm:inline-block">
               ✿ your space
             </span>
-            <AppActions />
+            <AppActions showProfile={false} />
           </div>
         </div>
       </header>
