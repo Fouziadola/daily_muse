@@ -5,6 +5,30 @@ import Link from "next/link";
 
 const THEME_KEY = "daily-muse-theme";
 const THEME_EVENT = "daily-muse-theme-change";
+const PROFILE_KEY = "daily-muse-profile";
+
+type StoredProfile = {
+  username: string;
+  displayName: string;
+  bio: string;
+};
+
+const DEFAULT_PROFILE: StoredProfile = {
+  username: "dailymuse",
+  displayName: "June Aurora",
+  bio: "collecting small moments in soft ink ✿ morning pages, oat lattes, and letters to future-me.",
+};
+
+function readStoredProfile(): StoredProfile {
+  if (typeof window === "undefined") return DEFAULT_PROFILE;
+  try {
+    const raw = window.localStorage.getItem(PROFILE_KEY);
+    if (!raw) return DEFAULT_PROFILE;
+    return { ...DEFAULT_PROFILE, ...(JSON.parse(raw) as Partial<StoredProfile>) };
+  } catch {
+    return DEFAULT_PROFILE;
+  }
+}
 
 function subscribeTheme(callback: () => void) {
   window.addEventListener(THEME_EVENT, callback);
@@ -57,6 +81,11 @@ function SettingsIcon() {
 
 export default function AppActions({ showProfile = true }: { showProfile?: boolean }) {
   const [open, setOpen] = useState(false);
+  const [profile, setProfile] = useState<StoredProfile>(readStoredProfile);
+  const [usernameDraft, setUsernameDraft] = useState(
+    () => readStoredProfile().username
+  );
+  const [bioDraft, setBioDraft] = useState(() => readStoredProfile().bio);
   const dark = useSyncExternalStore(
     subscribeTheme,
     getThemeSnapshot,
@@ -82,6 +111,34 @@ export default function AppActions({ showProfile = true }: { showProfile?: boole
     };
   }, [open]);
 
+  const toggleMenu = () => {
+    if (!open) {
+      setUsernameDraft(profile.username);
+      setBioDraft(profile.bio);
+    }
+    setOpen((v) => !v);
+  };
+
+  const updateProfile = (patch: Partial<StoredProfile>) => {
+    const next = { ...profile, ...patch };
+    setProfile(next);
+    try {
+      window.localStorage.setItem(PROFILE_KEY, JSON.stringify(next));
+    } catch {
+      // storage may be unavailable; keep in-memory
+    }
+  };
+
+  const onUsernameChange = (value: string) => {
+    setUsernameDraft(value);
+    updateProfile({ username: value.trim().replace(/^@+/, "") });
+  };
+
+  const onBioChange = (value: string) => {
+    setBioDraft(value);
+    updateProfile({ bio: value });
+  };
+
   const toggleDark = () => {
     const root = document.documentElement;
     const next = !root.classList.contains("dark");
@@ -92,7 +149,6 @@ export default function AppActions({ showProfile = true }: { showProfile?: boole
       // storage may be unavailable; keep in-memory
     }
     window.dispatchEvent(new Event(THEME_EVENT));
-    setOpen(false);
   };
 
   const iconButton =
@@ -112,7 +168,7 @@ export default function AppActions({ showProfile = true }: { showProfile?: boole
           aria-label="Settings"
           aria-haspopup="menu"
           aria-expanded={open}
-          onClick={() => setOpen((v) => !v)}
+          onClick={toggleMenu}
           className={iconButton}
         >
           <SettingsIcon />
@@ -123,7 +179,7 @@ export default function AppActions({ showProfile = true }: { showProfile?: boole
           aria-label="Settings"
           aria-hidden={!open}
           inert={!open}
-          className={`absolute right-0 top-full z-50 mt-2 w-64 origin-top-right rounded-2xl border border-espresso/15 bg-cream p-4 text-espresso shadow-[6px_6px_0_rgba(95,115,85,0.16)] transition-all ease-out ${open ? "duration-200" : "duration-700"} ${
+          className={`absolute right-0 top-full z-50 mt-2 w-72 origin-top-right rounded-2xl border border-espresso/15 bg-cream p-4 text-espresso shadow-[6px_6px_0_rgba(95,115,85,0.16)] transition-all ease-out ${open ? "duration-200" : "duration-700"} ${
             open
               ? "visible translate-y-0 scale-100 opacity-100 blur-0"
               : "invisible -translate-y-2 scale-95 opacity-0 blur-sm"
@@ -132,10 +188,46 @@ export default function AppActions({ showProfile = true }: { showProfile?: boole
           <p className="font-hand text-lg leading-none text-lavender-deeper">
             ✿ settings
           </p>
+
+          {/* profile */}
+          <div className="mt-3 space-y-2">
+            <p className="text-[11px] font-bold uppercase tracking-[0.16em] text-latte">
+              Profile
+            </p>
+            <label className="block">
+              <span className="text-xs font-bold text-cocoa">Username</span>
+              <input
+                type="text"
+                value={usernameDraft}
+                onChange={(e) => onUsernameChange(e.target.value)}
+                placeholder="@dailymuse"
+                className="mt-1 w-full rounded-xl border border-espresso/15 bg-parchment/60 px-3 py-2 text-sm text-espresso placeholder:text-latte/70 focus:border-clay focus:outline-none focus:ring-2 focus:ring-clay/30"
+              />
+            </label>
+            <label className="block">
+              <span className="text-xs font-bold text-cocoa">Bio</span>
+              <textarea
+                value={bioDraft}
+                onChange={(e) => onBioChange(e.target.value)}
+                rows={2}
+                placeholder="a little about you…"
+                className="mt-1 w-full resize-none rounded-xl border border-espresso/15 bg-parchment/60 px-3 py-2 text-sm text-espresso placeholder:text-latte/70 focus:border-clay focus:outline-none focus:ring-2 focus:ring-clay/30"
+              />
+            </label>
+            <Link
+              href="/profile"
+              onClick={() => setOpen(false)}
+              className="block rounded-full border border-espresso/20 px-3 py-2 text-center text-xs font-bold text-espresso transition hover:bg-parchment"
+            >
+              Edit profile →
+            </Link>
+          </div>
+
+          {/* mode */}
           <div className="mt-3 flex items-center justify-between gap-3 rounded-xl border border-espresso/10 bg-parchment/60 px-3 py-2.5">
             <span className="flex items-center gap-2 text-sm font-bold">
               <span aria-hidden>{dark ? "☾" : "☀"}</span>
-              Dark mode
+              {dark ? "Dark mode" : "Light mode"}
             </span>
             <button
               type="button"

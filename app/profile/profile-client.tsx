@@ -13,17 +13,41 @@ type JournalEntry = {
 const JOURNAL_STORAGE_KEY = "daily-muse-journal";
 const JOURNAL_PAGE_COLOR_KEY = "daily-muse-journal-page-color";
 const PROFILE_IMAGE_KEY = "daily-muse-profile-image";
+const PROFILE_STORAGE_KEY = "daily-muse-profile";
+
+type StoredProfile = {
+  username?: string;
+  displayName?: string;
+  bio?: string;
+};
+
+function readStoredProfile(): StoredProfile {
+  if (typeof window === "undefined") return {};
+  try {
+    const raw = window.localStorage.getItem(PROFILE_STORAGE_KEY);
+    return raw ? (JSON.parse(raw) as StoredProfile) : {};
+  } catch {
+    return {};
+  }
+}
 
 export default function ProfileClient() {
   const [editing, setEditing] = useState(false);
-  const [username, setUsername] = useState("dailymuse");
-  const [displayName, setDisplayName] = useState("June Aurora");
+  const [username, setUsername] = useState(
+    () => readStoredProfile().username || "dailymuse"
+  );
+  const [displayName, setDisplayName] = useState(
+    () => readStoredProfile().displayName || "June Aurora"
+  );
   const [bio, setBio] = useState(
-    "collecting small moments in soft ink ✿ morning pages, oat lattes, and letters to future-me."
+    () =>
+      readStoredProfile().bio ??
+      "collecting small moments in soft ink ✿ morning pages, oat lattes, and letters to future-me."
   );
   const [draftUsername, setDraftUsername] = useState(username);
   const [draftName, setDraftName] = useState(displayName);
   const [draftBio, setDraftBio] = useState(bio);
+
   const [journalText, setJournalText] = useState("");
   const [entries, setEntries] = useState<JournalEntry[]>(() => {
     if (typeof window === "undefined") return [];
@@ -218,10 +242,27 @@ export default function ProfileClient() {
 
   const saveProfile = () => {
     const nextUsername = draftUsername.trim().replace(/^@+/, "");
-    setUsername(nextUsername || username);
-    setDisplayName(draftName.trim() || displayName);
-    setBio(draftBio.trim() || bio);
+    const nextName = draftName.trim();
+    const nextBio = draftBio.trim();
+    const savedUsername = nextUsername || username;
+    const savedName = nextName || displayName;
+    const savedBio = nextBio || bio;
+    setUsername(savedUsername);
+    setDisplayName(savedName);
+    setBio(savedBio);
     setEditing(false);
+    try {
+      window.localStorage.setItem(
+        PROFILE_STORAGE_KEY,
+        JSON.stringify({
+          username: savedUsername,
+          displayName: savedName,
+          bio: savedBio,
+        })
+      );
+    } catch {
+      // storage may be unavailable; keep in-memory
+    }
   };
 
   return (
